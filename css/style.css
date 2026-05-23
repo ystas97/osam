@@ -92,7 +92,7 @@ textarea {
 .nav-desktop {
   display: none;
   gap: 2rem;
-  font-size: 15px;
+  font-size: 17px;
   font-weight: 500;
   --slide-text-color: var(--blue);
 }
@@ -158,7 +158,7 @@ textarea {
 .btn--sm {
   min-height: 44px;
   padding: 0 20px;
-  font-size: 15px;
+  font-size: 17px;
   font-weight: 500;
 }
 
@@ -356,6 +356,8 @@ textarea {
 .projects-showcase {
   --project-pad: 5px;
   --project-card-height: 470px;
+  --project-photo-radius: 24px;
+  --project-detail-photo-radius: 32px;
   padding: 0 0 56px;
 }
 
@@ -423,7 +425,7 @@ textarea {
   min-height: 0;
   min-width: 0;
   overflow: hidden;
-  border-radius: var(--radius);
+  border-radius: var(--project-photo-radius);
 }
 
 .project-showcase__media img {
@@ -486,9 +488,10 @@ textarea {
   opacity: 0;
 }
 
-.project-showcase__detail-figure {
+.project-showcase__detail-figure,
+.project-showcase__detail-gallery-item {
   margin: 0;
-  border-radius: 28px;
+  border-radius: var(--project-detail-photo-radius);
   overflow: hidden;
   aspect-ratio: 16 / 10;
   max-height: 800px;
@@ -496,9 +499,29 @@ textarea {
   transition: max-height var(--detail-duration) var(--detail-ease);
 }
 
-.project-showcase__detail.is-closing .project-showcase__detail-figure {
+.project-showcase__detail.is-closing .project-showcase__detail-figure,
+.project-showcase__detail.is-closing .project-showcase__detail-gallery-item {
   aspect-ratio: auto;
   max-height: 0;
+}
+
+.project-showcase__detail-gallery {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+.project-showcase__detail-gallery .project-showcase__detail-gallery-item {
+  aspect-ratio: 2 / 1;
+  max-height: 800px;
+}
+
+.project-showcase__detail-gallery-item--video video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background: #000;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -548,25 +571,31 @@ textarea {
 }
 
 .project-showcase__detail-title {
-  margin: 0 0 10px;
+  margin: 0;
   font-size: clamp(1.35rem, 2.5vw, 28px);
   font-weight: 500;
   line-height: 1.15;
   color: #000;
 }
 
-.project-showcase__detail-subtitle {
-  margin: 0;
-  font-size: 16px;
-  line-height: 1.25;
-  color: #000;
+.project-showcase__detail-text {
+  display: grid;
+  gap: 20px;
 }
 
-.project-showcase__detail-col--body {
+.project-showcase__detail-body {
   margin: 0;
+  max-width: 42ch;
   font-size: 16px;
   line-height: 1.35;
   color: #000;
+}
+
+.project-showcase__detail-done {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  column-gap: clamp(20px, 4vw, 48px);
+  align-items: start;
 }
 
 .project-showcase__detail-label {
@@ -574,8 +603,6 @@ textarea {
   font-size: 16px;
   font-weight: 500;
   line-height: 1.25;
-  text-transform: uppercase;
-  letter-spacing: 0.01em;
   color: #000;
 }
 
@@ -587,7 +614,7 @@ textarea {
 
 .project-showcase__detail-list li {
   font-size: 16px;
-  font-weight: 500;
+  font-weight: 400;
   line-height: 1.3;
   color: #000;
 }
@@ -596,7 +623,8 @@ textarea {
   margin-top: 4px;
 }
 
-.project-showcase__detail-figure img {
+.project-showcase__detail-figure img,
+.project-showcase__detail-gallery-item img {
   display: block;
   width: 100%;
   height: 100%;
@@ -673,7 +701,6 @@ textarea {
   padding: 13px 9px 27px;
   background: var(--gray);
   border-radius: var(--radius);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
 }
 
 .process-card__badges {
@@ -1005,7 +1032,7 @@ textarea {
   }
 
   .project-showcase__card {
-    grid-template-columns: minmax(260px, 320px) minmax(220px, 273px) minmax(0, 1fr);
+    grid-template-columns: minmax(260px, 320px) minmax(236px, 290px) minmax(0, 1fr);
     grid-template-rows: 1fr;
     align-items: stretch;
     height: var(--project-card-height);
@@ -1020,6 +1047,7 @@ textarea {
   }
 
   .project-showcase__media {
+    width: 100%;
     height: 100%;
   }
 
@@ -1030,9 +1058,12 @@ textarea {
   }
 
   .project-showcase__detail-head {
-    grid-template-columns: minmax(0, 200px) minmax(0, 1fr) auto minmax(0, max-content);
-    column-gap: clamp(28px, 4vw, 56px);
-    row-gap: 0;
+    gap: 24px;
+  }
+
+  .project-showcase__detail-text {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    column-gap: clamp(28px, 5vw, 80px);
     align-items: start;
   }
 

@@ -180,7 +180,11 @@
     };
 
     const preloadDetailImages = (detail) => {
-      const images = [...detail.querySelectorAll(".project-showcase__detail-figure img[src]")];
+      const images = [
+        ...detail.querySelectorAll(
+          ".project-showcase__detail-figure img[src], .project-showcase__detail-gallery img[src]"
+        ),
+      ];
       if (!images.length) return Promise.resolve();
 
       const loadImage = (img) => {
@@ -215,6 +219,19 @@
       };
 
       return Promise.all(images.map(loadImage));
+    };
+
+    const setDetailVideoState = (detail, play) => {
+      detail
+        .querySelectorAll(".project-showcase__detail-gallery-item--video video")
+        .forEach((video) => {
+          if (play) {
+            video.play().catch(() => undefined);
+          } else {
+            video.pause();
+            video.currentTime = 0;
+          }
+        });
     };
 
     const setUiState = (item, open) => {
@@ -258,10 +275,12 @@
 
       if (reducedMotion) {
         setUiState(item, false);
+        setDetailVideoState(detail, false);
         detail.hidden = true;
         return;
       }
 
+      setDetailVideoState(detail, false);
       detail.classList.add("is-closing");
       await nextFrame();
       setUiState(item, false);
@@ -281,12 +300,14 @@
 
       if (reducedMotion) {
         setUiState(item, true);
+        setDetailVideoState(detail, true);
         detail.scrollIntoView({ block: "start" });
         return;
       }
 
       await nextFrame();
       setUiState(item, true);
+      setDetailVideoState(detail, true);
       detail.scrollIntoView({ behavior: "smooth", block: "start" });
       await wait(OPEN_MS);
     };
