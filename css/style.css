@@ -64,8 +64,16 @@ textarea {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(255, 255, 255, 0.94);
-  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.32);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(22px) saturate(1.35);
+  -webkit-backdrop-filter: blur(22px) saturate(1.35);
+}
+
+@supports not (backdrop-filter: blur(1px)) {
+  .site-header {
+    background: rgba(255, 255, 255, 0.92);
+  }
 }
 
 .header-inner {
@@ -159,9 +167,10 @@ textarea {
   margin: 0 0 32px;
   max-width: 1132px;
   font-family: var(--font-display);
-  font-size: clamp(2.5rem, 8vw, 81px);
+  font-size: clamp(3rem, 10.2vw, 96px);
   font-weight: 700;
-  line-height: 1.2;
+  line-height: 0.98;
+  letter-spacing: -0.02em;
   color: var(--text);
   text-transform: uppercase;
 }
@@ -183,8 +192,8 @@ textarea {
 
 .starter-card p {
   margin: 0;
-  font-size: 17px;
-  line-height: 1.2;
+  font-size: clamp(18px, 1.75vw, 22px);
+  line-height: 1.25;
   color: #000;
 }
 
@@ -194,6 +203,7 @@ textarea {
   min-height: 280px;
   border-radius: var(--radius);
   overflow: hidden;
+  isolation: isolate;
 }
 
 .hero-project > img:first-of-type {
@@ -205,20 +215,50 @@ textarea {
 
 .hero-project__shade {
   position: absolute;
-  inset: 76% 0 0;
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0) 0%,
-    rgba(255, 255, 255, 0.01) 100%
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.hero-project__shade::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  mask-image: linear-gradient(
+    to top,
+    #000 0%,
+    rgba(0, 0, 0, 0.85) 18%,
+    rgba(0, 0, 0, 0.35) 42%,
+    transparent 72%
   );
-  backdrop-filter: blur(12px);
+  -webkit-mask-image: linear-gradient(
+    to top,
+    #000 0%,
+    rgba(0, 0, 0, 0.85) 18%,
+    rgba(0, 0, 0, 0.35) 42%,
+    transparent 72%
+  );
+}
+
+.hero-project__shade::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.5) 0%,
+    rgba(0, 0, 0, 0.18) 32%,
+    transparent 68%
+  );
 }
 
 .hero-project__text {
   position: absolute;
   left: 18px;
   bottom: 18px;
-  z-index: 2;
+  z-index: 3;
   color: #f8f8f8;
 }
 
@@ -237,7 +277,7 @@ textarea {
   position: absolute;
   right: 18px;
   bottom: 22px;
-  z-index: 2;
+  z-index: 3;
   width: 44px;
   height: 44px;
 }
