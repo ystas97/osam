@@ -165,7 +165,8 @@ textarea {
 
 .hero__title {
   margin: 0 0 32px;
-  max-width: 1132px;
+  width: 100%;
+  max-width: none;
   font-family: var(--font-display);
   font-size: clamp(3rem, 10.2vw, 96px);
   font-weight: 700;
@@ -173,6 +174,7 @@ textarea {
   letter-spacing: -0.02em;
   color: var(--text);
   text-transform: uppercase;
+  text-wrap: balance;
 }
 
 .hero-grid {
@@ -215,43 +217,17 @@ textarea {
 
 .hero-project__shade {
   position: absolute;
-  inset: 0;
+  inset: 75.78% 0 0;
   z-index: 1;
-  pointer-events: none;
-}
-
-.hero-project__shade::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  backdrop-filter: blur(28px);
-  -webkit-backdrop-filter: blur(28px);
-  mask-image: linear-gradient(
-    to top,
-    #000 0%,
-    rgba(0, 0, 0, 0.85) 18%,
-    rgba(0, 0, 0, 0.35) 42%,
-    transparent 72%
-  );
-  -webkit-mask-image: linear-gradient(
-    to top,
-    #000 0%,
-    rgba(0, 0, 0, 0.85) 18%,
-    rgba(0, 0, 0, 0.35) 42%,
-    transparent 72%
-  );
-}
-
-.hero-project__shade::after {
-  content: "";
-  position: absolute;
-  inset: 0;
+  border-radius: 0 0 13.333px 13.333px;
   background: linear-gradient(
-    to top,
-    rgba(0, 0, 0, 0.5) 0%,
-    rgba(0, 0, 0, 0.18) 32%,
-    transparent 68%
+    180deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.01) 100%
   );
+  backdrop-filter: blur(22.5px);
+  -webkit-backdrop-filter: blur(22.5px);
+  pointer-events: none;
 }
 
 .hero-project__text {
