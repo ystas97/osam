@@ -2,8 +2,9 @@
 
 Лендинг креативного агентства OSAM — статическая копия [osam.tilda.ws](https://osam.tilda.ws/).
 
+- **Сайт:** https://osamdesign.com
 - **Репозиторий:** https://github.com/ystas97/osam
-- **GitHub Pages:** https://ystas97.github.io/osam/ (если Pages включены в настройках репозитория)
+- **GitHub Pages:** https://ystas97.github.io/osam/ (зеркало, если включено)
 
 ## Стек
 
