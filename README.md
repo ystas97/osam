@@ -27,6 +27,12 @@ python3 -m http.server 8080
 - `assets/images/` — проекты и блок «What you get»
 - `assets/icons/` — логотип, стрелки
 
-## Форма
+## Форма → Telegram
 
-Отправка открывает почтовый клиент (`mailto:`). Для продакшена можно подключить Formspree, Tally или свой backend.
+Заявки уходят в Telegram через Cloudflare Worker (токен бота не в репозитории сайта).
+
+Инструкция: [docs/telegram-form-setup.md](docs/telegram-form-setup.md)
+
+Кратко: создать бота → задеплоить `workers/telegram-form` → указать URL в `js/site-config.js` (`contactFormUrl`).
+
+Если `contactFormUrl` пустой, форма по-прежнему открывает `mailto:`.

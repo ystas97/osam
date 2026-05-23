@@ -2,3 +2,5 @@
 .env
 .env.*
 *.local
+workers/telegram-form/wrangler.toml
+workers/telegram-form/node_modules/

@@ -23,7 +23,7 @@
         <a class="logo" href="/" aria-label="OSAM home">
           <img src="assets/icons/osam.svg" width="120" height="28" alt="OSAM" />
         </a>
-        <nav class="nav-desktop" aria-label="Main">
+        <nav class="nav-desktop link-slide" aria-label="Main">
           <a href="#price">what you get</a>
           <a href="#contact">contacts us</a>
           <a href="#projects">projects</a>
@@ -196,71 +196,342 @@
         </div>
       </section>
 
-      <section class="projects" id="projects">
-        <div class="container">
-          <h2 class="section-heading">PROJECTS</h2>
-          <div class="projects-grid">
-            <a class="project-card" href="#projects">
-              <div class="project-card__media">
+      <section class="projects-showcase" id="projects">
+        <div class="container projects-showcase__list">
+          <article class="project-showcase project-showcase--dark" data-project>
+            <div class="project-showcase__card">
+              <div class="project-showcase__info">
+                <h3 class="project-showcase__title">Quinky App</h3>
+                <p class="project-showcase__lead">
+                  Quinky - Dutch sex education for Gen-Z with a pleasure-packed,
+                  gamified app backed by Antler
+                </p>
+                <button
+                  type="button"
+                  class="btn btn--learn project-showcase__toggle"
+                  aria-expanded="false"
+                  aria-controls="project-detail-quinky"
+                >
+                  <span>Learn more</span>
+                  <img src="assets/icons/figma/btn-learn-arrow.svg" alt="" />
+                </button>
+              </div>
+              <div class="project-showcase__media">
                 <img
-                  src="assets/images/figma/project-fakes.png"
-                  alt="FAKEs"
+                  src="assets/images/projects/quinky-mid.png"
+                  alt=""
                   loading="lazy"
                 />
               </div>
-              <div class="project-card__footer">
-                <div>
-                  <h3>FAKEs</h3>
-                  <p>Landing page</p>
-                </div>
+              <div class="project-showcase__media project-showcase__media--wide">
                 <img
-                  src="assets/icons/figma/project-arrow.svg"
-                  alt=""
-                  class="project-card__arrow"
-                />
-              </div>
-            </a>
-            <a class="project-card" href="#projects">
-              <div class="project-card__media">
-                <img
-                  src="assets/images/figma/project-place-chase.png"
-                  alt="Place Chase"
+                  src="assets/images/projects/quinky-right.png"
+                  alt="Quinky app on phone"
                   loading="lazy"
                 />
               </div>
-              <div class="project-card__footer">
-                <div>
-                  <h3>Place Chase</h3>
-                  <p>E commerce site</p>
+            </div>
+            <div
+              class="project-showcase__detail"
+              id="project-detail-quinky"
+              hidden
+            >
+              <button
+                type="button"
+                class="project-showcase__close"
+                aria-label="Close"
+              >
+                ×
+              </button>
+              <div class="project-showcase__detail-head">
+                <div class="project-showcase__detail-col project-showcase__detail-col--title">
+                  <h2 class="project-showcase__detail-title">Quinky App</h2>
+                  <p class="project-showcase__detail-subtitle">
+                    Quinky - Dutch sex education for Gen-Z with a pleasure-packed,
+                    gamified app backed by Antler
+                  </p>
                 </div>
-                <img
-                  src="assets/icons/figma/project-arrow.svg"
-                  alt=""
-                  class="project-card__arrow"
-                />
+                <p class="project-showcase__detail-col project-showcase__detail-col--body">
+                  Quinky is a sex and relationship wellness app aimed towards Gen
+                  Zs and young millennials that teaches them about their bodies
+                  and sexuality while also providing entertaining activities to
+                  try alone or with their partner.
+                </p>
+                <p
+                  class="project-showcase__detail-label project-showcase__detail-col project-showcase__detail-col--label"
+                >
+                  WHAT HAS BEEN DONE
+                </p>
+                <ul
+                  class="project-showcase__detail-list project-showcase__detail-col project-showcase__detail-col--list"
+                >
+                  <li>visual identity</li>
+                  <li>website</li>
+                  <li>product design</li>
+                  <li>Design for social media</li>
+                </ul>
               </div>
-            </a>
-            <a class="project-card" href="#projects">
-              <div class="project-card__media">
+              <figure class="project-showcase__detail-figure">
                 <img
-                  src="assets/images/figma/project-lim.png"
-                  alt="LIM"
+                  src="assets/images/projects/quinky-gallery-1.png"
+                  alt="Quinky project"
+                  loading="eager"
+                  decoding="async"
+                />
+              </figure>
+            </div>
+          </article>
+
+          <article class="project-showcase" data-project>
+            <div class="project-showcase__card">
+              <div class="project-showcase__info">
+                <h3 class="project-showcase__title">Lim CC</h3>
+                <p class="project-showcase__lead">
+                  Lim CC isn't a cycling club, though it might become one soon.
+                  It's a cycling café that gathers a community of cycling
+                  enthusiasts
+                </p>
+                <button
+                  type="button"
+                  class="btn btn--learn project-showcase__toggle"
+                  aria-expanded="false"
+                  aria-controls="project-detail-lim"
+                >
+                  <span>Learn more</span>
+                  <img src="assets/icons/figma/btn-learn-arrow.svg" alt="" />
+                </button>
+              </div>
+              <div class="project-showcase__media">
+                <img
+                  src="assets/images/projects/lim-mid.png"
+                  alt=""
                   loading="lazy"
                 />
               </div>
-              <div class="project-card__footer">
-                <div>
-                  <h3>LIM</h3>
-                  <p>Landing page</p>
-                </div>
+              <div class="project-showcase__media project-showcase__media--wide">
                 <img
-                  src="assets/icons/figma/project-arrow.svg"
-                  alt=""
-                  class="project-card__arrow"
+                  src="assets/images/projects/lim-right.png"
+                  alt="Lim CC"
+                  loading="lazy"
                 />
               </div>
-            </a>
-          </div>
+            </div>
+            <div
+              class="project-showcase__detail"
+              id="project-detail-lim"
+              hidden
+            >
+              <button
+                type="button"
+                class="project-showcase__close"
+                aria-label="Close"
+              >
+                ×
+              </button>
+              <div class="project-showcase__detail-head">
+                <div class="project-showcase__detail-col project-showcase__detail-col--title">
+                  <h2 class="project-showcase__detail-title">Lim CC</h2>
+                  <p class="project-showcase__detail-subtitle">
+                    Lim CC isn't a cycling club, though it might become one soon.
+                    It's a cycling café that gathers a community of cycling
+                    enthusiasts
+                  </p>
+                </div>
+                <p class="project-showcase__detail-col project-showcase__detail-col--body">
+                  It’s a community cafe that has room for everyone — human, pet,
+                  and bike alike.
+                </p>
+                <p
+                  class="project-showcase__detail-label project-showcase__detail-col project-showcase__detail-col--label"
+                >
+                  WHAT HAS BEEN DONE
+                </p>
+                <ul
+                  class="project-showcase__detail-list project-showcase__detail-col project-showcase__detail-col--list"
+                >
+                  <li>landing page</li>
+                  <li>Logo</li>
+                  <li>Printed products</li>
+                  <li>Design for social media</li>
+                </ul>
+              </div>
+              <figure class="project-showcase__detail-figure">
+                <img
+                  src="assets/images/projects/lim-gallery-3.jpg"
+                  alt="Lim CC"
+                  loading="eager"
+                  decoding="async"
+                />
+              </figure>
+            </div>
+          </article>
+
+          <article class="project-showcase project-showcase--dark" data-project>
+            <div class="project-showcase__card">
+              <div class="project-showcase__info">
+                <h3 class="project-showcase__title">Namu Buro</h3>
+                <p class="project-showcase__lead">
+                  Namu Buro is an architectural bureau creating incredibly
+                  beautiful interior designs and also having its own production
+                  of designer furniture
+                </p>
+                <button
+                  type="button"
+                  class="btn btn--learn project-showcase__toggle"
+                  aria-expanded="false"
+                  aria-controls="project-detail-namu"
+                >
+                  <span>Learn more</span>
+                  <img src="assets/icons/figma/btn-learn-arrow.svg" alt="" />
+                </button>
+              </div>
+              <div class="project-showcase__media">
+                <img
+                  src="assets/images/projects/namu-mid.png"
+                  alt=""
+                  loading="lazy"
+                />
+              </div>
+              <div class="project-showcase__media project-showcase__media--wide">
+                <img
+                  src="assets/images/projects/namu-right.png"
+                  alt="Namu Buro"
+                  loading="lazy"
+                />
+              </div>
+            </div>
+            <div
+              class="project-showcase__detail"
+              id="project-detail-namu"
+              hidden
+            >
+              <button
+                type="button"
+                class="project-showcase__close"
+                aria-label="Close"
+              >
+                ×
+              </button>
+              <div class="project-showcase__detail-head">
+                <div class="project-showcase__detail-col project-showcase__detail-col--title">
+                  <h2 class="project-showcase__detail-title">Namu Buro</h2>
+                  <p class="project-showcase__detail-subtitle">
+                    Namu Buro is an architectural bureau creating incredibly
+                    beautiful interior designs and also having its own production
+                    of designer furniture
+                  </p>
+                </div>
+                <p class="project-showcase__detail-col project-showcase__detail-col--body">
+                  NAMU BURO – interior design and architecture studio
+                </p>
+                <p
+                  class="project-showcase__detail-label project-showcase__detail-col project-showcase__detail-col--label"
+                >
+                  WHAT HAS BEEN DONE
+                </p>
+                <ul
+                  class="project-showcase__detail-list project-showcase__detail-col project-showcase__detail-col--list"
+                >
+                  <li>website</li>
+                  <li>Logo</li>
+                  <li>Printed products</li>
+                  <li>Design for social media</li>
+                </ul>
+              </div>
+              <figure class="project-showcase__detail-figure">
+                <img
+                  src="assets/images/projects/namu-gallery-1.png"
+                  alt="Namu Buro project"
+                  loading="eager"
+                  decoding="async"
+                />
+              </figure>
+            </div>
+          </article>
+
+          <article class="project-showcase" data-project>
+            <div class="project-showcase__card">
+              <div class="project-showcase__info">
+                <h3 class="project-showcase__title">Fake</h3>
+                <p class="project-showcase__lead">
+                  Fake – an educational project that helps teachers explain how
+                  to distinguish fake news from real ones
+                </p>
+                <button
+                  type="button"
+                  class="btn btn--learn project-showcase__toggle"
+                  aria-expanded="false"
+                  aria-controls="project-detail-fake"
+                >
+                  <span>Learn more</span>
+                  <img src="assets/icons/figma/btn-learn-arrow.svg" alt="" />
+                </button>
+              </div>
+              <div class="project-showcase__media">
+                <img
+                  src="assets/images/projects/fake-mid.png"
+                  alt=""
+                  loading="lazy"
+                />
+              </div>
+              <div class="project-showcase__media project-showcase__media--wide">
+                <img
+                  src="assets/images/projects/fake-right.png"
+                  alt="Fake project"
+                  loading="lazy"
+                />
+              </div>
+            </div>
+            <div
+              class="project-showcase__detail"
+              id="project-detail-fake"
+              hidden
+            >
+              <button
+                type="button"
+                class="project-showcase__close"
+                aria-label="Close"
+              >
+                ×
+              </button>
+              <div class="project-showcase__detail-head">
+                <div class="project-showcase__detail-col project-showcase__detail-col--title">
+                  <h2 class="project-showcase__detail-title">Fake</h2>
+                  <p class="project-showcase__detail-subtitle">
+                    Fake – an educational project that helps teachers explain how
+                    to distinguish fake news from real ones
+                  </p>
+                </div>
+                <p class="project-showcase__detail-col project-showcase__detail-col--body">
+                  A landing page for the FAKE educational project. Here, you can
+                  download ready-made assignments designed for teachers and
+                  parents of high school students to address the challenges of
+                  dealing with misleading information
+                </p>
+                <p
+                  class="project-showcase__detail-label project-showcase__detail-col project-showcase__detail-col--label"
+                >
+                  WHAT HAS BEEN DONE
+                </p>
+                <ul
+                  class="project-showcase__detail-list project-showcase__detail-col project-showcase__detail-col--list"
+                >
+                  <li>landing page</li>
+                  <li>LEARNING MATERIALS</li>
+                  <li>Printed products</li>
+                  <li>Design for social media</li>
+                </ul>
+              </div>
+              <figure class="project-showcase__detail-figure">
+                <img
+                  src="assets/images/projects/fake-gallery-1.png"
+                  alt="Fake project"
+                  loading="eager"
+                  decoding="async"
+                />
+              </figure>
+            </div>
+          </article>
         </div>
       </section>
 
@@ -391,7 +662,16 @@
                 It's high time to scale your marketing with us!
               </p>
             </div>
-            <form class="contact-form" action="#" method="post">
+            <form class="contact-form" action="#" method="post" novalidate>
+              <p class="contact-form__status" role="status" aria-live="polite" hidden></p>
+              <div class="field field--hp" aria-hidden="true">
+                <input
+                  type="text"
+                  name="company"
+                  tabindex="-1"
+                  autocomplete="off"
+                />
+              </div>
               <div class="field">
                 <input type="text" name="name" placeholder="My name" required />
               </div>
@@ -410,10 +690,19 @@
                   rows="3"
                 ></textarea>
               </div>
+              <input type="hidden" name="budget" value="$5-10k" />
               <div class="budget-row" role="group" aria-label="Budget">
-                <button type="button" class="budget-chip">$2-3k</button>
-                <button type="button" class="budget-chip">$3-5k</button>
-                <button type="button" class="budget-chip is-active">
+                <button type="button" class="budget-chip" data-budget="$2-3k">
+                  $2-3k
+                </button>
+                <button type="button" class="budget-chip" data-budget="$3-5k">
+                  $3-5k
+                </button>
+                <button
+                  type="button"
+                  class="budget-chip is-active"
+                  data-budget="$5-10k"
+                >
                   $5-10k
                 </button>
               </div>
@@ -452,6 +741,7 @@
       </div>
     </footer>
 
+    <script src="js/site-config.js"></script>
     <script src="js/main.js"></script>
   </body>
 </html>
