@@ -63,4 +63,49 @@
     const pills = [...track.children];
     pills.forEach((pill) => track.appendChild(pill.cloneNode(true)));
   });
+
+  const PARALLAX_MIN_WIDTH = 769;
+  const parallaxRows = [
+    { selector: ".text-to-left-side", prop: "right" },
+    { selector: ".text-to-right-side", prop: "left" },
+  ];
+
+  const resetAwardsParallax = () => {
+    parallaxRows.forEach(({ selector }) => {
+      document.querySelectorAll(selector).forEach((row) => {
+        const track = row.querySelector(".awards-track");
+        if (!track) return;
+        track.style.left = "";
+        track.style.right = "";
+      });
+    });
+  };
+
+  const updateAwardsParallax = () => {
+    if (window.innerWidth <= PARALLAX_MIN_WIDTH) {
+      resetAwardsParallax();
+      return;
+    }
+
+    const windowTop = window.scrollY;
+
+    parallaxRows.forEach(({ selector, prop }) => {
+      document.querySelectorAll(selector).forEach((row) => {
+        const track = row.querySelector(".awards-track");
+        if (!track) return;
+
+        const elementTop = row.getBoundingClientRect().top + windowTop;
+        if (elementTop <= 0) return;
+
+        const offset = (windowTop * 500) / elementTop;
+        track.style.left = "";
+        track.style.right = "";
+        track.style[prop] = `${offset}px`;
+      });
+    });
+  };
+
+  window.addEventListener("load", updateAwardsParallax);
+  window.addEventListener("resize", updateAwardsParallax);
+  window.addEventListener("scroll", updateAwardsParallax, { passive: true });
 })();
