@@ -11,6 +11,7 @@
   --radius-dark: 59px;
   --radius-pill: 51px;
   --container: 1200px;
+  --process-overlap: 140px;
   --font: "Onest", system-ui, sans-serif;
   --font-display: "Raleway", var(--font);
 }
@@ -400,9 +401,14 @@ textarea {
   margin-top: 32px;
 }
 
+/* Process → dark panel overlap */
+.process-bridge {
+  position: relative;
+}
+
 /* Pricing */
 .pricing {
-  margin-bottom: 40px;
+  margin-bottom: 32px;
   text-align: center;
 }
 
@@ -417,12 +423,15 @@ textarea {
 
 /* Process */
 .process {
-  margin-bottom: 56px;
+  position: relative;
+  z-index: 2;
+  margin-bottom: 0;
 }
 
 .process-grid {
   display: grid;
   gap: 15px;
+  margin-bottom: calc(-1 * var(--process-overlap));
 }
 
 .process-card {
@@ -432,6 +441,7 @@ textarea {
   padding: 13px 9px 27px;
   background: var(--gray);
   border-radius: var(--radius);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
 }
 
 .process-card__badges {
@@ -471,11 +481,13 @@ textarea {
 
 /* Dark panel */
 .dark-panel {
+  position: relative;
+  z-index: 1;
   padding: 0 0 48px;
 }
 
 .dark-panel__inner {
-  padding: 56px 24px 48px;
+  padding: calc(56px + var(--process-overlap)) 24px 48px;
   background: var(--black);
   border-radius: var(--radius-dark);
   color: var(--white);
@@ -721,6 +733,7 @@ textarea {
 
   .process-grid {
     grid-template-columns: repeat(4, 1fr);
+    margin-bottom: calc(-1 * var(--process-overlap));
   }
 
   .offers-banner__labels {
@@ -744,6 +757,14 @@ textarea {
 }
 
 @media (max-width: 899px) {
+  :root {
+    --process-overlap: 48px;
+  }
+
+  .process-grid {
+    margin-bottom: calc(-1 * var(--process-overlap));
+  }
+
   .offers-banner__images {
     grid-template-columns: repeat(2, 1fr);
   }
