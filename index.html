@@ -12,7 +12,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&family=Raleway:wght@700&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="css/style.css" />
@@ -28,172 +28,265 @@
           <a href="#contact">contacts us</a>
           <a href="#projects">projects</a>
         </nav>
-        <a class="btn btn--header" href="#contact">get in touch</a>
+        <a class="btn btn--sm" href="#contact">get in touch</a>
       </div>
     </header>
-
-    <div class="ticker" aria-hidden="true">
-      <div class="ticker__track">
-        <div class="ticker__item">
-          <img src="assets/icons/awards-line.svg" alt="" />
-          Quinky App — Startup visual identity
-        </div>
-        <div class="ticker__item">
-          <img src="assets/icons/awards-line.svg" alt="" />
-          NAMU BURO — Creating design of site
-        </div>
-        <div class="ticker__item">
-          <img src="assets/icons/awards-line.svg" alt="" />
-          Fakes — Site and learning materials
-        </div>
-        <div class="ticker__item">
-          <img src="assets/icons/awards-line.svg" alt="" />
-          LIM — Website and branding
-        </div>
-        <div class="ticker__item">
-          <img src="assets/icons/awards-line.svg" alt="" />
-          Quinky App — Startup visual identity
-        </div>
-        <div class="ticker__item">
-          <img src="assets/icons/awards-line.svg" alt="" />
-          NAMU BURO — Creating design of site
-        </div>
-        <div class="ticker__item">
-          <img src="assets/icons/awards-line.svg" alt="" />
-          Fakes — Site and learning materials
-        </div>
-        <div class="ticker__item">
-          <img src="assets/icons/awards-line.svg" alt="" />
-          LIM — Website and branding
-        </div>
-      </div>
-    </div>
 
     <main>
       <section class="hero">
         <div class="container">
-          <h1>CREATIVE AGENCY SOLVING STARTUP CHALLENGES</h1>
+          <h1 class="hero__title">
+            CREATIVE AGENCY SOLVING STARTUP CHALLENGES
+          </h1>
 
-          <div class="starter-card">
-            <h2>
-              Starter pack for your for startup with fixed timeline and price
-            </h2>
-            <a class="btn btn--wide" href="#price">
-              Learn more
-              <span class="btn__icon" aria-hidden="true">
-                <img src="assets/icons/arrow-learn.svg" alt="" />
-              </span>
-            </a>
-          </div>
+          <div class="hero-grid">
+            <div class="starter-card">
+              <p>
+                A startup package for your startup with fixed terms and price
+              </p>
+              <a class="btn btn--learn" href="#price">
+                <span>Learn more</span>
+                <img src="assets/icons/figma/btn-learn-arrow.svg" alt="" />
+              </a>
+            </div>
 
-          <a class="project-card" href="#projects">
-            <div class="project-card__media">
+            <a class="hero-project" href="#projects">
               <img
-                src="assets/images/project-namu.png"
-                alt="NAMU BURO project preview"
+                src="assets/images/figma/hero-namu.png"
+                alt="NAMU BURO"
                 loading="eager"
               />
-              <div class="project-card__overlay-title">
+              <div class="hero-project__shade"></div>
+              <div class="hero-project__text">
                 <h3>NAMU BURO</h3>
                 <p>Creating design of site</p>
               </div>
+              <img
+                class="hero-project__btn"
+                src="assets/icons/figma/btn-project.svg"
+                alt=""
+              />
+            </a>
+
+            <a class="hero-project" href="#projects">
+              <img
+                src="assets/images/figma/hero-place-chase.png"
+                alt="Place Chase"
+                loading="eager"
+              />
+              <div class="hero-project__shade"></div>
+              <div class="hero-project__text">
+                <h3>Place Chase</h3>
+                <p>E-commerce site</p>
+              </div>
+              <img
+                class="hero-project__btn"
+                src="assets/icons/figma/btn-project.svg"
+                alt=""
+              />
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="awards" aria-label="Awards and features">
+        <div class="awards-row awards-row--a">
+          <div class="awards-track">
+            <div class="award-pill">
+              <span class="award-pill__icon"
+                ><img src="assets/awards/icon-bg.svg" alt="" /><img
+                  src="assets/awards/webflow.svg"
+                  alt=""
+              /></span>
+              <span>WEBFLOW EXPERT</span>
             </div>
-          </a>
+            <div class="award-pill">
+              <span class="award-pill__icon"
+                ><img src="assets/awards/icon-bg.svg" alt="" /><img
+                  src="assets/awards/site-inspire.svg"
+                  alt=""
+              /></span>
+              <span>SITE INSPIRE</span>
+            </div>
+            <div class="award-pill">
+              <span class="award-pill__icon"
+                ><img src="assets/awards/icon-bg.svg" alt="" /><img
+                  src="assets/awards/cssda.svg"
+                  alt=""
+              /></span>
+              <span>CSS DESIGN AWARDS</span>
+            </div>
+            <div class="award-pill">
+              <span class="award-pill__icon"
+                ><img src="assets/awards/icon-bg.svg" alt="" /><img
+                  src="assets/awards/awwwards.svg"
+                  alt=""
+              /></span>
+              <span>SITE OF THE MONTH</span>
+            </div>
+            <div class="award-pill">
+              <span class="award-pill__icon"
+                ><img src="assets/awards/icon-bg.svg" alt="" /><img
+                  src="assets/awards/webby.svg"
+                  alt=""
+              /></span>
+              <span>THE WEBBY AWARDS</span>
+            </div>
+            <div class="award-pill">
+              <span class="award-pill__icon"
+                ><img src="assets/awards/icon-bg.svg" alt="" /><img
+                  src="assets/awards/awwwards.svg"
+                  alt=""
+              /></span>
+              <span>SITE OF THE DAY</span>
+            </div>
+          </div>
+        </div>
+        <div class="awards-row awards-row--b">
+          <div class="awards-track awards-track--reverse">
+            <div class="award-pill">
+              <span class="award-pill__icon"
+                ><img src="assets/awards/icon-bg.svg" alt="" /><img
+                  src="assets/awards/tilda.svg"
+                  alt=""
+              /></span>
+              <span>MADE ON TILDA</span>
+            </div>
+            <div class="award-pill">
+              <span class="award-pill__icon"
+                ><img src="assets/awards/icon-bg.svg" alt="" /><img
+                  src="assets/awards/cssda.svg"
+                  alt=""
+              /></span>
+              <span>CSS DESIGN AWARDS</span>
+            </div>
+            <div class="award-pill">
+              <span class="award-pill__icon"
+                ><img src="assets/awards/icon-bg.svg" alt="" /><img
+                  src="assets/awards/site-inspire.svg"
+                  alt=""
+              /></span>
+              <span>SITE INSPIRE</span>
+            </div>
+            <div class="award-pill">
+              <span class="award-pill__icon"
+                ><img src="assets/awards/icon-bg.svg" alt="" /><img
+                  src="assets/awards/tilda.svg"
+                  alt=""
+              /></span>
+              <span>MADE ON TILDA</span>
+            </div>
+            <div class="award-pill">
+              <span class="award-pill__icon"
+                ><img src="assets/awards/icon-bg.svg" alt="" /><img
+                  src="assets/awards/cssda.svg"
+                  alt=""
+              /></span>
+              <span>CSS DESIGN AWARDS</span>
+            </div>
+            <div class="award-pill">
+              <span class="award-pill__icon"
+                ><img src="assets/awards/icon-bg.svg" alt="" /><img
+                  src="assets/awards/tilda.svg"
+                  alt=""
+              /></span>
+              <span>MADE ON TILDA</span>
+            </div>
+          </div>
         </div>
       </section>
 
       <section class="projects" id="projects">
         <div class="container">
-          <p class="section-title">Projects</p>
-
-          <a class="project-card" href="#projects">
-            <div class="project-card__media">
-              <img
-                src="assets/images/project-fakes.jpg"
-                alt="Fakes project preview"
-                loading="lazy"
-              />
-            </div>
-            <div class="project-card__body">
-              <div>
-                <h3>Fakes</h3>
-                <p>Site and learning materials</p>
+          <h2 class="section-heading">PROJECTS</h2>
+          <div class="projects-grid">
+            <a class="project-card" href="#projects">
+              <div class="project-card__media">
+                <img
+                  src="assets/images/figma/project-fakes.png"
+                  alt="FAKEs"
+                  loading="lazy"
+                />
               </div>
-              <span class="project-card__arrow" aria-hidden="true">
-                <img src="assets/icons/btn-arrow-circle.svg" alt="" />
-              </span>
-            </div>
-          </a>
-
-          <article class="project-card">
-            <div class="project-card__media">
-              <video
-                src="https://dl.dropbox.com/s/4e6do0nsgjv8wgxkoledm/quinky_app_main_page.mp4?dl=1"
-                autoplay
-                muted
-                loop
-                playsinline
-                poster="assets/images/project-quinky.png"
-              ></video>
-            </div>
-            <div class="project-card__body">
-              <div>
-                <h3>Quinky App</h3>
-                <p>Visual identity</p>
+              <div class="project-card__footer">
+                <div>
+                  <h3>FAKEs</h3>
+                  <p>Landing page</p>
+                </div>
+                <img
+                  src="assets/icons/figma/project-arrow.svg"
+                  alt=""
+                  class="project-card__arrow"
+                />
               </div>
-              <span class="project-card__arrow" aria-hidden="true">
-                <img src="assets/icons/btn-arrow-circle.svg" alt="" />
-              </span>
-            </div>
-          </article>
-
-          <a class="project-card" href="#projects">
-            <div class="project-card__media">
-              <img
-                src="assets/images/project-lim.png"
-                alt="LIM project preview"
-                loading="lazy"
-              />
-            </div>
-            <div class="project-card__body">
-              <div>
-                <h3>LIM</h3>
-                <p>Website and branding</p>
+            </a>
+            <a class="project-card" href="#projects">
+              <div class="project-card__media">
+                <img
+                  src="assets/images/figma/project-place-chase.png"
+                  alt="Place Chase"
+                  loading="lazy"
+                />
               </div>
-              <span class="project-card__arrow" aria-hidden="true">
-                <img src="assets/icons/btn-arrow-circle.svg" alt="" />
-              </span>
-            </div>
-          </a>
+              <div class="project-card__footer">
+                <div>
+                  <h3>Place Chase</h3>
+                  <p>E commerce site</p>
+                </div>
+                <img
+                  src="assets/icons/figma/project-arrow.svg"
+                  alt=""
+                  class="project-card__arrow"
+                />
+              </div>
+            </a>
+            <a class="project-card" href="#projects">
+              <div class="project-card__media">
+                <img
+                  src="assets/images/figma/project-lim.png"
+                  alt="LIM"
+                  loading="lazy"
+                />
+              </div>
+              <div class="project-card__footer">
+                <div>
+                  <h3>LIM</h3>
+                  <p>Landing page</p>
+                </div>
+                <img
+                  src="assets/icons/figma/project-arrow.svg"
+                  alt=""
+                  class="project-card__arrow"
+                />
+              </div>
+            </a>
+          </div>
         </div>
       </section>
 
-      <section class="container">
-        <div class="manifesto">
-          <h2>
-            Before you know your target market, you don't want to hire a fancy
-            branding agency
-          </h2>
-          <h2>
-            That's just too much. Let's start by creating a simple digital
-            design package that you can use. That way, you can focus on the
-            important things when building your startup
-          </h2>
-          <a class="btn btn--wide" href="#contact">
-            Send a request
-            <span class="btn__icon" aria-hidden="true">
-              <img src="assets/icons/btn-arrow.svg" alt="" />
-            </span>
-          </a>
-        </div>
+      <section class="container manifesto">
+        <h2>
+          Before you know your target market, you don't want to hire a fancy
+          branding agency
+        </h2>
+        <p>
+          That's just too much. Let's start by creating a simple digital design
+          package that you can use. That way, you can focus on the important
+          things when building your startup
+        </p>
+        <a class="btn btn--learn btn--center" href="#contact">
+          <span>Learn more</span>
+          <img src="assets/icons/figma/btn-learn-arrow.svg" alt="" />
+        </a>
+      </section>
 
-        <div class="pricing-headline">
-          <h2>
-            We will design a visual identity and website within 4 weeks for
-            €5,000
-          </h2>
-        </div>
+      <section class="container pricing">
+        <h2>
+          We will design a visual identity and website within 4 weeks for €5,000
+        </h2>
+      </section>
 
+      <section class="container process">
         <div class="process-grid">
           <article class="process-card">
             <div class="process-card__badges">
@@ -201,9 +294,9 @@
               <span class="badge badge--white">Meet &amp; Brief</span>
             </div>
             <p>
-              We talk, discuss your needs, define clear goals, and sign a
-              contract. Then, we gather information about your business,
-              research your industry, and dive into design
+              We'll talk, discuss your needs, define clear goals, and sign a
+              contract. Then, we'll gather information about your business,
+              research your industry, and dive into design.
             </p>
           </article>
           <article class="process-card">
@@ -212,19 +305,19 @@
               <span class="badge badge--white">Design Directions</span>
             </div>
             <p>
-              We create two design concepts for the visual identity, including
-              the logo, typography, and color palette. You choose the one you
+              We'll create two design concepts for the visual identity, including
+              the logo, typography, and color palette. You'll choose the one you
               like best
             </p>
           </article>
           <article class="process-card">
             <div class="process-card__badges">
               <span class="badge badge--lime">3 week</span>
-              <span class="badge badge--white">Ready website</span>
+              <span class="badge badge--white">Choose proposals</span>
             </div>
             <p>
-              We do the landing page design, copy editing, and develop on a
-              no-code platform. We polish the rest of the design elements.
+              We will do the landing page design, copy editing, and developing on
+              a no-code platform. Polishing the rest of the design elements
             </p>
           </article>
           <article class="process-card">
@@ -233,80 +326,67 @@
               <span class="badge badge--white">Revise &amp; Finalize</span>
             </div>
             <p>
-              We design social media templates and presentations, create a
-              design concept for an app (up to 10 screens), and deliver all
-              design files in user-friendly formats.
+              Designing social media templates and presentations, creating a
+              design concept for an app (up to 10 screens) And delivery all design
+              files in user-friendly formats
             </p>
           </article>
         </div>
       </section>
 
-      <section class="offers" id="price">
-        <div class="container">
-          <h2>What you get</h2>
-          <div class="offers-grid">
-            <article class="offer-card">
-              <div
-                class="offer-card__bg"
-                style="background-image: url('assets/images/offer-logo.png')"
-              ></div>
-              <div class="offer-card__content">
-                <h3>Logo</h3>
-                <p>Crafted to turn your startup into a landmark</p>
-              </div>
-            </article>
-            <article class="offer-card">
-              <div
-                class="offer-card__bg"
-                style="background-image: url('assets/images/offer-style.png')"
-              ></div>
-              <div class="offer-card__content">
+      <section class="dark-panel" id="price">
+        <div class="dark-panel__inner container">
+          <h2 class="dark-panel__title">What you get</h2>
+
+          <div class="offers-banner">
+            <div class="offers-banner__images">
+              <img src="assets/images/figma/offer-style.png" alt="" />
+              <img src="assets/images/figma/offer-pitch.png" alt="" />
+              <img src="assets/images/figma/offer-logo.png" alt="" />
+              <img src="assets/images/figma/offer-landing.png" alt="" />
+            </div>
+            <div class="offers-banner__shade"></div>
+            <img
+              class="offers-banner__center-logo"
+              src="assets/images/figma/offer-logo-center.png"
+              alt=""
+            />
+            <div class="offers-banner__labels">
+              <div class="offer-label">
                 <h3>Style and Branding</h3>
                 <p>To stand out and be memorable</p>
               </div>
-            </article>
-            <article class="offer-card">
-              <div
-                class="offer-card__bg"
-                style="background-image: url('assets/images/offer-pitch.png')"
-              ></div>
-              <div class="offer-card__content">
+              <div class="offer-label">
                 <h3>Pitch deck design</h3>
                 <p>To be seen, heard and invested in</p>
               </div>
-            </article>
-            <article class="offer-card">
-              <div
-                class="offer-card__bg"
-                style="
-                  background-image: url('assets/images/offer-landing.png');
-                "
-              ></div>
-              <div class="offer-card__content">
+              <div class="offer-label">
+                <h3>Logo</h3>
+                <p>Crafted to turn your startup into a landmark</p>
+              </div>
+              <div class="offer-label">
                 <h3>Landing Page</h3>
                 <p>Built on Webflow with SEO and analytics</p>
               </div>
-            </article>
+            </div>
           </div>
-        </div>
-      </section>
 
-      <section class="contact" id="contact">
-        <div class="container">
-          <div class="contact-card">
-            <h2>
-              Sounds good?<br />
-              It’s high time to scale your marketing with us!
-            </h2>
+          <div class="contact" id="contact">
+            <div class="contact__copy">
+              <p class="contact__lead">Sounds good?</p>
+              <p class="contact__sub">
+                It's high time to scale your marketing with us!
+              </p>
+            </div>
             <form class="contact-form" action="#" method="post">
               <div class="field">
-                <input type="text" name="name" placeholder="Name" required />
+                <input type="text" name="name" placeholder="My name" required />
               </div>
               <div class="field">
                 <input
                   type="email"
                   name="email"
-                  placeholder="Email adress"
+                  placeholder="Email address"
                   required
                 />
               </div>
@@ -314,19 +394,19 @@
                 <textarea
                   name="message"
                   placeholder="Message"
-                  rows="4"
+                  rows="3"
                 ></textarea>
               </div>
               <div class="budget-row" role="group" aria-label="Budget">
                 <button type="button" class="budget-chip">$2-3k</button>
-                <button type="button" class="budget-chip is-active">$3-5k</button>
-                <button type="button" class="budget-chip">$5-7k</button>
+                <button type="button" class="budget-chip">$3-5k</button>
+                <button type="button" class="budget-chip is-active">
+                  $5-10k
+                </button>
               </div>
               <button class="btn btn--send" type="submit">
-                SEND
-                <span class="btn__icon" aria-hidden="true">
-                  <img src="assets/icons/btn-arrow.svg" alt="" />
-                </span>
+                <span>SEND</span>
+                <img src="assets/icons/figma/btn-send-arrow.svg" alt="" />
               </button>
             </form>
           </div>
@@ -336,19 +416,24 @@
 
     <footer class="site-footer">
       <div class="container footer-inner">
-        <div class="footer-meta">
-          <span data-clock>11:31</span>
-          <a href="tel:+381629453323">+381 62 9453 323</a>
-          <span>Belgrade</span>
-        </div>
-        <div class="footer-links">
-          <a href="#">Career</a>
-        </div>
         <div class="footer-social">
           <a href="https://www.instagram.com/osam.design/" target="_blank" rel="noopener noreferrer">In</a>
           <a href="#" target="_blank" rel="noopener noreferrer">Fb</a>
           <a href="https://t.me/allo_galochka" target="_blank" rel="noopener noreferrer">Tg</a>
         </div>
+        <div class="footer-offices">
+          <div class="footer-office">
+            <strong>Paris</strong>
+            <span data-clock="Europe/Paris">11:46</span>
+            <a href="tel:+33658118161">+33 658 11 81 61</a>
+          </div>
+          <div class="footer-office">
+            <strong>Belgrade</strong>
+            <span data-clock="Europe/Belgrade">10:46</span>
+            <a href="tel:+33658118161">+33 658 11 81 61</a>
+          </div>
+        </div>
+        <a class="footer-career" href="#">Career</a>
       </div>
     </footer>
 

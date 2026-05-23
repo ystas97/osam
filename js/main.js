@@ -2,7 +2,6 @@
   const header = document.querySelector(".site-header");
   const budgetChips = document.querySelectorAll(".budget-chip");
   const form = document.querySelector(".contact-form");
-  const clockEl = document.querySelector("[data-clock]");
 
   if (header) {
     const onScroll = () => {
@@ -40,19 +39,28 @@
     });
   }
 
-  if (clockEl) {
-    const formatBelgrade = () => {
+  document.querySelectorAll("[data-clock]").forEach((el) => {
+    const zone = el.getAttribute("data-clock");
+    if (!zone) return;
+
+    const tick = () => {
       const parts = new Intl.DateTimeFormat("en-GB", {
-        timeZone: "Europe/Belgrade",
+        timeZone: zone,
         hour: "2-digit",
         minute: "2-digit",
         hour12: false,
       }).formatToParts(new Date());
       const hour = parts.find((p) => p.type === "hour")?.value ?? "00";
       const minute = parts.find((p) => p.type === "minute")?.value ?? "00";
-      clockEl.textContent = `${hour}:${minute}`;
+      el.textContent = `${hour}:${minute}`;
     };
-    formatBelgrade();
-    setInterval(formatBelgrade, 30_000);
-  }
+
+    tick();
+    setInterval(tick, 30_000);
+  });
+
+  document.querySelectorAll(".awards-track").forEach((track) => {
+    const pills = [...track.children];
+    pills.forEach((pill) => track.appendChild(pill.cloneNode(true)));
+  });
 })();
