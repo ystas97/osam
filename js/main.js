@@ -61,125 +61,78 @@
 
   initAwardsMarquee();
 
+  function normalizeMarqueeX(x, loopWidth) {
+    if (loopWidth <= 0) return x;
+    while (x > 0) x -= loopWidth;
+    while (x <= -loopWidth) x += loopWidth;
+    return x;
+  }
+
   function initAwardsMarquee() {
     const section = document.querySelector(".awards");
     if (!section) return;
 
-    const trackConfigs = [
-      { row: ".awards-row--a", mode: "left" },
-      { row: ".awards-row--b", mode: "right" },
-    ];
+    const tracks = [
+      {
+        el: section.querySelector(".awards-row--a .awards-track"),
+        dir: -1,
+      },
+      {
+        el: section.querySelector(".awards-row--b .awards-track"),
+        dir: 1,
+      },
+    ].filter((t) => t.el);
 
-    const tracks = trackConfigs
-      .map(({ row, mode }) => {
-        const el = section.querySelector(`${row} .awards-track`);
-        if (!el) return null;
-        return buildLoopTrack(el, mode);
-      })
-      .filter(Boolean);
-
-    if (!tracks.length) return;
+    tracks.forEach(({ el }) => {
+      [...el.children].forEach((pill) => el.appendChild(pill.cloneNode(true)));
+    });
 
     const reducedMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)"
     ).matches;
     const autoSpeed = reducedMotion ? 0 : 42;
-    let lastTime = 0;
-    let lastScrollY = window.scrollY;
-    let scrollCarry = 0;
+    const loopWidths = tracks.map(({ el }) => el.scrollWidth / 2);
 
-    function getParallaxOffset() {
-      if (window.innerWidth <= 768) return 0;
-      const elementTop = Math.max(section.offsetTop, 1);
-      const scrollY = window.scrollY;
-      const raw = (scrollY * 500) / elementTop;
-      const max = tracks[0].segmentWidth * 0.35;
-      return Math.max(0, Math.min(raw, max));
-    }
+    const autoOffsets = [
+      0,
+      loopWidths[1] > 0 ? -loopWidths[1] / 2 : 0,
+    ];
+
+    let lastTime = 0;
+    let ready = false;
 
     function loop(time) {
       if (!lastTime) lastTime = time;
       const dt = Math.min((time - lastTime) / 1000, 0.05);
       lastTime = time;
 
+      if (!ready) {
+        loopWidths[0] = tracks[0].el.scrollWidth / 2;
+        loopWidths[1] = tracks[1].el.scrollWidth / 2;
+        autoOffsets[1] = loopWidths[1] > 0 ? -loopWidths[1] / 2 : 0;
+        ready = true;
+      }
+
       const scrollY = window.scrollY;
-      const scrollDelta = scrollY - lastScrollY;
-      lastScrollY = scrollY;
+      const elementTop = Math.max(section.offsetTop, 1);
+      const scrollLinked =
+        window.innerWidth > 768 ? (scrollY * 500) / elementTop : 0;
 
-      scrollCarry += scrollDelta * 0.45;
-      scrollCarry *= 0.9;
+      tracks.forEach(({ el, dir }, index) => {
+        const loopWidth = loopWidths[index];
+        autoOffsets[index] += autoSpeed * dt * dir;
+        autoOffsets[index] = normalizeMarqueeX(autoOffsets[index], loopWidth);
 
-      const parallax = getParallaxOffset();
-
-      tracks.forEach((track) => {
-        const dir = track.mode === "left" ? -1 : 1;
-        track.offset += autoSpeed * dt * dir;
-
-        if (track.mode === "left") {
-          while (track.offset <= -track.segmentWidth) {
-            track.offset += track.segmentWidth;
-          }
-        } else {
-          while (track.offset >= 0) {
-            track.offset -= track.segmentWidth;
-          }
-        }
-
-        const scrollShift =
-          (parallax + scrollCarry * 12) * (track.mode === "left" ? -1 : 1);
-        const x = track.offset + scrollShift;
-
-        track.el.style.transform = `translate3d(${x}px, 0, 0)`;
+        const x = normalizeMarqueeX(
+          autoOffsets[index] + scrollLinked * dir,
+          loopWidth
+        );
+        el.style.transform = `translate3d(${x}px, 0, 0)`;
       });
 
       requestAnimationFrame(loop);
     }
 
     requestAnimationFrame(loop);
-    window.addEventListener(
-      "resize",
-      () => {
-        tracks.forEach((track) => {
-          track.segmentWidth = measureSegment(track.el);
-          if (track.mode === "right") {
-            track.offset = -track.segmentWidth;
-          } else {
-            track.offset = 0;
-          }
-        });
-      },
-      { passive: true }
-    );
-  }
-
-  function buildLoopTrack(el, mode) {
-    const pills = [...el.children];
-    if (!pills.length) return null;
-
-    el.innerHTML = "";
-
-    const setA = document.createElement("div");
-    const setB = document.createElement("div");
-    setA.className = "awards-track__set";
-    setB.className = "awards-track__set";
-    setB.setAttribute("aria-hidden", "true");
-
-    pills.forEach((pill) => setA.appendChild(pill));
-    pills.forEach((pill) => setB.appendChild(pill.cloneNode(true)));
-
-    el.appendChild(setA);
-    el.appendChild(setB);
-
-    const segmentWidth = measureSegment(el);
-    const offset = mode === "right" ? -segmentWidth : 0;
-
-    return { el, mode, segmentWidth, offset };
-  }
-
-  function measureSegment(trackEl) {
-    const set = trackEl.querySelector(".awards-track__set");
-    if (!set) return 0;
-    const gap = 12.5;
-    return set.getBoundingClientRect().width + gap;
   }
 })();
