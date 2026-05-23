@@ -276,12 +276,6 @@ textarea {
   will-change: transform;
 }
 
-.awards-track__set {
-  display: flex;
-  flex-shrink: 0;
-  gap: 12.5px;
-}
-
 .award-pill {
   display: flex;
   align-items: center;
@@ -360,20 +354,23 @@ textarea {
   justify-content: space-between;
   gap: 12px;
   margin-top: -2px;
-  padding: 14px 16px 16px;
+  min-height: 96px;
+  padding: 20px 18px 22px;
   background: var(--gray);
   border-radius: var(--radius);
 }
 
 .project-card__footer h3 {
   margin: 0;
-  font-size: 20px;
+  font-size: 24px;
   font-weight: 500;
+  line-height: 1.15;
 }
 
 .project-card__footer p {
-  margin: 4px 0 0;
-  font-size: 13px;
+  margin: 6px 0 0;
+  font-size: 15px;
+  line-height: 1.2;
 }
 
 .project-card__arrow {
