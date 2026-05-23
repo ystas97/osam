@@ -276,6 +276,12 @@ textarea {
   will-change: transform;
 }
 
+.awards-track__set {
+  display: flex;
+  flex-shrink: 0;
+  gap: 12.5px;
+}
+
 .award-pill {
   display: flex;
   align-items: center;
