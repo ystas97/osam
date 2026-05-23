@@ -59,53 +59,67 @@
     setInterval(tick, 30_000);
   });
 
-  document.querySelectorAll(".awards-track").forEach((track) => {
-    const pills = [...track.children];
-    pills.forEach((pill) => track.appendChild(pill.cloneNode(true)));
-  });
+  initAwardsMarquee();
 
-  const PARALLAX_MIN_WIDTH = 769;
-  const parallaxRows = [
-    { selector: ".text-to-left-side", prop: "right" },
-    { selector: ".text-to-right-side", prop: "left" },
-  ];
+  function initAwardsMarquee() {
+    const section = document.querySelector(".awards");
+    if (!section) return;
 
-  const resetAwardsParallax = () => {
-    parallaxRows.forEach(({ selector }) => {
-      document.querySelectorAll(selector).forEach((row) => {
-        const track = row.querySelector(".awards-track");
-        if (!track) return;
-        track.style.left = "";
-        track.style.right = "";
-      });
+    const tracks = [
+      {
+        el: section.querySelector(".awards-row--a .awards-track"),
+        dir: -1,
+      },
+      {
+        el: section.querySelector(".awards-row--b .awards-track"),
+        dir: 1,
+      },
+    ].filter((t) => t.el);
+
+    tracks.forEach(({ el }) => {
+      [...el.children].forEach((pill) => el.appendChild(pill.cloneNode(true)));
     });
-  };
 
-  const updateAwardsParallax = () => {
-    if (window.innerWidth <= PARALLAX_MIN_WIDTH) {
-      resetAwardsParallax();
-      return;
+    const reducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+    const autoSpeed = reducedMotion ? 0 : 42;
+    const autoOffsets = tracks.map(() => 0);
+    let lastTime = 0;
+
+    function loop(time) {
+      if (!lastTime) lastTime = time;
+      const dt = Math.min((time - lastTime) / 1000, 0.05);
+      lastTime = time;
+
+      const scrollY = window.scrollY;
+      const elementTop = Math.max(section.offsetTop, 1);
+      const scrollLinked =
+        window.innerWidth > 768 ? (scrollY * 500) / elementTop : 0;
+
+      tracks.forEach(({ el, dir }, index) => {
+        autoOffsets[index] += autoSpeed * dt * dir;
+
+        const loopWidth = el.scrollWidth / 2;
+        if (loopWidth > 0) {
+          if (dir < 0) {
+            while (autoOffsets[index] <= -loopWidth) {
+              autoOffsets[index] += loopWidth;
+            }
+          } else {
+            while (autoOffsets[index] >= loopWidth) {
+              autoOffsets[index] -= loopWidth;
+            }
+          }
+        }
+
+        const x = autoOffsets[index] + scrollLinked * dir;
+        el.style.transform = `translate3d(${x}px, 0, 0)`;
+      });
+
+      requestAnimationFrame(loop);
     }
 
-    const windowTop = window.scrollY;
-
-    parallaxRows.forEach(({ selector, prop }) => {
-      document.querySelectorAll(selector).forEach((row) => {
-        const track = row.querySelector(".awards-track");
-        if (!track) return;
-
-        const elementTop = row.getBoundingClientRect().top + windowTop;
-        if (elementTop <= 0) return;
-
-        const offset = (windowTop * 500) / elementTop;
-        track.style.left = "";
-        track.style.right = "";
-        track.style[prop] = `${offset}px`;
-      });
-    });
-  };
-
-  window.addEventListener("load", updateAwardsParallax);
-  window.addEventListener("resize", updateAwardsParallax);
-  window.addEventListener("scroll", updateAwardsParallax, { passive: true });
+    requestAnimationFrame(loop);
+  }
 })();

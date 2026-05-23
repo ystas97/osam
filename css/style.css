@@ -217,7 +217,7 @@ textarea {
 
 .hero-project__shade {
   position: absolute;
-  inset: 88% 0 0;
+  inset: 82% 0 0;
   z-index: 1;
   border-radius: 0 0 13.333px 13.333px;
   background: linear-gradient(
@@ -273,23 +273,7 @@ textarea {
   display: flex;
   gap: 12.5px;
   width: max-content;
-  animation: marquee 40s linear infinite;
-}
-
-.awards-track--reverse {
-  animation-direction: reverse;
-}
-
-.text-to-left-side .awards-track,
-.text-to-right-side .awards-track {
-  position: relative;
-}
-
-@media (min-width: 769px) {
-  .text-to-left-side .awards-track,
-  .text-to-right-side .awards-track {
-    animation: none;
-  }
+  will-change: transform;
 }
 
 .award-pill {
@@ -329,15 +313,6 @@ textarea {
 
 .award-pill > span:last-child {
   padding: 0 25px;
-}
-
-@keyframes marquee {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
-  }
 }
 
 /* Projects */
