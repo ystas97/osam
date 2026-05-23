@@ -1,6 +1,5 @@
 # OSAM
 
-Отдельный сайт проекта OSAM (не связан с [antonovka.studio](https://github.com/ystas97/my-site)).
 
 - **Репозиторий:** https://github.com/ystas97/osam
 - **GitHub Pages:** https://ystas97.github.io/osam/
