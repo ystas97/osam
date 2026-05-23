@@ -1,17 +1,357 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>OSAM</title>
-    <meta name="description" content="OSAM — официальный сайт проекта." />
-    <link rel="stylesheet" href="style.css" />
+    <title>OSAM — CREATIVE AGENCY SOLVING STARTUP CHALLENGES</title>
+    <meta
+      name="description"
+      content="OSAM — creative agency solving startup challenges. Visual identity and website in 4 weeks."
+    />
+    <link rel="icon" href="assets/favicon.png" type="image/png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
-    <main class="page">
-      <p class="eyebrow">OSAM</p>
-      <h1>Сайт в разработке</h1>
-      <p class="lead">Новый проект. Скоро здесь появится контент.</p>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="logo" href="/" aria-label="OSAM home">
+          <img src="assets/icons/osam.svg" width="120" height="28" alt="OSAM" />
+        </a>
+        <nav class="nav-desktop" aria-label="Main">
+          <a href="#price">what you get</a>
+          <a href="#contact">contacts us</a>
+          <a href="#projects">projects</a>
+        </nav>
+        <a class="btn btn--header" href="#contact">get in touch</a>
+      </div>
+    </header>
+
+    <div class="ticker" aria-hidden="true">
+      <div class="ticker__track">
+        <div class="ticker__item">
+          <img src="assets/icons/awards-line.svg" alt="" />
+          Quinky App — Startup visual identity
+        </div>
+        <div class="ticker__item">
+          <img src="assets/icons/awards-line.svg" alt="" />
+          NAMU BURO — Creating design of site
+        </div>
+        <div class="ticker__item">
+          <img src="assets/icons/awards-line.svg" alt="" />
+          Fakes — Site and learning materials
+        </div>
+        <div class="ticker__item">
+          <img src="assets/icons/awards-line.svg" alt="" />
+          LIM — Website and branding
+        </div>
+        <div class="ticker__item">
+          <img src="assets/icons/awards-line.svg" alt="" />
+          Quinky App — Startup visual identity
+        </div>
+        <div class="ticker__item">
+          <img src="assets/icons/awards-line.svg" alt="" />
+          NAMU BURO — Creating design of site
+        </div>
+        <div class="ticker__item">
+          <img src="assets/icons/awards-line.svg" alt="" />
+          Fakes — Site and learning materials
+        </div>
+        <div class="ticker__item">
+          <img src="assets/icons/awards-line.svg" alt="" />
+          LIM — Website and branding
+        </div>
+      </div>
+    </div>
+
+    <main>
+      <section class="hero">
+        <div class="container">
+          <h1>CREATIVE AGENCY SOLVING STARTUP CHALLENGES</h1>
+
+          <div class="starter-card">
+            <h2>
+              Starter pack for your for startup with fixed timeline and price
+            </h2>
+            <a class="btn btn--wide" href="#price">
+              Learn more
+              <span class="btn__icon" aria-hidden="true">
+                <img src="assets/icons/arrow-learn.svg" alt="" />
+              </span>
+            </a>
+          </div>
+
+          <a class="project-card" href="#projects">
+            <div class="project-card__media">
+              <img
+                src="assets/images/project-namu.png"
+                alt="NAMU BURO project preview"
+                loading="eager"
+              />
+              <div class="project-card__overlay-title">
+                <h3>NAMU BURO</h3>
+                <p>Creating design of site</p>
+              </div>
+            </div>
+          </a>
+        </div>
+      </section>
+
+      <section class="projects" id="projects">
+        <div class="container">
+          <p class="section-title">Projects</p>
+
+          <a class="project-card" href="#projects">
+            <div class="project-card__media">
+              <img
+                src="assets/images/project-fakes.jpg"
+                alt="Fakes project preview"
+                loading="lazy"
+              />
+            </div>
+            <div class="project-card__body">
+              <div>
+                <h3>Fakes</h3>
+                <p>Site and learning materials</p>
+              </div>
+              <span class="project-card__arrow" aria-hidden="true">
+                <img src="assets/icons/btn-arrow-circle.svg" alt="" />
+              </span>
+            </div>
+          </a>
+
+          <article class="project-card">
+            <div class="project-card__media">
+              <video
+                src="https://dl.dropbox.com/s/4e6do0nsgjv8wgxkoledm/quinky_app_main_page.mp4?dl=1"
+                autoplay
+                muted
+                loop
+                playsinline
+                poster="assets/images/project-quinky.png"
+              ></video>
+            </div>
+            <div class="project-card__body">
+              <div>
+                <h3>Quinky App</h3>
+                <p>Visual identity</p>
+              </div>
+              <span class="project-card__arrow" aria-hidden="true">
+                <img src="assets/icons/btn-arrow-circle.svg" alt="" />
+              </span>
+            </div>
+          </article>
+
+          <a class="project-card" href="#projects">
+            <div class="project-card__media">
+              <img
+                src="assets/images/project-lim.png"
+                alt="LIM project preview"
+                loading="lazy"
+              />
+            </div>
+            <div class="project-card__body">
+              <div>
+                <h3>LIM</h3>
+                <p>Website and branding</p>
+              </div>
+              <span class="project-card__arrow" aria-hidden="true">
+                <img src="assets/icons/btn-arrow-circle.svg" alt="" />
+              </span>
+            </div>
+          </a>
+        </div>
+      </section>
+
+      <section class="container">
+        <div class="manifesto">
+          <h2>
+            Before you know your target market, you don't want to hire a fancy
+            branding agency
+          </h2>
+          <h2>
+            That's just too much. Let's start by creating a simple digital
+            design package that you can use. That way, you can focus on the
+            important things when building your startup
+          </h2>
+          <a class="btn btn--wide" href="#contact">
+            Send a request
+            <span class="btn__icon" aria-hidden="true">
+              <img src="assets/icons/btn-arrow.svg" alt="" />
+            </span>
+          </a>
+        </div>
+
+        <div class="pricing-headline">
+          <h2>
+            We will design a visual identity and website within 4 weeks for
+            €5,000
+          </h2>
+        </div>
+
+        <div class="process-grid">
+          <article class="process-card">
+            <div class="process-card__badges">
+              <span class="badge badge--lime">1 week</span>
+              <span class="badge badge--white">Meet &amp; Brief</span>
+            </div>
+            <p>
+              We talk, discuss your needs, define clear goals, and sign a
+              contract. Then, we gather information about your business,
+              research your industry, and dive into design
+            </p>
+          </article>
+          <article class="process-card">
+            <div class="process-card__badges">
+              <span class="badge badge--lime">2 week</span>
+              <span class="badge badge--white">Design Directions</span>
+            </div>
+            <p>
+              We create two design concepts for the visual identity, including
+              the logo, typography, and color palette. You choose the one you
+              like best
+            </p>
+          </article>
+          <article class="process-card">
+            <div class="process-card__badges">
+              <span class="badge badge--lime">3 week</span>
+              <span class="badge badge--white">Ready website</span>
+            </div>
+            <p>
+              We do the landing page design, copy editing, and develop on a
+              no-code platform. We polish the rest of the design elements.
+            </p>
+          </article>
+          <article class="process-card">
+            <div class="process-card__badges">
+              <span class="badge badge--lime">4 week</span>
+              <span class="badge badge--white">Revise &amp; Finalize</span>
+            </div>
+            <p>
+              We design social media templates and presentations, create a
+              design concept for an app (up to 10 screens), and deliver all
+              design files in user-friendly formats.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="offers" id="price">
+        <div class="container">
+          <h2>What you get</h2>
+          <div class="offers-grid">
+            <article class="offer-card">
+              <div
+                class="offer-card__bg"
+                style="background-image: url('assets/images/offer-logo.png')"
+              ></div>
+              <div class="offer-card__content">
+                <h3>Logo</h3>
+                <p>Crafted to turn your startup into a landmark</p>
+              </div>
+            </article>
+            <article class="offer-card">
+              <div
+                class="offer-card__bg"
+                style="background-image: url('assets/images/offer-style.png')"
+              ></div>
+              <div class="offer-card__content">
+                <h3>Style and Branding</h3>
+                <p>To stand out and be memorable</p>
+              </div>
+            </article>
+            <article class="offer-card">
+              <div
+                class="offer-card__bg"
+                style="background-image: url('assets/images/offer-pitch.png')"
+              ></div>
+              <div class="offer-card__content">
+                <h3>Pitch deck design</h3>
+                <p>To be seen, heard and invested in</p>
+              </div>
+            </article>
+            <article class="offer-card">
+              <div
+                class="offer-card__bg"
+                style="
+                  background-image: url('assets/images/offer-landing.png');
+                "
+              ></div>
+              <div class="offer-card__content">
+                <h3>Landing Page</h3>
+                <p>Built on Webflow with SEO and analytics</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="contact" id="contact">
+        <div class="container">
+          <div class="contact-card">
+            <h2>
+              Sounds good?<br />
+              It’s high time to scale your marketing with us!
+            </h2>
+            <form class="contact-form" action="#" method="post">
+              <div class="field">
+                <input type="text" name="name" placeholder="Name" required />
+              </div>
+              <div class="field">
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Email adress"
+                  required
+                />
+              </div>
+              <div class="field">
+                <textarea
+                  name="message"
+                  placeholder="Message"
+                  rows="4"
+                ></textarea>
+              </div>
+              <div class="budget-row" role="group" aria-label="Budget">
+                <button type="button" class="budget-chip">$2-3k</button>
+                <button type="button" class="budget-chip is-active">$3-5k</button>
+                <button type="button" class="budget-chip">$5-7k</button>
+              </div>
+              <button class="btn btn--send" type="submit">
+                SEND
+                <span class="btn__icon" aria-hidden="true">
+                  <img src="assets/icons/btn-arrow.svg" alt="" />
+                </span>
+              </button>
+            </form>
+          </div>
+        </div>
+      </section>
     </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <div class="footer-meta">
+          <span data-clock>11:31</span>
+          <a href="tel:+381629453323">+381 62 9453 323</a>
+          <span>Belgrade</span>
+        </div>
+        <div class="footer-links">
+          <a href="#">Career</a>
+        </div>
+        <div class="footer-social">
+          <a href="https://www.instagram.com/osam.design/" target="_blank" rel="noopener noreferrer">In</a>
+          <a href="#" target="_blank" rel="noopener noreferrer">Fb</a>
+          <a href="https://t.me/allo_galochka" target="_blank" rel="noopener noreferrer">Tg</a>
+        </div>
+      </div>
+    </footer>
+
+    <script src="js/main.js"></script>
   </body>
 </html>
