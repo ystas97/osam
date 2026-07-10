@@ -1,17 +1,10 @@
 (function () {
-  const header = document.querySelector(".site-header");
   const budgetChips = document.querySelectorAll(".budget-chip");
   const form = document.querySelector(".contact-form");
 
-  if (header) {
-    const onScroll = () => {
-      header.classList.toggle("is-scrolled", window.scrollY > 8);
-    };
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-  }
-
-  initHeaderLinkSlide();
+  initHeaderMenu();
+  initEdgeBlur();
+  initHelpPanel();
 
   const budgetInput = form?.querySelector('input[name="budget"]');
 
@@ -139,20 +132,370 @@
     setInterval(tick, 30_000);
   });
 
+  initServicesIntro();
   initAwardsMarquee();
+  initProjectsFilters();
   initProjectsShowcase();
 
-  function initHeaderLinkSlide() {
-    document.querySelectorAll(".nav-desktop.link-slide a").forEach((link) => {
-      const text = link.textContent.trim();
-      if (text) link.setAttribute("data-content", text);
+  function bindEdgeBlur({ scrollEl, topBlur, bottomBlur, getScrollY, getMaxScroll }) {
+    let lastY = getScrollY();
+    let direction = "down";
 
-      if (link.parentElement?.classList.contains("wrapper-slide-text")) return;
+    const update = () => {
+      const y = getScrollY();
+      if (Math.abs(y - lastY) > 2) {
+        direction = y > lastY ? "down" : "up";
+        lastY = y;
+      }
 
-      const wrap = document.createElement("span");
-      wrap.className = "wrapper-slide-text";
-      link.replaceWith(wrap);
-      wrap.appendChild(link);
+      const maxY = getMaxScroll();
+      const atTop = y <= 8;
+      const atBottom = y >= maxY;
+
+      bottomBlur.classList.toggle(
+        "is-visible",
+        direction === "down" && !atBottom
+      );
+      topBlur.classList.toggle("is-visible", direction === "up" && !atTop);
+    };
+
+    const onScroll = () => update();
+    scrollEl.addEventListener("scroll", onScroll, { passive: true });
+
+    return {
+      update,
+      reset() {
+        lastY = getScrollY();
+        direction = "down";
+        topBlur.classList.remove("is-visible");
+        bottomBlur.classList.remove("is-visible");
+        update();
+      },
+    };
+  }
+
+  function initEdgeBlur() {
+    const topBlur = document.querySelector("[data-edge-blur-page-top]");
+    const bottomBlur = document.querySelector("[data-edge-blur-page-bottom]");
+    if (!topBlur || !bottomBlur) return;
+
+    const pageBlur = bindEdgeBlur({
+      scrollEl: window,
+      topBlur,
+      bottomBlur,
+      getScrollY: () => window.scrollY,
+      getMaxScroll: () =>
+        document.documentElement.scrollHeight - window.innerHeight - 4,
+    });
+
+    pageBlur.update();
+
+    window.addEventListener(
+      "resize",
+      () => {
+        if (!document.body.classList.contains("has-detail-open")) {
+          pageBlur.update();
+        }
+      },
+      { passive: true }
+    );
+  }
+
+  function initHelpPanel() {
+    const panel = document.querySelector("[data-help-panel]");
+    const viewport = panel?.querySelector("[data-help-viewport]");
+    const listScreen = panel?.querySelector("[data-help-list]");
+    const answerScreen = panel?.querySelector("[data-help-answer]");
+    const chat = panel?.querySelector("[data-help-chat]");
+    const subtitle = panel?.querySelector(".help-panel__subtitle");
+    const backBtn = panel?.querySelector("[data-help-back]");
+    if (!panel || !viewport || !listScreen || !answerScreen || !chat || !backBtn) return;
+
+    const reducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+    const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+    let animating = false;
+
+    const topics = [
+      {
+        question: "Our product needs a new UX/UI design",
+        answers: [
+          "We can redesign your product to make it intuitive and easy to use, prioritising user needs and business goals.",
+          "It would not only look great but create an enjoyable experience for your users.",
+        ],
+      },
+      {
+        question: "We need a consistent look and feel across our product",
+        answers: [
+          "We build a visual system with typography, colors, and components that stay consistent across screens and platforms.",
+          "Your product will feel like one brand — clear, polished, and easy to scale as you grow.",
+        ],
+      },
+      {
+        question: "We need a new website",
+        answers: [
+          "We design landing pages, websites, and online shops that explain your product fast and convert visitors into customers.",
+          "From structure and copy to UI and launch-ready design — everything in one focused package.",
+        ],
+      },
+      {
+        question: "We need an icon for our App",
+        answers: [
+          "We design app icons and store visuals that stand out on the home screen and App Store grid.",
+          "You get a clear, memorable mark that fits your product and works at every size.",
+        ],
+      },
+      {
+        question: "Our app needs new ASO",
+        answers: [
+          "We create App Store and Play Market screenshots that show your value in the first seconds.",
+          "Strong visuals and clear messaging help more people understand your app and tap Install.",
+        ],
+      },
+    ];
+
+    const measureScreen = (screen) => {
+      const wasHidden = screen.hidden;
+      screen.hidden = false;
+      screen.style.position = "absolute";
+      screen.style.visibility = "hidden";
+      screen.style.width = "100%";
+      screen.style.left = "0";
+      screen.style.top = "0";
+      const height = screen.scrollHeight;
+      screen.hidden = wasHidden;
+      screen.style.position = "";
+      screen.style.visibility = "";
+      screen.style.width = "";
+      screen.style.left = "";
+      screen.style.top = "";
+      return height;
+    };
+
+    const setViewportHeight = (height, instant = false) => {
+      if (instant || reducedMotion) {
+        viewport.style.transition = "none";
+        viewport.style.height = `${height}px`;
+        viewport.offsetHeight;
+        viewport.style.transition = "";
+        return;
+      }
+
+      viewport.style.height = `${height}px`;
+    };
+
+    const syncViewport = (instant = false) => {
+      const activeScreen = listScreen.hidden ? answerScreen : listScreen;
+      setViewportHeight(activeScreen.scrollHeight, instant);
+    };
+
+    const resetList = () => {
+      subtitle?.classList.remove("is-hiding");
+      panel.querySelectorAll(".help-panel__question-item").forEach((item) => {
+        item.classList.remove("is-hiding");
+      });
+    };
+
+    const revealBubbles = async (topic) => {
+      chat.innerHTML = "";
+      backBtn.classList.remove("is-visible");
+      syncViewport(true);
+
+      const parts = [
+        {
+          className: "help-bubble help-bubble--question",
+          text: topic.question,
+        },
+        ...topic.answers.map((text) => ({
+          className: "help-bubble help-bubble--answer",
+          text,
+        })),
+      ];
+
+      if (reducedMotion) {
+        parts.forEach(({ className, text }) => {
+          const bubble = document.createElement("p");
+          bubble.className = className;
+          bubble.textContent = text;
+          bubble.classList.add("is-visible");
+          chat.appendChild(bubble);
+        });
+        backBtn.classList.add("is-visible");
+        syncViewport(true);
+        return;
+      }
+
+      for (const [index, part] of parts.entries()) {
+        const bubble = document.createElement("p");
+        bubble.className = part.className;
+        bubble.textContent = part.text;
+        chat.appendChild(bubble);
+        setViewportHeight(answerScreen.scrollHeight);
+
+        await wait(60);
+        bubble.classList.add("is-visible");
+        await wait(index === 0 ? 80 : 220);
+      }
+
+      backBtn.classList.add("is-visible");
+      setViewportHeight(answerScreen.scrollHeight);
+      await wait(180);
+    };
+
+    const showList = async () => {
+      if (animating) return;
+      animating = true;
+
+      if (!reducedMotion) {
+        backBtn.classList.remove("is-visible");
+        chat.querySelectorAll(".help-bubble.is-visible").forEach((bubble) => {
+          bubble.classList.remove("is-visible");
+        });
+        setViewportHeight(answerScreen.scrollHeight);
+        await wait(120);
+
+        const listHeight = measureScreen(listScreen);
+        setViewportHeight(listHeight);
+        await wait(420);
+      }
+
+      answerScreen.hidden = true;
+      listScreen.hidden = false;
+      resetList();
+      syncViewport(true);
+      animating = false;
+    };
+
+    const showAnswer = async (button, index) => {
+      if (animating) return;
+      const topic = topics[index];
+      if (!topic) return;
+
+      animating = true;
+      chat.innerHTML = "";
+      backBtn.classList.remove("is-visible");
+
+      if (!reducedMotion) {
+        subtitle?.classList.add("is-hiding");
+        panel.querySelectorAll(".help-panel__question-item").forEach((item) => {
+          if (!item.contains(button)) item.classList.add("is-hiding");
+        });
+        await wait(340);
+      }
+
+      const answerHeight = measureScreen(answerScreen);
+      const currentHeight = viewport.offsetHeight;
+
+      listScreen.hidden = true;
+      answerScreen.hidden = false;
+      resetList();
+
+      setViewportHeight(currentHeight, true);
+      requestAnimationFrame(() => {
+        setViewportHeight(answerHeight);
+      });
+
+      if (!reducedMotion) {
+        await wait(420);
+      }
+
+      await revealBubbles(topic);
+      animating = false;
+    };
+
+    syncViewport(true);
+    window.addEventListener("resize", () => syncViewport(true), { passive: true });
+
+    panel.querySelectorAll("[data-help-index]").forEach((button) => {
+      button.addEventListener("click", () => {
+        showAnswer(button, Number(button.getAttribute("data-help-index")));
+      });
+    });
+
+    backBtn.addEventListener("click", showList);
+  }
+
+  function initHeaderMenu() {
+    const menu = document.querySelector("[data-menu]");
+    const toggle = menu?.querySelector("[data-menu-toggle]");
+    const panel = menu?.querySelector("[data-menu-panel]");
+    if (!menu || !toggle || !panel) return;
+
+    const setOpen = (open) => {
+      menu.classList.toggle("is-open", open);
+      toggle.setAttribute("aria-expanded", String(open));
+    };
+
+    toggle.addEventListener("click", () => {
+      setOpen(!menu.classList.contains("is-open"));
+    });
+
+    menu.querySelector("[data-menu-close]")?.addEventListener("click", () => {
+      setOpen(false);
+      toggle.focus();
+    });
+
+    panel.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => setOpen(false));
+    });
+
+    document.addEventListener("click", (event) => {
+      if (menu.classList.contains("is-open") && !menu.contains(event.target)) {
+        setOpen(false);
+      }
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && menu.classList.contains("is-open")) {
+        setOpen(false);
+        toggle.focus();
+      }
+    });
+  }
+
+  function initServicesIntro() {
+    const copy = document.querySelector("[data-service-copy]");
+    const tabs = document.querySelectorAll(".service-tab[data-service]");
+    if (!copy || !tabs.length) return;
+
+    const serviceCopy = {
+      websites:
+        "<span>We design </span><strong>landing pages, websites,</strong><span> and </span><strong>online shops</strong><span> that people love, helping businesses thrive.</span>",
+      "app-design":
+        "<span>We design UX/UI for </span><strong>iOS</strong><span>, </span><strong>macOS</strong><span>, and </span><strong>Android</strong><span> apps that feel clear, native, and ready to build.</span>",
+      aso:
+        "<span>We create visually appealing </span><strong>app screenshots</strong><span> for the </span><strong>App Store</strong><span> and </span><strong>Play Market</strong><span> that make your product stand out.</span>",
+      "ux-audit":
+        "<span>We </span><strong>audit interfaces</strong><span>, </span><strong>user journeys</strong><span>, and </span><strong>key flows</strong><span> to show what feels confusing, broken, or unfinished.</span>",
+      "business-app":
+        "<span>For </span><strong>businesses</strong><span> that don’t need a huge tech team — just a </span><strong>clear app that works</strong><span>.</span>",
+    };
+
+    let copyFadeTimer = null;
+    let currentKey = "websites";
+
+    tabs.forEach((tab) => {
+      tab.addEventListener("click", () => {
+        const key = tab.getAttribute("data-service");
+        if (!key || !serviceCopy[key]) return;
+
+        tabs.forEach((item) => {
+          const active = item === tab;
+          item.classList.toggle("is-active", active);
+          item.setAttribute("aria-selected", String(active));
+        });
+
+        if (key === currentKey) return;
+        currentKey = key;
+
+        clearTimeout(copyFadeTimer);
+        copy.classList.add("is-fading");
+        copyFadeTimer = setTimeout(() => {
+          copy.innerHTML = serviceCopy[key];
+          copy.classList.remove("is-fading");
+        }, 220);
+      });
     });
   }
 
@@ -238,35 +581,159 @@
       const toggle = item.querySelector(".project-showcase__toggle");
       if (toggle) toggle.setAttribute("aria-expanded", String(open));
       item.classList.toggle("is-open", open);
+      document.body.classList.toggle("has-detail-open", open);
     };
 
-    const waitForDetailClose = (detail) =>
-      new Promise((resolve) => {
-        let done = false;
-        const finish = () => {
-          if (done) return;
-          done = true;
-          detail.removeEventListener("transitionend", onEnd);
-          resolve();
-        };
-        const onEnd = (event) => {
-          if (event.target === detail && event.propertyName === "grid-template-rows") {
-            finish();
-          }
-        };
-        detail.addEventListener("transitionend", onEnd);
-        setTimeout(finish, CLOSE_MS + 100);
-      });
+    const getRevealTargets = (detail) =>
+      detail.querySelectorAll(
+        ".project-showcase__detail-figure, .project-showcase__detail-gallery-item"
+      );
 
-    const hideDetail = (detail) => {
-      detail.classList.remove("is-closing");
-      if (detail.offsetHeight <= 1) {
-        detail.hidden = true;
+    const revealObservers = new WeakMap();
+
+    const startRevealOnScroll = (detail) => {
+      if (reducedMotion || typeof IntersectionObserver === "undefined") {
+        getRevealTargets(detail).forEach((el) => el.classList.add("is-revealed"));
         return;
       }
-      requestAnimationFrame(() => {
-        detail.hidden = true;
+
+      let observer = revealObservers.get(detail);
+      if (!observer) {
+        observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (!entry.isIntersecting) return;
+              entry.target.classList.add("is-revealed");
+              observer.unobserve(entry.target);
+            });
+          },
+          { root: detail, rootMargin: "0px 0px -12% 0px", threshold: 0.12 }
+        );
+        revealObservers.set(detail, observer);
+      }
+
+      getRevealTargets(detail).forEach((el) => observer.observe(el));
+    };
+
+    const resetReveal = (detail) => {
+      const observer = revealObservers.get(detail);
+      getRevealTargets(detail).forEach((el) => {
+        el.classList.remove("is-revealed");
+        observer?.unobserve(el);
       });
+    };
+
+    const prepNext = new WeakMap();
+
+    const projectColors = new WeakMap();
+
+    const extractProjectColor = (item) => {
+      if (projectColors.has(item)) {
+        return Promise.resolve(projectColors.get(item));
+      }
+
+      const cover = item.querySelector(".project-showcase__media img");
+      const src = cover?.currentSrc || cover?.src;
+      if (!src) return Promise.resolve(null);
+
+      return new Promise((resolve) => {
+        const img = new Image();
+        img.decoding = "async";
+        img.onload = () => {
+          try {
+            const size = 16;
+            const canvas = document.createElement("canvas");
+            canvas.width = size;
+            canvas.height = size;
+            const ctx = canvas.getContext("2d", { willReadFrequently: true });
+            ctx.drawImage(img, 0, 0, size, size);
+            const data = ctx.getImageData(0, 0, size, size).data;
+
+            // Quantize to coarse RGB buckets, weighting saturated mid-tone
+            // pixels so the pick stays vibrant instead of muddy-average
+            const buckets = new Map();
+            for (let i = 0; i < data.length; i += 4) {
+              const r = data[i];
+              const g = data[i + 1];
+              const b = data[i + 2];
+              const max = Math.max(r, g, b);
+              const min = Math.min(r, g, b);
+              const lightness = (max + min) / 510;
+              if (lightness > 0.94 || lightness < 0.06) continue;
+              const saturation =
+                max === min
+                  ? 0
+                  : (max - min) / (255 - Math.abs(max + min - 255));
+              const weight =
+                0.15 + saturation * (1 - Math.abs(lightness - 0.5));
+              const key = `${r >> 5}-${g >> 5}-${b >> 5}`;
+              const bucket = buckets.get(key) || { r: 0, g: 0, b: 0, w: 0 };
+              bucket.r += r * weight;
+              bucket.g += g * weight;
+              bucket.b += b * weight;
+              bucket.w += weight;
+              buckets.set(key, bucket);
+            }
+
+            let best = null;
+            buckets.forEach((bucket) => {
+              if (!best || bucket.w > best.w) best = bucket;
+            });
+
+            const color = best
+              ? [
+                  Math.round(best.r / best.w),
+                  Math.round(best.g / best.w),
+                  Math.round(best.b / best.w),
+                ]
+              : null;
+            projectColors.set(item, color);
+            resolve(color);
+          } catch {
+            projectColors.set(item, null);
+            resolve(null);
+          }
+        };
+        img.onerror = () => {
+          projectColors.set(item, null);
+          resolve(null);
+        };
+        img.src = src;
+      });
+    };
+
+    const applyProjectBackground = async (item, detail) => {
+      const color = await extractProjectColor(item);
+      if (!color) {
+        detail.style.background = "";
+        return;
+      }
+      const [r, g, b] = color;
+      detail.style.background = [
+        `linear-gradient(180deg, rgba(${r}, ${g}, ${b}, 0.5) 0%,`,
+        `rgba(${r}, ${g}, ${b}, 0.22) 48%, rgba(255, 255, 255, 0.5) 100%),`,
+        "rgba(255, 255, 255, 0.55)",
+      ].join(" ");
+    };
+
+    const buildNextSection = (detail) => {
+      const inner = detail.querySelector(".project-showcase__detail-inner");
+      const wrap = document.createElement("div");
+      wrap.className = "project-next";
+      wrap.setAttribute("data-project-next", "");
+      wrap.innerHTML = [
+        '<div class="project-next__sticky">',
+        '  <figure class="project-next__media">',
+        '    <span class="project-next__label">next up...</span>',
+        '    <span class="project-next__hint">keep scrolling !</span>',
+        '    <img alt="" loading="lazy" decoding="async" />',
+        "  </figure>",
+        '  <h3 class="project-next__title"></h3>',
+        '  <div class="project-next__bar"><span class="project-next__bar-fill"></span></div>',
+        "</div>",
+      ].join("");
+      inner.appendChild(wrap);
+      return wrap;
     };
 
     const closeProject = async (item) => {
@@ -284,8 +751,10 @@
       detail.classList.add("is-closing");
       await nextFrame();
       setUiState(item, false);
-      await waitForDetailClose(detail);
-      hideDetail(detail);
+      await wait(CLOSE_MS);
+      detail.classList.remove("is-closing");
+      detail.hidden = true;
+      resetReveal(detail);
     };
 
     const openProject = async (item) => {
@@ -293,33 +762,145 @@
       if (!detail) return;
 
       ensureDetailInner(detail);
-      await Promise.race([preloadDetailImages(detail), wait(400)]);
+      await Promise.race([
+        Promise.all([preloadDetailImages(detail), applyProjectBackground(item, detail)]),
+        wait(400),
+      ]);
 
       detail.hidden = false;
       detail.classList.remove("is-closing");
+      detail.scrollTop = 0;
+      prepNext.get(item)?.();
 
       if (reducedMotion) {
         setUiState(item, true);
         setDetailVideoState(detail, true);
-        detail.scrollIntoView({ block: "start" });
+        startRevealOnScroll(detail);
         return;
       }
 
       await nextFrame();
       setUiState(item, true);
       setDetailVideoState(detail, true);
-      detail.scrollIntoView({ behavior: "smooth", block: "start" });
+      startRevealOnScroll(detail);
       await wait(OPEN_MS);
     };
 
+    const switchProject = async (fromItem, toItem) => {
+      const fromDetail = fromItem.querySelector(".project-showcase__detail");
+      const toDetail = toItem.querySelector(".project-showcase__detail");
+      if (!fromDetail || !toDetail) return;
+
+      ensureDetailInner(toDetail);
+      await Promise.race([
+        Promise.all([
+          preloadDetailImages(toDetail),
+          applyProjectBackground(toItem, toDetail),
+        ]),
+        wait(400),
+      ]);
+
+      toDetail.hidden = false;
+      toDetail.classList.remove("is-closing");
+      toDetail.scrollTop = 0;
+      toDetail.style.zIndex = "310";
+      prepNext.get(toItem)?.();
+
+      if (reducedMotion) {
+        setUiState(fromItem, false);
+        setUiState(toItem, true);
+        setDetailVideoState(fromDetail, false);
+        setDetailVideoState(toDetail, true);
+        fromDetail.hidden = true;
+        resetReveal(fromDetail);
+        toDetail.style.zIndex = "";
+        startRevealOnScroll(toDetail);
+        return;
+      }
+
+      await nextFrame();
+
+      // Crossfade: the next overlay fades in on top while the current fades out
+      toItem.classList.add("is-open");
+      const toToggle = toItem.querySelector(".project-showcase__toggle");
+      if (toToggle) toToggle.setAttribute("aria-expanded", "true");
+      setDetailVideoState(toDetail, true);
+      startRevealOnScroll(toDetail);
+
+      fromDetail.classList.add("is-closing");
+      setDetailVideoState(fromDetail, false);
+
+      await wait(CLOSE_MS);
+
+      fromItem.classList.remove("is-open");
+      const fromToggle = fromItem.querySelector(".project-showcase__toggle");
+      if (fromToggle) fromToggle.setAttribute("aria-expanded", "false");
+      fromDetail.classList.remove("is-closing");
+      fromDetail.hidden = true;
+      resetReveal(fromDetail);
+      toDetail.style.zIndex = "";
+      document.body.classList.add("has-detail-open");
+    };
+
     items.forEach((item) => {
-      ensureDetailInner(item.querySelector(".project-showcase__detail"));
       const toggle = item.querySelector(".project-showcase__toggle");
+      const card = item.querySelector(".project-showcase__card");
       const detail = item.querySelector(".project-showcase__detail");
       const close = item.querySelector(".project-showcase__close");
       if (!toggle || !detail) return;
+      ensureDetailInner(detail);
 
       let animating = false;
+
+      const nextSection = buildNextSection(detail);
+      const nextImg = nextSection.querySelector(".project-next__media img");
+      const nextTitle = nextSection.querySelector(".project-next__title");
+      const nextBarFill = nextSection.querySelector(".project-next__bar-fill");
+      let nextItem = null;
+
+      const updateNextPreview = () => {
+        const visible = [...items].filter(
+          (i) => !i.classList.contains("is-filter-hidden")
+        );
+        const index = visible.indexOf(item);
+        nextItem =
+          visible.length > 1 && index !== -1
+            ? visible[(index + 1) % visible.length]
+            : null;
+        nextSection.hidden = !nextItem;
+        nextBarFill.style.transform = "scaleX(0)";
+        if (!nextItem) return;
+
+        const previewImg = nextItem.querySelector(".project-showcase__media img");
+        nextImg.src = previewImg?.currentSrc || previewImg?.src || "";
+        nextTitle.textContent =
+          nextItem.querySelector(".project-showcase__title")?.textContent.trim() ||
+          "";
+      };
+
+      prepNext.set(item, updateNextPreview);
+
+      detail.addEventListener(
+        "scroll",
+        () => {
+          if (detail.hidden || nextSection.hidden || !nextItem) return;
+
+          const runway = nextSection.offsetHeight - detail.clientHeight;
+          if (runway <= 0) return;
+
+          const top = nextSection.getBoundingClientRect().top;
+          const progress = Math.min(Math.max(-top / runway, 0), 1);
+          nextBarFill.style.transform = `scaleX(${progress})`;
+
+          if (progress >= 1 && !animating) {
+            animating = true;
+            switchProject(item, nextItem).finally(() => {
+              animating = false;
+            });
+          }
+        },
+        { passive: true }
+      );
 
       const handleToggle = async () => {
         if (animating) return;
@@ -348,11 +929,55 @@
         handleToggle();
       });
 
+      card?.addEventListener("mouseenter", primeDetail);
+      card?.addEventListener("click", () => {
+        handleToggle();
+      });
+
       close?.addEventListener("click", () => {
         if (animating || detail.hidden) return;
         animating = true;
         closeProject(item).finally(() => {
           animating = false;
+        });
+      });
+
+      detail.addEventListener("click", (event) => {
+        if (event.target !== detail) return;
+        if (animating || detail.hidden) return;
+        animating = true;
+        closeProject(item).finally(() => {
+          animating = false;
+        });
+      });
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key !== "Escape") return;
+      const openItem = document.querySelector("[data-project].is-open");
+      if (openItem) closeProject(openItem);
+    });
+  }
+
+  function initProjectsFilters() {
+    const filters = document.querySelectorAll("[data-project-filter]");
+    const projects = document.querySelectorAll("[data-project]");
+    if (!filters.length || !projects.length) return;
+
+    filters.forEach((filter) => {
+      filter.addEventListener("click", () => {
+        const value = filter.getAttribute("data-project-filter") || "all";
+
+        filters.forEach((item) => {
+          item.classList.toggle("is-active", item === filter);
+        });
+
+        projects.forEach((project) => {
+          const type = project.getAttribute("data-project-type");
+          project.classList.toggle(
+            "is-filter-hidden",
+            value !== "all" && type !== value
+          );
         });
       });
     });

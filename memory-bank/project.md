@@ -6,3 +6,4 @@
 - **Источник дизайна:** Figma + [osam.tilda.ws](https://osam.tilda.ws/)
 - **Секция projects:** Figma Card Scanner — карточки 3 колонки, dark/gray; Learn more раскрывает детали как [osam.tilda.ws/projects](https://osam.tilda.ws/projects)
 - **Форма contact:** Telegram через Worker `https://osam-contact-telegram.osamdesign.workers.dev`, chat_id `378341688`, бот [@osamdesignBot](https://t.me/osamdesignBot). URL в `js/site-config.js`
+- **SEO:** `index.html` — title, description, keywords, Open Graph, Twitter, JSON-LD; `robots.txt`, `sitemap.xml` (каноникал `https://osamdesign.com/`)
