@@ -1849,14 +1849,13 @@ body.has-detail-open {
   color: #000;
 }
 
-.footer-career {
-  justify-self: start;
-  padding: 10px 13px;
-  background: var(--white);
-  border: 1px solid #000;
-  border-radius: 8px;
+.footer-legal {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 28px;
   font-size: 13px;
-  font-weight: 500;
+  line-height: 1.3;
   color: #000;
 }
 
@@ -1905,8 +1904,10 @@ body.has-detail-open {
     align-items: end;
   }
 
-  .footer-career {
+  .footer-legal {
     justify-self: end;
+    flex-wrap: nowrap;
+    white-space: nowrap;
   }
 }
 
