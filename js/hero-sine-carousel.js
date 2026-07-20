@@ -98,6 +98,7 @@
         centerY: height * (mobile ? 0.48 : 0.5),
         stageWidth,
         stageHeight,
+        stackSpread: mobile ? 2.05 : 1,
         dragPxPerCard: mobile ? height * 0.16 : height * 0.13,
       };
     };
@@ -114,7 +115,8 @@
       const scale = getStop(CARD_SCALES, distance);
       const offset = getStop(CARD_CENTER_OFFSETS, distance);
       const direction = delta === 0 ? 0 : Math.sign(delta);
-      const y = direction * offset * metrics.stageHeight;
+      const y =
+        direction * offset * metrics.stageHeight * metrics.stackSpread;
       const opacity = distance > 4.45 ? 0 : 1;
 
       return {
