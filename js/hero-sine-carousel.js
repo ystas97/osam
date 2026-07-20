@@ -1,19 +1,35 @@
 (function () {
   const PROJECTS = [
-    { src: "assets/images/projects/namu-right.png", alt: "Namu Buro" },
+    {
+      src: "assets/images/projects/namu-video.mp4",
+      alt: "Namu Buro",
+      type: "video",
+    },
     { src: "assets/images/projects/lim-right.png", alt: "Lim CC" },
     { src: "assets/images/projects/langy-right.png", alt: "Langy App" },
-    { src: "assets/images/projects/foremost-right.png", alt: "Foremost" },
-    { src: "assets/images/projects/ps-right.png", alt: "Architectural bureau" },
-    { src: "assets/images/projects/quinky-right.png", alt: "Quinky" },
+    { src: "assets/images/projects/foremost-gallery-3.png", alt: "Foremost" },
+    { src: "assets/images/projects/namu-gallery-4.png", alt: "Namu Buro" },
+    {
+      src: "assets/images/projects/quinky-video-mosaic.mp4",
+      alt: "Quinky",
+      type: "video",
+    },
     { src: "assets/images/projects/winrun-gallery-1.png", alt: "Winrun" },
     {
       src: "assets/images/projects/corpsoft24-gallery-1.jpg",
       alt: "Corpsoft24",
     },
-    { src: "assets/images/projects/namu-mid.png", alt: "" },
-    { src: "assets/images/projects/lim-mid.png", alt: "" },
-    { src: "assets/images/projects/langy-mid.png", alt: "" },
+    {
+      src: "assets/images/projects/ps-video-web.mp4",
+      alt: "",
+      type: "video",
+    },
+    { src: "assets/images/projects/lim-gallery-3.png", alt: "" },
+    {
+      src: "assets/images/projects/quinky-video-pink.mp4",
+      alt: "Quinky",
+      type: "video",
+    },
   ];
 
   const CARD_SCALES = [1, 0.55, 0.46, 0.37, 0.28];
@@ -54,16 +70,46 @@
       card.className = "hero-sine-carousel__card";
       card.dataset.index = String(index);
 
-      const img = document.createElement("img");
-      img.src = project.src;
-      img.alt = project.alt;
-      img.loading = index < 3 ? "eager" : "lazy";
-      img.decoding = "async";
-      img.draggable = false;
+      const media =
+        project.type === "video"
+          ? document.createElement("video")
+          : document.createElement("img");
 
-      card.appendChild(img);
+      media.draggable = false;
+
+      if (project.type === "video") {
+        media.muted = true;
+        media.defaultMuted = true;
+        media.loop = true;
+        media.autoplay = true;
+        media.playsInline = true;
+        media.preload = "auto";
+        media.setAttribute("muted", "");
+        media.setAttribute("autoplay", "");
+        media.setAttribute("loop", "");
+        media.setAttribute("playsinline", "");
+        media.setAttribute("aria-hidden", "true");
+        media.addEventListener(
+          "canplay",
+          () => {
+            media.play().catch(() => {});
+          },
+          { once: true }
+        );
+      } else {
+        media.alt = project.alt;
+        media.loading = index < 3 ? "eager" : "lazy";
+        media.decoding = "async";
+      }
+
+      media.src = project.src;
+      card.appendChild(media);
       track.appendChild(card);
-      img.addEventListener("load", layout, { passive: true });
+      media.addEventListener(
+        project.type === "video" ? "loadedmetadata" : "load",
+        layout,
+        { passive: true }
+      );
       return card;
     });
 
@@ -95,7 +141,7 @@
         height,
         mobile,
         centerX: width * 0.5,
-        centerY: height * (mobile ? 0.48 : 0.5),
+        centerY: height * (mobile ? 0.455 : 0.5),
         stageWidth,
         stageHeight,
         stackSpread: mobile ? 2.05 : 1,

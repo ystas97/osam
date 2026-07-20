@@ -515,11 +515,104 @@
     const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
     const ensureDetailInner = (detail) => {
-      if (detail.querySelector(".project-showcase__detail-inner")) return;
-      const inner = document.createElement("div");
-      inner.className = "project-showcase__detail-inner";
-      while (detail.firstChild) inner.appendChild(detail.firstChild);
-      detail.appendChild(inner);
+      let inner = detail.querySelector(".project-showcase__detail-inner");
+      if (!inner) {
+        inner = document.createElement("div");
+        inner.className = "project-showcase__detail-inner";
+        while (detail.firstChild) inner.appendChild(detail.firstChild);
+        detail.appendChild(inner);
+      }
+
+      const gallery = inner.querySelector(".project-showcase__detail-gallery");
+      const head = inner.querySelector(".project-showcase__detail-head");
+      const firstMedia = gallery?.querySelector(
+        ":scope > .project-showcase__detail-gallery-item"
+      );
+
+      if (
+        gallery &&
+        head &&
+        firstMedia &&
+        head.previousElementSibling !== firstMedia
+      ) {
+        firstMedia.insertAdjacentElement("afterend", head);
+      }
+
+      const body = head?.querySelector(".project-showcase__detail-body");
+      const title = head?.querySelector(".project-showcase__detail-title");
+      const done = head?.querySelector(".project-showcase__detail-done");
+
+      if (head && !head.querySelector(".project-showcase__detail-tabs")) {
+        const tabs = document.createElement("div");
+        tabs.className = "project-showcase__detail-tabs";
+        tabs.setAttribute("role", "tablist");
+        tabs.setAttribute("aria-label", `${title?.textContent?.trim() || "Project"} details`);
+
+        const briefTab = document.createElement("button");
+        briefTab.type = "button";
+        briefTab.className = "project-showcase__detail-tab is-active";
+        briefTab.textContent = "brief";
+        briefTab.setAttribute("role", "tab");
+        briefTab.setAttribute("aria-selected", "true");
+
+        const workTab = document.createElement("button");
+        workTab.type = "button";
+        workTab.className = "project-showcase__detail-tab";
+        workTab.textContent = "what has been done";
+        workTab.setAttribute("role", "tab");
+        workTab.setAttribute("aria-selected", "false");
+
+        const setView = (showWork) => {
+          head.classList.toggle("is-work-view", showWork);
+          briefTab.classList.toggle("is-active", !showWork);
+          workTab.classList.toggle("is-active", showWork);
+          briefTab.setAttribute("aria-selected", String(!showWork));
+          workTab.setAttribute("aria-selected", String(showWork));
+        };
+
+        briefTab.addEventListener("click", () => setView(false));
+        workTab.addEventListener("click", () => setView(true));
+        tabs.append(briefTab, workTab);
+        head.prepend(tabs);
+      }
+
+      if (done) done.setAttribute("role", "tabpanel");
+      if (!body || head.querySelector(".project-showcase__detail-more")) return;
+
+      const more = document.createElement("button");
+      body.id = body.id || `${detail.id || "project-detail"}-summary`;
+      more.type = "button";
+      more.className = "project-showcase__detail-more";
+      more.textContent = "Read more";
+      more.hidden = true;
+      more.setAttribute("aria-controls", body.id);
+      more.setAttribute("aria-expanded", "false");
+      body.insertAdjacentElement("afterend", more);
+
+      more.addEventListener("click", () => {
+        const expanded = body.classList.toggle("is-expanded");
+        more.textContent = expanded ? "Read less" : "Read more";
+        more.setAttribute("aria-expanded", String(expanded));
+      });
+    };
+
+    const updateDetailReadMore = (detail) => {
+      const body = detail.querySelector(".project-showcase__detail-body");
+      const more = detail.querySelector(".project-showcase__detail-more");
+      if (!body || !more) return;
+
+      body.classList.remove("is-collapsible", "is-expanded");
+      more.hidden = true;
+      more.textContent = "Read more";
+      more.setAttribute("aria-expanded", "false");
+
+      const lineHeight = Number.parseFloat(getComputedStyle(body).lineHeight);
+      if (!Number.isFinite(lineHeight)) return;
+
+      if (body.scrollHeight > lineHeight * 3 + 2) {
+        body.classList.add("is-collapsible");
+        more.hidden = false;
+      }
     };
 
     const preloadDetailImages = (detail) => {
@@ -771,6 +864,8 @@
       detail.classList.remove("is-closing");
       detail.scrollTop = 0;
       prepNext.get(item)?.();
+      await nextFrame();
+      updateDetailReadMore(detail);
 
       if (reducedMotion) {
         setUiState(item, true);
@@ -779,7 +874,6 @@
         return;
       }
 
-      await nextFrame();
       setUiState(item, true);
       setDetailVideoState(detail, true);
       startRevealOnScroll(detail);
@@ -805,6 +899,8 @@
       toDetail.scrollTop = 0;
       toDetail.style.zIndex = "310";
       prepNext.get(toItem)?.();
+      await nextFrame();
+      updateDetailReadMore(toDetail);
 
       if (reducedMotion) {
         setUiState(fromItem, false);
@@ -817,8 +913,6 @@
         startRevealOnScroll(toDetail);
         return;
       }
-
-      await nextFrame();
 
       // Crossfade: the next overlay fades in on top while the current fades out
       toItem.classList.add("is-open");
