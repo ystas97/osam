@@ -6,6 +6,11 @@
     { src: "assets/images/projects/foremost-right.png", alt: "Foremost" },
     { src: "assets/images/projects/ps-right.png", alt: "Architectural bureau" },
     { src: "assets/images/projects/quinky-right.png", alt: "Quinky" },
+    { src: "assets/images/projects/winrun-gallery-1.png", alt: "Winrun" },
+    {
+      src: "assets/images/projects/corpsoft24-gallery-1.jpg",
+      alt: "Corpsoft24",
+    },
     { src: "assets/images/projects/namu-mid.png", alt: "" },
     { src: "assets/images/projects/lim-mid.png", alt: "" },
     { src: "assets/images/projects/langy-mid.png", alt: "" },
