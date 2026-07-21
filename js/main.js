@@ -96,6 +96,13 @@
           throw new Error(result.error || "request_failed");
         }
 
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: "generate_lead",
+          form_name: "contact_form",
+          budget: payload.budget,
+        });
+
         setStatus("Спасибо! Сообщение отправлено.", "success");
         formEl.reset();
         budgetChips.forEach((c) => c.classList.remove("is-active"));
