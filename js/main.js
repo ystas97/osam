@@ -224,6 +224,7 @@
           "We can redesign your product to make it intuitive and easy to use, prioritising user needs and business goals.",
           "It would not only look great but create an enjoyable experience for your users.",
         ],
+        messageStart: "Hi, my product needs UX/UI design...",
       },
       {
         question: "We need a consistent look and feel across our product",
@@ -231,6 +232,7 @@
           "We build a visual system with typography, colors, and components that stay consistent across screens and platforms.",
           "Your product will feel like one brand — clear, polished, and easy to scale as you grow.",
         ],
+        messageStart: "Hi, we need a consistent design system across our product...",
       },
       {
         question: "We need a new website",
@@ -238,6 +240,7 @@
           "We design landing pages, websites, and online shops that explain your product fast and convert visitors into customers.",
           "From structure and copy to UI and launch-ready design — everything in one focused package.",
         ],
+        messageStart: "Hi, we need a new website...",
       },
       {
         question: "We need an icon for our App",
@@ -245,6 +248,7 @@
           "We design app icons and store visuals that stand out on the home screen and App Store grid.",
           "You get a clear, memorable mark that fits your product and works at every size.",
         ],
+        messageStart: "Hi, our app needs a new icon...",
       },
       {
         question: "Our app needs new ASO",
@@ -252,6 +256,7 @@
           "We create App Store and Play Market screenshots that show your value in the first seconds.",
           "Strong visuals and clear messaging help more people understand your app and tap Install.",
         ],
+        messageStart: "Hi, our app needs new ASO visuals...",
       },
     ];
 
@@ -302,22 +307,64 @@
       backBtn.classList.remove("is-visible");
       syncViewport(true);
 
+      const messageField = document.querySelector('.contact-form textarea[name="message"]');
+
+      const addMessageStart = (button) => {
+        if (!messageField) return;
+
+        const currentMessage = messageField.value.trim();
+        if (!currentMessage) {
+          messageField.value = topic.messageStart;
+        } else if (!currentMessage.includes(topic.messageStart)) {
+          messageField.value = `${topic.messageStart}\n\n${currentMessage}`;
+        }
+
+        messageField.dispatchEvent(new Event("input", { bubbles: true }));
+        messageField.dispatchEvent(new Event("change", { bubbles: true }));
+        messageField.focus();
+        messageField.setSelectionRange(
+          messageField.value.length,
+          messageField.value.length
+        );
+        button.textContent = "Added to message";
+        button.classList.add("is-selected");
+        button.disabled = true;
+      };
+
       const parts = [
         {
-          className: "help-bubble help-bubble--question",
+          className: "help-bubble help-bubble--user",
           text: topic.question,
         },
         ...topic.answers.map((text) => ({
-          className: "help-bubble help-bubble--answer",
+          className: "help-bubble help-bubble--assistant",
           text,
         })),
+        {
+          className: "help-bubble help-bubble--assistant",
+          text: "Is this what you're looking for?",
+        },
+        {
+          className: "help-bubble help-bubble--user help-bubble--cta",
+          text: "Yes, I need this",
+          isButton: true,
+        },
       ];
 
+      const createPart = ({ className, text, isButton }) => {
+        const bubble = document.createElement(isButton ? "button" : "p");
+        bubble.className = className;
+        bubble.textContent = text;
+        if (isButton) {
+          bubble.type = "button";
+          bubble.addEventListener("click", () => addMessageStart(bubble));
+        }
+        return bubble;
+      };
+
       if (reducedMotion) {
-        parts.forEach(({ className, text }) => {
-          const bubble = document.createElement("p");
-          bubble.className = className;
-          bubble.textContent = text;
+        parts.forEach((part) => {
+          const bubble = createPart(part);
           bubble.classList.add("is-visible");
           chat.appendChild(bubble);
         });
@@ -327,9 +374,7 @@
       }
 
       for (const [index, part] of parts.entries()) {
-        const bubble = document.createElement("p");
-        bubble.className = part.className;
-        bubble.textContent = part.text;
+        const bubble = createPart(part);
         chat.appendChild(bubble);
         setViewportHeight(answerScreen.scrollHeight);
 
