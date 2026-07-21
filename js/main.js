@@ -603,7 +603,7 @@
         const workTab = document.createElement("button");
         workTab.type = "button";
         workTab.className = "project-showcase__detail-tab";
-        workTab.textContent = "what has been done";
+        workTab.textContent = "services";
         workTab.setAttribute("role", "tab");
         workTab.setAttribute("aria-selected", "false");
 
