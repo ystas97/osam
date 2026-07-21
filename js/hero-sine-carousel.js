@@ -30,6 +30,10 @@
       alt: "Quinky",
       type: "video",
     },
+    {
+      src: "assets/images/projects/tcg-card-main.png",
+      alt: "TCG Card Scanner",
+    },
   ];
 
   const CARD_SCALES = [1, 0.55, 0.46, 0.37, 0.28];

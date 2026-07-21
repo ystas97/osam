@@ -91,7 +91,9 @@ export default {
       return jsonResponse({ ok: false, error: "invalid_json" }, 400, origin, env);
     }
 
-    if (payload.company) {
+    // Honeypot uses a deliberately non-semantic name so browser autofill and
+    // password managers do not mistake it for a real company field.
+    if (payload.osamNote) {
       return jsonResponse({ ok: true }, 200, origin, env);
     }
 

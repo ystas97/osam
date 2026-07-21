@@ -68,11 +68,11 @@
         email: String(data.get("email") || "").trim(),
         budget: String(data.get("budget") || "").trim(),
         message: String(data.get("message") || "").trim(),
-        company: String(data.get("company") || "").trim(),
+        osamNote: String(data.get("osam_note") || "").trim(),
       };
 
       if (!payload.name || !payload.email) {
-        setStatus("Укажите имя и email.", "error");
+        setStatus("Please enter your name and email.", "error");
         return;
       }
 
@@ -103,14 +103,14 @@
           budget: payload.budget,
         });
 
-        setStatus("Спасибо! Сообщение отправлено.", "success");
+        setStatus("Thank you! Your message has been sent.", "success");
         formEl.reset();
         budgetChips.forEach((c) => c.classList.remove("is-active"));
         budgetChips[budgetChips.length - 1]?.classList.add("is-active");
         if (budgetInput) budgetInput.value = "$5-10k";
       } catch {
         setStatus(
-          "Не удалось отправить. Попробуйте позже или напишите в Telegram.",
+          "We couldn't send your message. Please try again.",
           "error"
         );
       } finally {
