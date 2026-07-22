@@ -1126,6 +1126,14 @@ body.has-detail-open {
   background: #000;
 }
 
+.project-showcase__detail-gallery-item--native-video {
+  aspect-ratio: auto !important;
+}
+
+.project-showcase__detail-gallery-item--native-video video {
+  height: auto;
+}
+
 /* Next project teaser at the end of the overlay */
 .project-next {
   height: 170vh;

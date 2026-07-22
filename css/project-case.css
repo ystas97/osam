@@ -138,6 +138,10 @@ a {
   aspect-ratio: 16 / 9;
 }
 
+.case-full .case-media--native-video {
+  aspect-ratio: 35 / 24;
+}
+
 .case-full video {
   object-fit: cover;
 }
