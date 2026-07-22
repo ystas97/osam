@@ -26,10 +26,61 @@
   function initContactForm(formEl) {
     const statusEl = formEl.querySelector(".contact-form__status");
     const submitBtn = formEl.querySelector(".btn--send");
+    const contactMethodsEl = formEl.querySelector("[data-contact-methods]");
+    const contactMethodInput = formEl.querySelector(
+      'input[name="contact_method"]'
+    );
+    const contactMethods = contactMethodsEl
+      ? [...contactMethodsEl.querySelectorAll("[data-contact-method]")]
+      : [];
     const endpoint = (window.SITE_CONFIG?.contactFormUrl?.trim() || "").replace(
       /\/$/,
       ""
     );
+
+    const selectContactMethod = (selectedItem) => {
+      const method = selectedItem.getAttribute("data-contact-method") || "";
+
+      contactMethodsEl?.classList.add("has-selection");
+      if (contactMethodInput) contactMethodInput.value = method;
+
+      contactMethods.forEach((item) => {
+        const isActive = item === selectedItem;
+        const button = item.querySelector(".contact-method__button");
+        const input = item.querySelector(".contact-method__input");
+
+        item.classList.toggle("is-active", isActive);
+        button?.setAttribute("aria-pressed", String(isActive));
+        if (input) {
+          input.disabled = !isActive;
+          input.required = isActive;
+        }
+      });
+
+      const selectedInput = selectedItem.querySelector(".contact-method__input");
+      window.requestAnimationFrame(() => selectedInput?.focus());
+    };
+
+    const resetContactMethods = () => {
+      contactMethodsEl?.classList.remove("has-selection");
+      if (contactMethodInput) contactMethodInput.value = "";
+      contactMethods.forEach((item) => {
+        const button = item.querySelector(".contact-method__button");
+        const input = item.querySelector(".contact-method__input");
+        item.classList.remove("is-active");
+        button?.setAttribute("aria-pressed", "false");
+        if (input) {
+          input.disabled = true;
+          input.required = false;
+        }
+      });
+    };
+
+    contactMethods.forEach((item) => {
+      item
+        .querySelector(".contact-method__button")
+        ?.addEventListener("click", () => selectContactMethod(item));
+    });
 
     const setStatus = (message, type) => {
       if (!statusEl) return;
@@ -45,11 +96,17 @@
 
     const submitViaMailto = (data) => {
       const budget = String(data.get("budget") || "").trim();
+      const method = String(data.get("contact_method") || "").trim();
+      const contact = String(data.get("contact") || "").trim();
+      const contactLabel =
+        { email: "Email", whatsapp: "WhatsApp", telegram: "Telegram" }[
+          method
+        ] || "Contact";
       const subject = encodeURIComponent("OSAM — new request");
       const body = encodeURIComponent(
         [
           `Name: ${data.get("name") || ""}`,
-          `Email: ${data.get("email") || ""}`,
+          `${contactLabel}: ${contact}`,
           `Budget: ${budget}`,
           "",
           String(data.get("message") || ""),
@@ -63,16 +120,34 @@
       setStatus("", "");
 
       const data = new FormData(formEl);
+      const contactMethod = String(data.get("contact_method") || "").trim();
+      const contact = String(data.get("contact") || "").trim();
+      const legacyEmail =
+        contactMethod === "email"
+          ? contact
+          : `${contact.replace(/^@/, "").replace(/\s+/g, "")}@${
+              contactMethod || "contact"
+            }.contact`;
       const payload = {
         name: String(data.get("name") || "").trim(),
-        email: String(data.get("email") || "").trim(),
+        email: legacyEmail,
+        contactMethod,
+        contact,
         budget: String(data.get("budget") || "").trim(),
         message: String(data.get("message") || "").trim(),
         osamNote: String(data.get("osam_note") || "").trim(),
       };
 
-      if (!payload.name || !payload.email) {
-        setStatus("Please enter your name and email.", "error");
+      if (!payload.name || !payload.contactMethod || !payload.contact) {
+        setStatus("Please enter your name and preferred contact.", "error");
+        return;
+      }
+
+      if (
+        payload.contactMethod === "email" &&
+        !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(payload.contact)
+      ) {
+        setStatus("Please enter a valid email address.", "error");
         return;
       }
 
@@ -105,6 +180,7 @@
 
         setStatus("Thank you! Your message has been sent.", "success");
         formEl.reset();
+        resetContactMethods();
         budgetChips.forEach((c) => c.classList.remove("is-active"));
         budgetChips[budgetChips.length - 1]?.classList.add("is-active");
         if (budgetInput) budgetInput.value = "$5-10k";

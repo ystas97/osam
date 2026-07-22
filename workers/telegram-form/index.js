@@ -42,11 +42,15 @@ function isValidEmail(email) {
 }
 
 function buildMessage(payload) {
+  const contactLabel =
+    { email: "Email", whatsapp: "WhatsApp", telegram: "Telegram" }[
+      payload.contactMethod
+    ] || "Контакт";
   const lines = [
     "<b>Новая заявка с osamdesign.com</b>",
     "",
     `<b>Имя:</b> ${escapeHtml(payload.name)}`,
-    `<b>Email:</b> ${escapeHtml(payload.email)}`,
+    `<b>${contactLabel}:</b> ${escapeHtml(payload.contact)}`,
     `<b>Бюджет:</b> ${escapeHtml(payload.budget || "—")}`,
     "",
     "<b>Сообщение:</b>",
@@ -98,11 +102,22 @@ export default {
     }
 
     const name = String(payload.name || "").trim().slice(0, 200);
-    const email = String(payload.email || "").trim().slice(0, 200);
+    const contactMethod = ["email", "whatsapp", "telegram"].includes(
+      payload.contactMethod
+    )
+      ? payload.contactMethod
+      : "email";
+    const contact = String(payload.contact || payload.email || "")
+      .trim()
+      .slice(0, 200);
     const budget = String(payload.budget || "").trim().slice(0, 100);
     const message = String(payload.message || "").trim().slice(0, MAX_FIELD_LENGTH);
 
-    if (!name || !email || !isValidEmail(email)) {
+    if (
+      !name ||
+      !contact ||
+      (contactMethod === "email" && !isValidEmail(contact))
+    ) {
       return jsonResponse({ ok: false, error: "validation" }, 400, origin, env);
     }
 
@@ -113,7 +128,7 @@ export default {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           chat_id: env.TELEGRAM_CHAT_ID,
-          text: buildMessage({ name, email, budget, message }),
+          text: buildMessage({ name, contactMethod, contact, budget, message }),
           parse_mode: "HTML",
           disable_web_page_preview: true,
         }),

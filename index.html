@@ -206,7 +206,7 @@
       href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&family=Raleway:wght@700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="css/style.css?v=help-chat-4" />
+    <link rel="stylesheet" href="css/style.css?v=contact-methods-1" />
   </head>
   <body>
     <!-- Google Tag Manager (noscript) -->
@@ -1639,13 +1639,82 @@
               <div class="field">
                 <input type="text" name="name" placeholder="My name" required />
               </div>
-              <div class="field">
-                <input
-                  type="email"
-                  name="email"
-                  placeholder="Email address"
-                  required
-                />
+              <input type="hidden" name="contact_method" value="" />
+              <div
+                class="contact-methods"
+                role="group"
+                aria-label="Preferred contact method"
+                data-contact-methods
+              >
+                <div class="contact-method" data-contact-method="email">
+                  <button
+                    class="contact-method__button"
+                    type="button"
+                    aria-label="Use email"
+                    aria-pressed="false"
+                    aria-controls="contact-email"
+                  >
+                    <span class="contact-method__label">Email</span>
+                    <span class="contact-method__initial" aria-hidden="true">E</span>
+                  </button>
+                  <input
+                    class="contact-method__input"
+                    id="contact-email"
+                    type="email"
+                    name="contact"
+                    placeholder="Email"
+                    aria-label="Email address"
+                    autocomplete="email"
+                    disabled
+                  />
+                </div>
+                <div class="contact-method" data-contact-method="whatsapp">
+                  <button
+                    class="contact-method__button"
+                    type="button"
+                    aria-label="Use WhatsApp"
+                    aria-pressed="false"
+                    aria-controls="contact-whatsapp"
+                  >
+                    <span class="contact-method__label">WhatsApp</span>
+                    <span class="contact-method__initial" aria-hidden="true">W</span>
+                  </button>
+                  <input
+                    class="contact-method__input"
+                    id="contact-whatsapp"
+                    type="tel"
+                    name="contact"
+                    placeholder="WhatsApp"
+                    aria-label="WhatsApp phone number"
+                    autocomplete="tel"
+                    inputmode="tel"
+                    disabled
+                  />
+                </div>
+                <div class="contact-method" data-contact-method="telegram">
+                  <button
+                    class="contact-method__button"
+                    type="button"
+                    aria-label="Use Telegram"
+                    aria-pressed="false"
+                    aria-controls="contact-telegram"
+                  >
+                    <span class="contact-method__label">Telegram</span>
+                    <span class="contact-method__initial" aria-hidden="true">T</span>
+                  </button>
+                  <input
+                    class="contact-method__input"
+                    id="contact-telegram"
+                    type="text"
+                    name="contact"
+                    placeholder="Telegram"
+                    aria-label="Telegram username"
+                    autocomplete="off"
+                    autocapitalize="none"
+                    spellcheck="false"
+                    disabled
+                  />
+                </div>
               </div>
               <div class="field">
                 <textarea
@@ -1712,6 +1781,6 @@
 
     <script src="js/site-config.js"></script>
     <script src="js/hero-sine-carousel.js?v=hero-intro-17"></script>
-    <script src="js/main.js?v=form-status-3"></script>
+    <script src="js/main.js?v=contact-methods-1"></script>
   </body>
 </html>
