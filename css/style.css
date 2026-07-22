@@ -853,6 +853,10 @@ body.has-detail-open > [data-edge-blur-page-bottom] {
   min-width: 0;
 }
 
+.project-showcase[data-project-featured] {
+  order: -1;
+}
+
 .project-showcase.is-filter-hidden {
   display: none;
 }

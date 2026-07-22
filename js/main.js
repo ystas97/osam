@@ -239,8 +239,15 @@
 
   initServicesIntro();
   initAwardsMarquee();
+  prioritizeFeaturedProject();
   initProjectsFilters();
   initProjectsShowcase();
+
+  function prioritizeFeaturedProject() {
+    const list = document.querySelector(".projects-showcase__list");
+    const featured = list?.querySelector("[data-project-featured]");
+    if (list && featured) list.prepend(featured);
+  }
 
   function bindEdgeBlur({ scrollEl, topBlur, bottomBlur, getScrollY, getMaxScroll }) {
     let lastY = getScrollY();
