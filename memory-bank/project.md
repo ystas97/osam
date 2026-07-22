@@ -5,5 +5,6 @@
 - **Не путать с:** Antonovka / `my-site` / antonovka.studio (отдельный проект)
 - **Источник дизайна:** Figma + [osam.tilda.ws](https://osam.tilda.ws/)
 - **Секция projects:** Figma Card Scanner — карточки 3 колонки, dark/gray; Learn more раскрывает детали как [osam.tilda.ws/projects](https://osam.tilda.ws/projects)
+- **Главная hero-галерея:** список медиа задаётся вручную в `js/hero-sine-carousel.js`; новые проекты не добавлять туда автоматически — только по явному запросу
 - **Форма contact:** Telegram через Worker `https://osam-contact-telegram.osamdesign.workers.dev`, chat_id `378341688`, бот [@osamdesignBot](https://t.me/osamdesignBot). URL в `js/site-config.js`
 - **SEO:** `index.html` — title, description, keywords, Open Graph, Twitter, JSON-LD; `robots.txt`, `sitemap.xml` (каноникал `https://osamdesign.com/`)

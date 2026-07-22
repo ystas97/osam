@@ -1,12 +1,13 @@
 (function () {
-  const PROJECTS = [
+  // The homepage hero is curated independently from the project list.
+  // Add media here only when it is explicitly selected for the hero gallery.
+  const HERO_GALLERY_ITEMS = [
     {
       src: "assets/images/projects/namu-video.mp4",
       alt: "Namu Buro",
       type: "video",
     },
     { src: "assets/images/projects/lim-right.png", alt: "Lim CC" },
-    { src: "assets/images/projects/langy-right.png", alt: "Langy App" },
     { src: "assets/images/projects/foremost-gallery-3.png", alt: "Foremost" },
     { src: "assets/images/projects/namu-gallery-4.png", alt: "Namu Buro" },
     {
@@ -29,10 +30,6 @@
       src: "assets/images/projects/quinky-video-pink.mp4",
       alt: "Quinky",
       type: "video",
-    },
-    {
-      src: "assets/images/projects/tcg-card-main.png",
-      alt: "TCG Card Scanner",
     },
   ];
 
@@ -69,7 +66,7 @@
     let dragStartActive = 0;
     let dragAxis = null;
 
-    const cards = PROJECTS.map((project, index) => {
+    const cards = HERO_GALLERY_ITEMS.map((project, index) => {
       const card = document.createElement("figure");
       card.className = "hero-sine-carousel__card";
       card.dataset.index = String(index);
@@ -125,9 +122,9 @@
 
     const wrapDelta = (index, pivot) => {
       let delta = index - pivot;
-      const half = PROJECTS.length / 2;
-      while (delta > half) delta -= PROJECTS.length;
-      while (delta <= -half) delta += PROJECTS.length;
+      const half = HERO_GALLERY_ITEMS.length / 2;
+      while (delta > half) delta -= HERO_GALLERY_ITEMS.length;
+      while (delta <= -half) delta += HERO_GALLERY_ITEMS.length;
       return delta;
     };
 
@@ -215,8 +212,8 @@
     }
 
     const normalizeTarget = () => {
-      target %= PROJECTS.length;
-      if (target < 0) target += PROJECTS.length;
+      target %= HERO_GALLERY_ITEMS.length;
+      if (target < 0) target += HERO_GALLERY_ITEMS.length;
     };
 
     const animateToTarget = () => {
@@ -230,8 +227,8 @@
       }
 
       active += delta * 0.14;
-      if (active >= PROJECTS.length) active -= PROJECTS.length;
-      if (active < 0) active += PROJECTS.length;
+      if (active >= HERO_GALLERY_ITEMS.length) active -= HERO_GALLERY_ITEMS.length;
+      if (active < 0) active += HERO_GALLERY_ITEMS.length;
       layout();
       frame = requestAnimationFrame(animateToTarget);
     };
@@ -331,8 +328,8 @@
       const metrics = getMetrics();
       const dragDelta = dragAxis === "x" ? deltaX : deltaY;
       active = dragStartActive - dragDelta / metrics.dragPxPerCard;
-      active %= PROJECTS.length;
-      if (active < 0) active += PROJECTS.length;
+      active %= HERO_GALLERY_ITEMS.length;
+      if (active < 0) active += HERO_GALLERY_ITEMS.length;
       target = active;
       layout();
     };
