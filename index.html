@@ -206,7 +206,7 @@
       href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&family=Raleway:wght@700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="css/style.css?v=contact-methods-2" />
+    <link rel="stylesheet" href="css/style.css?v=contact-methods-3" />
   </head>
   <body>
     <!-- Google Tag Manager (noscript) -->
@@ -1687,7 +1687,8 @@
                     placeholder="WhatsApp"
                     aria-label="WhatsApp phone number"
                     autocomplete="tel"
-                    inputmode="tel"
+                    inputmode="numeric"
+                    pattern="[0-9]*"
                     disabled
                   />
                 </div>
@@ -1705,13 +1706,13 @@
                   <input
                     class="contact-method__input"
                     id="contact-telegram"
-                    type="text"
+                    type="tel"
                     name="contact"
                     placeholder="Telegram"
-                    aria-label="Telegram username"
+                    aria-label="Telegram number"
                     autocomplete="off"
-                    autocapitalize="none"
-                    spellcheck="false"
+                    inputmode="numeric"
+                    pattern="[0-9]*"
                     disabled
                   />
                 </div>
@@ -1781,6 +1782,6 @@
 
     <script src="js/site-config.js"></script>
     <script src="js/hero-sine-carousel.js?v=hero-intro-17"></script>
-    <script src="js/main.js?v=contact-methods-1"></script>
+    <script src="js/main.js?v=contact-methods-2"></script>
   </body>
 </html>

@@ -80,6 +80,22 @@
       item
         .querySelector(".contact-method__button")
         ?.addEventListener("click", () => selectContactMethod(item));
+
+      if (item.getAttribute("data-contact-method") === "email") return;
+      const input = item.querySelector(".contact-method__input");
+      input?.addEventListener("input", () => {
+        const value = input.value;
+        const cursor = input.selectionStart ?? value.length;
+        const removedBeforeCursor = value
+          .slice(0, cursor)
+          .replace(/\d/g, "").length;
+        const digits = value.replace(/\D/g, "");
+
+        if (value === digits) return;
+        input.value = digits;
+        const nextCursor = Math.max(0, cursor - removedBeforeCursor);
+        input.setSelectionRange(nextCursor, nextCursor);
+      });
     });
 
     const setStatus = (message, type) => {
@@ -97,7 +113,9 @@
     const submitViaMailto = (data) => {
       const budget = String(data.get("budget") || "").trim();
       const method = String(data.get("contact_method") || "").trim();
-      const contact = String(data.get("contact") || "").trim();
+      const rawContact = String(data.get("contact") || "").trim();
+      const contact =
+        method === "email" ? rawContact : rawContact.replace(/\D/g, "");
       const contactLabel =
         { email: "Email", whatsapp: "WhatsApp", telegram: "Telegram" }[
           method
@@ -121,7 +139,11 @@
 
       const data = new FormData(formEl);
       const contactMethod = String(data.get("contact_method") || "").trim();
-      const contact = String(data.get("contact") || "").trim();
+      const rawContact = String(data.get("contact") || "").trim();
+      const contact =
+        contactMethod === "email"
+          ? rawContact
+          : rawContact.replace(/\D/g, "");
       const legacyEmail =
         contactMethod === "email"
           ? contact

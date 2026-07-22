@@ -1920,9 +1920,10 @@ body.has-detail-open {
   position: relative;
   flex: 1 1 0;
   min-width: 0;
+  height: 70px;
   transition:
-    flex-basis 360ms cubic-bezier(0.22, 1, 0.36, 1),
-    flex-grow 360ms cubic-bezier(0.22, 1, 0.36, 1);
+    flex-basis 560ms cubic-bezier(0.22, 1, 0.36, 1),
+    flex-grow 560ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .contact-methods.has-selection .contact-method:not(.is-active) {
@@ -1930,11 +1931,13 @@ body.has-detail-open {
 }
 
 .contact-methods.has-selection .contact-method.is-active {
-  flex: 1 1 auto;
+  flex: 1 1 0;
 }
 
 .contact-method__button,
 .contact-method__input {
+  position: absolute;
+  inset: 0;
   width: 100%;
   min-width: 0;
   height: 70px;
@@ -1949,8 +1952,17 @@ body.has-detail-open {
 }
 
 .contact-method__button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
   padding: 0 12px;
   cursor: pointer;
+  opacity: 1;
+  visibility: visible;
+  transition:
+    opacity 220ms ease,
+    visibility 0s linear;
 }
 
 .contact-method__button:focus-visible {
@@ -1958,48 +1970,70 @@ body.has-detail-open {
   outline-offset: 3px;
 }
 
+.contact-method__label,
 .contact-method__initial {
-  display: none;
+  white-space: nowrap;
+  transition:
+    opacity 220ms ease,
+    transform 420ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.contact-method__initial {
+  position: absolute;
+  opacity: 0;
+  transform: scale(0.8);
 }
 
 .contact-methods.has-selection
   .contact-method:not(.is-active)
   .contact-method__label {
-  display: none;
+  opacity: 0;
+  transform: scale(0.82);
 }
 
 .contact-methods.has-selection
   .contact-method:not(.is-active)
   .contact-method__initial {
-  display: inline;
+  opacity: 1;
+  transform: scale(1);
 }
 
 .contact-method.is-active .contact-method__button {
-  display: none;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition:
+    opacity 160ms ease,
+    visibility 0s linear 160ms;
 }
 
 .contact-method__input {
-  display: none;
   padding: 18px 33px;
   outline: none;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: scaleX(0.96);
+  transform-origin: center;
+  transition:
+    opacity 220ms ease,
+    transform 560ms cubic-bezier(0.22, 1, 0.36, 1),
+    visibility 0s linear 220ms;
 }
 
 .contact-method.is-active .contact-method__input {
-  display: block;
-  animation: contact-field-in 240ms ease both;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: scaleX(1);
+  transition:
+    opacity 260ms ease 120ms,
+    transform 560ms cubic-bezier(0.22, 1, 0.36, 1),
+    visibility 0s linear;
 }
 
 .contact-method__input::placeholder {
   color: rgba(255, 255, 255, 0.55);
-}
-
-@keyframes contact-field-in {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
 }
 
 .btn--send:disabled {
@@ -2012,8 +2046,12 @@ body.has-detail-open {
     transition: none;
   }
 
+  .contact-method__button,
+  .contact-method__label,
+  .contact-method__initial,
+  .contact-method__input,
   .contact-method.is-active .contact-method__input {
-    animation: none;
+    transition: none;
   }
 }
 

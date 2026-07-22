@@ -107,9 +107,12 @@ export default {
     )
       ? payload.contactMethod
       : "email";
-    const contact = String(payload.contact || payload.email || "")
+    let contact = String(payload.contact || payload.email || "")
       .trim()
       .slice(0, 200);
+    if (contactMethod !== "email") {
+      contact = contact.replace(/\D/g, "");
+    }
     const budget = String(payload.budget || "").trim().slice(0, 100);
     const message = String(payload.message || "").trim().slice(0, MAX_FIELD_LENGTH);
 
