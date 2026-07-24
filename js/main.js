@@ -199,6 +199,11 @@
           form_name: "contact_form",
           budget: payload.budget,
         });
+        if (typeof window.fbq === "function") {
+          window.fbq("track", "Lead", {
+            content_name: "contact_form",
+          });
+        }
 
         setStatus("Thank you! Your message has been sent.", "success");
         formEl.reset();
