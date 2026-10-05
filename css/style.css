@@ -2528,11 +2528,13 @@ body.has-detail-open {
   background: rgba(255, 255, 255, 0.6);
 }
 
-.career-chip[aria-pressed="true"] {
-  background: rgba(255, 255, 255, 0.7);
-  box-shadow:
-    0 0 0 1px rgba(255, 255, 255, 0.95) inset,
-    0 6px 20px rgba(60, 100, 180, 0.18);
+.career-chip[aria-pressed="true"],
+.career-chip[aria-pressed="true"]:hover,
+.career-chip[aria-pressed="true"]:focus-visible {
+  border-color: #232323;
+  background: #232323;
+  box-shadow: none;
+  color: #fff;
 }
 
 .career-row {
