@@ -5,6 +5,7 @@
   initHeaderMenu();
   initEdgeBlur();
   initHelpPanel();
+  initCareerPopup();
 
   const budgetInput = form?.querySelector('input[name="budget"]');
 
@@ -576,6 +577,218 @@
     });
 
     backBtn.addEventListener("click", showList);
+  }
+
+  function initCareerPopup() {
+    const popup = document.querySelector("[data-career-popup]");
+    const openBtn = document.querySelector("[data-career-open]");
+    const formEl = popup?.querySelector("[data-career-form]");
+    if (!popup || !openBtn || !formEl) return;
+
+    const FADE_MS = 500;
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const statusEl = formEl.querySelector(".career-form__status");
+    const submitBtn = formEl.querySelector(".career-submit");
+    const endpoint = (window.SITE_CONFIG?.contactFormUrl?.trim() || "").replace(
+      /\/$/,
+      ""
+    );
+    let closeTimer = 0;
+
+    const setStatus = (message, type) => {
+      statusEl.textContent = message;
+      statusEl.hidden = !message;
+      statusEl.classList.toggle("is-error", type === "error");
+      statusEl.classList.toggle("is-success", type === "success");
+    };
+
+    const setFieldError = (key, message) => {
+      const errorEl = formEl.querySelector(`#career-error-${key}`);
+      const input = formEl.querySelector(`[name="${key}"]`);
+      if (errorEl) {
+        errorEl.textContent = message;
+        errorEl.hidden = !message;
+      }
+      if (key === "role" || key === "format") {
+        formEl
+          .querySelector(`[data-career-group="${key}"]`)
+          ?.classList.toggle("is-invalid", !!message);
+        return;
+      }
+      if (key === "privacy") {
+        input?.closest(".career-consent")?.classList.toggle("is-invalid", !!message);
+      } else {
+        input?.setAttribute("aria-invalid", String(!!message));
+      }
+      if (input) {
+        if (message) input.setAttribute("aria-describedby", `career-error-${key}`);
+        else input.removeAttribute("aria-describedby");
+      }
+    };
+
+    const FIELD_KEYS = ["role", "format", "name", "contact", "salary", "privacy"];
+    const clearFieldErrors = () =>
+      FIELD_KEYS.forEach((key) => setFieldError(key, ""));
+
+    ["name", "contact", "salary", "privacy"].forEach((key) => {
+      formEl
+        .querySelector(`[name="${key}"]`)
+        ?.addEventListener(key === "privacy" ? "change" : "input", () =>
+          setFieldError(key, "")
+        );
+    });
+
+    const open = () => {
+      window.clearTimeout(closeTimer);
+      popup.hidden = false;
+      popup.scrollTop = 0;
+      document.body.classList.add("has-detail-open");
+      window.requestAnimationFrame(() =>
+        window.requestAnimationFrame(() => popup.classList.add("is-open"))
+      );
+      popup.querySelector('input[name="name"]')?.focus({ preventScroll: true });
+    };
+
+    const close = () => {
+      if (popup.hidden) return;
+      popup.classList.remove("is-open");
+      document.body.classList.remove("has-detail-open");
+      closeTimer = window.setTimeout(
+        () => {
+          popup.hidden = true;
+          setStatus("", "");
+          clearFieldErrors();
+        },
+        reduced ? 0 : FADE_MS
+      );
+      openBtn.focus({ preventScroll: true });
+    };
+
+    openBtn.addEventListener("click", () => {
+      document.querySelector("[data-menu]")?.classList.remove("is-open");
+      document
+        .querySelector("[data-menu-toggle]")
+        ?.setAttribute("aria-expanded", "false");
+      open();
+    });
+    popup
+      .querySelector("[data-career-close]")
+      ?.addEventListener("click", close);
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && !popup.hidden) close();
+    });
+
+    formEl.querySelectorAll("[data-career-chip]").forEach((chip) => {
+      chip.addEventListener("click", () => {
+        const group = chip.closest("[data-career-group]");
+        const next = chip.getAttribute("aria-pressed") !== "true";
+        if (!group.hasAttribute("data-multi")) {
+          group
+            .querySelectorAll("[data-career-chip]")
+            .forEach((c) => c.setAttribute("aria-pressed", "false"));
+        }
+        chip.setAttribute("aria-pressed", String(next));
+      });
+    });
+
+    const chosen = (group) =>
+      [
+        ...formEl.querySelectorAll(
+          `[data-career-group="${group}"] [aria-pressed="true"]`
+        ),
+      ]
+        .map((c) => c.dataset.value)
+        .join(", ");
+
+    formEl.querySelectorAll("[data-career-chip]").forEach((chip) => {
+      chip.addEventListener("click", () =>
+        setFieldError(chip.closest("[data-career-group]").dataset.careerGroup, "")
+      );
+    });
+
+    formEl.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      setStatus("", "");
+      clearFieldErrors();
+
+      const data = new FormData(formEl);
+      const payload = {
+        kind: "career",
+        name: String(data.get("name") || "").trim(),
+        contactMethod: "email",
+        contact: String(data.get("contact") || "").trim(),
+        role: chosen("role"),
+        format: chosen("format"),
+        salary: String(data.get("salary") || "").trim(),
+        portfolio: String(data.get("portfolio") || "").trim(),
+        message: String(data.get("message") || "").trim(),
+        osamNote: String(data.get("osam_note") || "").trim(),
+      };
+
+      const errors = {};
+      if (!payload.role) errors.role = "Please choose at least one role.";
+      if (!payload.format) errors.format = "Please choose a work format.";
+      if (!payload.name) errors.name = "Please enter your name.";
+      if (!payload.contact) {
+        errors.contact = "Please enter your email.";
+      } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(payload.contact)) {
+        errors.contact = "Please enter a valid email address.";
+      }
+      if (!payload.salary) errors.salary = "Please enter your salary expectation.";
+      if (!formEl.querySelector('input[name="privacy"]')?.checked) {
+        errors.privacy = "Please accept the Privacy Policy.";
+      }
+      if (Object.keys(errors).length) {
+        Object.entries(errors).forEach(([key, msg]) => setFieldError(key, msg));
+        formEl
+          .querySelector(
+            '.career-chips.is-invalid .career-chip, [aria-invalid="true"], .is-invalid input'
+          )
+          ?.focus();
+        return;
+      }
+
+      if (!endpoint) {
+        const body = encodeURIComponent(
+          [
+            `Name: ${payload.name}`,
+            `Email: ${payload.contact}`,
+            `Role: ${payload.role}`,
+            `Format: ${payload.format}`,
+            `Salary (net): ${payload.salary}`,
+            `Portfolio: ${payload.portfolio}`,
+            "",
+            payload.message,
+          ].join("\n")
+        );
+        window.location.href = `mailto:hello@osam.design?subject=${encodeURIComponent(
+          "OSAM — career"
+        )}&body=${body}`;
+        return;
+      }
+
+      submitBtn.disabled = true;
+      try {
+        const response = await fetch(endpoint, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        });
+        const result = await response.json().catch(() => ({}));
+        if (!response.ok || !result.ok) {
+          throw new Error(result.error || "request_failed");
+        }
+        setStatus("Thank you! We will be in touch.", "success");
+        formEl.reset();
+        formEl
+          .querySelectorAll("[data-career-chip]")
+          .forEach((c) => c.setAttribute("aria-pressed", "false"));
+      } catch {
+        setStatus("We couldn't send your message. Please try again.", "error");
+      } finally {
+        submitBtn.disabled = false;
+      }
+    });
   }
 
   function initHeaderMenu() {

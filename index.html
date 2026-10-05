@@ -235,7 +235,7 @@
       href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&family=Raleway:wght@700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="css/style.css?v=project-order-1" />
+    <link rel="stylesheet" href="css/style.css?v=career-5" />
   </head>
   <body>
     <!-- Google Tag Manager (noscript) -->
@@ -304,6 +304,17 @@
               <li><a href="#projects">Projects</a></li>
               <li><a href="#process">Process</a></li>
               <li><a href="#contact">Contact</a></li>
+              <li>
+                <button
+                  type="button"
+                  class="menu-panel__link"
+                  aria-haspopup="dialog"
+                  aria-controls="career-popup"
+                  data-career-open
+                >
+                  Career
+                </button>
+              </li>
             </ul>
             <div class="menu-panel__social">
               <a href="https://www.instagram.com/osam.design/" target="_blank" rel="noopener noreferrer">In</a>
@@ -1790,6 +1801,88 @@
       </div>
     </main>
 
+    <div
+      class="career-popup"
+      id="career-popup"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="career-title"
+      data-career-popup
+      hidden
+    >
+      <div class="career-popup__inner">
+        <button
+          type="button"
+          class="project-showcase__close career-popup__close"
+          aria-label="Close"
+          data-career-close
+        >
+          ×
+        </button>
+        <div class="career-popup__head">
+          <h2 class="career-popup__title" id="career-title">join osam</h2>
+          <p class="career-popup__subtitle">great teams are built by people who care.</p>
+        </div>
+        <form class="career-form" action="#" method="post" novalidate data-career-form>
+          <div class="field field--hp" aria-hidden="true">
+            <input type="text" name="osam_note" tabindex="-1" autocomplete="off" />
+          </div>
+          <fieldset class="career-group">
+            <legend class="career-group__title">what's your role?</legend>
+            <div class="career-chips" data-career-group="role" data-multi>
+              <button type="button" class="career-chip" aria-pressed="false" data-career-chip="role" data-value="ui/ux designer">ui/ux designer</button>
+              <button type="button" class="career-chip" aria-pressed="false" data-career-chip="role" data-value="graphic designer">graphic designer</button>
+              <button type="button" class="career-chip" aria-pressed="false" data-career-chip="role" data-value="motion designer">motion designer</button>
+              <button type="button" class="career-chip" aria-pressed="false" data-career-chip="role" data-value="web developer">web developer</button>
+              <button type="button" class="career-chip" aria-pressed="false" data-career-chip="role" data-value="project manager">project manager</button>
+              <button type="button" class="career-chip" aria-pressed="false" data-career-chip="role" data-value="other">other</button>
+            </div>
+            <p class="career-error career-error--group" id="career-error-role" hidden></p>
+          </fieldset>
+          <fieldset class="career-group">
+            <legend class="career-group__title">how would you like to work?</legend>
+            <div class="career-chips" data-career-group="format">
+              <button type="button" class="career-chip" aria-pressed="false" data-career-chip="format" data-value="full-time">full-time</button>
+              <button type="button" class="career-chip" aria-pressed="false" data-career-chip="format" data-value="part-time">part-time</button>
+              <button type="button" class="career-chip" aria-pressed="false" data-career-chip="format" data-value="freelance">freelance</button>
+              <button type="button" class="career-chip" aria-pressed="false" data-career-chip="format" data-value="internship">internship</button>
+            </div>
+            <p class="career-error career-error--group" id="career-error-format" hidden></p>
+          </fieldset>
+          <fieldset class="career-group">
+            <legend class="career-group__title">contact info</legend>
+            <div class="career-row">
+              <div class="career-field">
+                <input class="career-input" type="text" name="name" placeholder="your name" autocomplete="name" required />
+                <p class="career-error" id="career-error-name" hidden></p>
+              </div>
+              <div class="career-field">
+                <input class="career-input" type="email" name="contact" placeholder="your email" autocomplete="email" required />
+                <p class="career-error" id="career-error-contact" hidden></p>
+              </div>
+            </div>
+            <input class="career-input" type="url" name="portfolio" placeholder="portfolio link (optional)" autocomplete="url" />
+            <div class="career-field">
+              <input class="career-input" type="text" name="salary" placeholder="salary expectation, net" autocomplete="off" required />
+              <p class="career-error" id="career-error-salary" hidden></p>
+            </div>
+            <textarea class="career-input career-input--area" name="message" placeholder="about you (optional)" rows="4"></textarea>
+          </fieldset>
+          <label class="career-consent">
+            <input type="checkbox" name="privacy" required />
+            <span class="career-consent__box" aria-hidden="true"></span>
+            <span class="career-consent__text">
+              I agree to the processing of my personal data in accordance with the
+              <a href="/privacy/" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
+            </span>
+          </label>
+          <p class="career-error" id="career-error-privacy" hidden></p>
+          <button class="career-submit" type="submit">send</button>
+          <p class="contact-form__status career-form__status" role="status" aria-live="polite" hidden></p>
+        </form>
+      </div>
+    </div>
+
     <footer class="site-footer">
       <div class="container footer-inner">
         <div class="footer-social">
@@ -1820,6 +1913,6 @@
 
     <script src="js/site-config.js"></script>
     <script src="js/hero-sine-carousel.js?v=hero-intro-17"></script>
-    <script src="js/main.js?v=project-order-1"></script>
+    <script src="js/main.js?v=career-5"></script>
   </body>
 </html>

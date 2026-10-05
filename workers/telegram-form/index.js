@@ -41,6 +41,22 @@ function isValidEmail(email) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
 
+function buildCareerMessage(payload) {
+  return [
+    "<b>Career — новый отклик с osamdesign.com</b>",
+    "",
+    `<b>Имя:</b> ${escapeHtml(payload.name)}`,
+    `<b>Email:</b> ${escapeHtml(payload.contact)}`,
+    `<b>Роль:</b> ${escapeHtml(payload.role || "—")}`,
+    `<b>Формат:</b> ${escapeHtml(payload.format || "—")}`,
+    `<b>Ожидания по зарплате (net):</b> ${escapeHtml(payload.salary || "—")}`,
+    `<b>Портфолио:</b> ${escapeHtml(payload.portfolio || "—")}`,
+    "",
+    "<b>О себе:</b>",
+    escapeHtml(payload.message || "—"),
+  ].join("\n");
+}
+
 function buildMessage(payload) {
   const contactLabel =
     { email: "Email", whatsapp: "WhatsApp", telegram: "Telegram" }[
@@ -113,6 +129,11 @@ export default {
     if (contactMethod !== "email") {
       contact = contact.replace(/\D/g, "");
     }
+    const isCareer = payload.kind === "career";
+    const role = String(payload.role || "").trim().slice(0, 200);
+    const format = String(payload.format || "").trim().slice(0, 200);
+    const salary = String(payload.salary || "").trim().slice(0, 200);
+    const portfolio = String(payload.portfolio || "").trim().slice(0, 500);
     const budget = String(payload.budget || "").trim().slice(0, 100);
     const message = String(payload.message || "").trim().slice(0, MAX_FIELD_LENGTH);
 
@@ -131,7 +152,9 @@ export default {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           chat_id: env.TELEGRAM_CHAT_ID,
-          text: buildMessage({ name, contactMethod, contact, budget, message }),
+          text: isCareer
+            ? buildCareerMessage({ name, contact, role, format, salary, portfolio, message })
+            : buildMessage({ name, contactMethod, contact, budget, message }),
           parse_mode: "HTML",
           disable_web_page_preview: true,
         }),
