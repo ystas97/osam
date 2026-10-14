@@ -1,0 +1,336 @@
+/* Project (case study) page: side card on the left, brief + gallery plates
+   on the right. Layout, pills and type come from redesign.css. */
+
+.layout--case {
+  font-family: var(--font-serif);
+}
+
+.case {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  padding-top: 8px;
+}
+
+.case > * {
+  min-width: 0;
+}
+
+.case-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  padding-right: 100px; /* room for the sticky close button */
+}
+
+.case-title {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+.case-title__index {
+  margin-right: 4px;
+}
+
+.case-top__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px 24px;
+}
+
+/* Sticks to the top-right of the viewport while the page scrolls. It is a
+   direct child of .case so sticky works over the whole article; the negative
+   margin keeps it from taking space of its own. */
+.case-close {
+  position: sticky;
+  top: 24px;
+  z-index: 20;
+  align-self: flex-end;
+  min-height: 39px;
+  margin-bottom: -71px;
+  padding: 0 20px;
+  font-size: 18px;
+}
+
+.case-pager {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.case-pager__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 39px;
+  padding: 0 16px;
+  border-radius: 999px;
+  background: #f0f0ef;
+  font-size: 16px;
+  line-height: 1;
+  transition: background 0.2s ease;
+}
+
+.case-pager__link:hover,
+.case-pager__link:focus-visible {
+  background: #e4e4e2;
+}
+
+/* Brief */
+.case-brief {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.55fr);
+  gap: 24px;
+  align-items: start;
+}
+
+.case-brief__tabs {
+  display: grid;
+  justify-items: start;
+  gap: 4px;
+}
+
+.case-brief__tabs button {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--muted);
+  font: inherit;
+  font-size: 16px;
+  line-height: 1.3;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.case-brief__tabs button.is-active,
+.case-brief__tabs button:hover {
+  color: var(--ink);
+}
+
+.case-brief__body {
+  display: -webkit-box;
+  margin: 0;
+  overflow: hidden;
+  font-size: 16px;
+  line-height: 1.3;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+}
+
+.case-brief__body.is-expanded {
+  display: block;
+}
+
+.case-brief__more {
+  margin-top: 6px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  font-size: 16px;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  cursor: pointer;
+}
+
+.case-brief__more[hidden] {
+  display: none;
+}
+
+.case-brief__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.case-brief__list li {
+  padding: 8px 16px;
+  border: 1px solid var(--lime-line);
+  border-radius: 999px;
+  background: #e5ff45;
+  font-size: 16px;
+  line-height: 1.2;
+}
+
+/* Gallery plates */
+.case-gallery {
+  display: grid;
+  gap: 16px;
+}
+
+.case-plate {
+  margin: 0;
+  overflow: hidden;
+  border-radius: 24px;
+  background: #f0f0ef;
+}
+
+.case-plate img,
+.case-plate video {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.case-plates-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.case-plates-grid .case-plate {
+  height: 100%;
+}
+
+.case-plates-grid .case-plate img,
+.case-plates-grid .case-plate video {
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Case study text (kept for SEO, quiet by design) */
+.case-story {
+  display: grid;
+  gap: 28px;
+  max-width: 680px;
+  margin-top: 40px;
+}
+
+.case-story__headline {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+.case-facts {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px 24px;
+  margin: 0;
+}
+
+.case-facts dt {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.case-facts dd {
+  margin: 2px 0 0;
+  font-size: 16px;
+  line-height: 1.3;
+}
+
+.case-story p,
+.case-story ul {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.4;
+}
+
+.case-story__copy,
+.case-story__block {
+  display: grid;
+  gap: 12px;
+}
+
+.case-story h3 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.25;
+}
+
+.case-story__statement {
+  color: var(--muted);
+  font-size: 24px !important;
+  line-height: 1.25 !important;
+}
+
+.case-inline-link {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.case-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 0;
+  list-style: none;
+}
+
+.case-tags li {
+  padding: 8px 16px;
+  border: 1px solid var(--lime-line);
+  border-radius: 999px;
+  background: #e5ff45;
+  font-size: 16px;
+}
+
+.case-story__cta {
+  display: grid;
+  justify-items: start;
+  gap: 14px;
+  padding: 20px;
+  border-radius: 20px;
+  background: #f7f7f6;
+}
+
+.layout--case .cta {
+  margin-top: 64px;
+}
+
+/* Tablet / mobile */
+@media (max-width: 899px) {
+  .case-top {
+    flex-direction: column;
+  }
+
+  .case-top__actions {
+    justify-content: flex-start;
+  }
+
+  .case-close {
+    top: 16px;
+  }
+
+  .case-pager {
+    justify-content: flex-start;
+  }
+
+  .case-brief {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .case-brief__tabs {
+    display: flex;
+    gap: 16px;
+  }
+}
+
+@media (max-width: 640px) {
+  .case-plates-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .case-plate {
+    border-radius: 16px;
+  }
+
+  .case-facts {
+    grid-template-columns: 1fr;
+  }
+}

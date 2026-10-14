@@ -8,6 +8,18 @@
   position: relative;
 }
 
+.legal-page .header-inner {
+  display: flex;
+  align-items: center;
+  padding: 16px 0;
+}
+
+.legal-page .logo img {
+  display: block;
+  width: auto;
+  height: 28px;
+}
+
 .legal-main {
   padding: clamp(52px, 8vw, 112px) 0 clamp(80px, 10vw, 144px);
 }

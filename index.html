@@ -228,6 +228,16 @@
         ]
       }
     </script>
+    <script>
+      (function () {
+        var update = function () {
+          var z = Math.min(2.5, Math.max(1, window.innerWidth / 1240));
+          document.documentElement.style.setProperty("--page-zoom", z.toFixed(3));
+        };
+        update();
+        window.addEventListener("resize", update);
+      })();
+    </script>
     <link rel="icon" href="assets/favicon.png" type="image/png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -235,7 +245,9 @@
       href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&family=Raleway:wght@700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="css/style.css?v=career-6" />
+    <link rel="preload" href="assets/fonts/Gelica-Regular.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="css/style.css?v=case-2" />
+    <link rel="stylesheet" href="css/redesign.css?v=case-2" />
   </head>
   <body>
     <!-- Google Tag Manager (noscript) -->
@@ -259,215 +271,92 @@
         />
       </div>
     </noscript>
-    <header class="site-header">
-      <div class="container header-inner">
-        <a class="logo" href="/" aria-label="OSAM home">
-          <img src="assets/icons/osam.svg" width="120" height="28" alt="OSAM" />
-        </a>
-        <div class="menu" data-menu>
-          <button
-            class="menu-toggle"
-            type="button"
-            aria-expanded="false"
-            aria-controls="site-menu"
-            data-menu-toggle
-          >
-            <span class="menu-toggle__label">Menu</span>
-            <span class="menu-toggle__icon" aria-hidden="true">
-              <svg viewBox="0 0 16 16" width="16" height="16" fill="none">
-                <path
-                  d="M8 1v14M1 8h14"
-                  stroke="currentColor"
-                  stroke-width="2.4"
-                  stroke-linecap="round"
-                />
-              </svg>
-            </span>
-          </button>
-          <nav class="menu-panel" id="site-menu" aria-label="Main" data-menu-panel>
-            <button
-              class="menu-panel__close"
-              type="button"
-              aria-label="Close menu"
-              data-menu-close
-            >
-              <svg viewBox="0 0 16 16" width="16" height="16" fill="none">
-                <path
-                  d="M2.5 2.5l11 11M13.5 2.5l-11 11"
-                  stroke="currentColor"
-                  stroke-width="2.4"
-                  stroke-linecap="round"
-                />
-              </svg>
-            </button>
-            <ul class="menu-panel__list">
-              <li><a href="#projects">Projects</a></li>
-              <li><a href="#process">Process</a></li>
-              <li><a href="#contact">Contact</a></li>
-              <li>
-                <button
-                  type="button"
-                  class="menu-panel__link"
-                  aria-haspopup="dialog"
-                  aria-controls="career-popup"
-                  data-career-open
-                >
-                  Career
-                </button>
-              </li>
-            </ul>
-            <div class="menu-panel__social">
-              <a href="https://www.instagram.com/osam.design/" target="_blank" rel="noopener noreferrer">In</a>
-            </div>
-          </nav>
-        </div>
-      </div>
-    </header>
 
-    <main>
-      <section class="hero">
-        <div
-          class="hero__carousel"
-          data-hero-sine-carousel
-          aria-hidden="true"
-        ></div>
-        <div class="container hero__content">
-          <h1 class="hero__title" aria-label="OSAM — Creative Agency">
-            <span aria-hidden="true">CREATIVE</span>
-            <span aria-hidden="true">AGENCY</span>
-          </h1>
-        </div>
-      </section>
-
-      <section class="services-intro" aria-labelledby="services-heading">
-        <div class="container services-intro__inner">
-          <h2 id="services-heading" class="visually-hidden">OSAM design services</h2>
-          <div class="services-tabs" role="tablist" aria-label="OSAM services">
-            <button
-              class="service-tab is-active"
-              type="button"
-              role="tab"
-              aria-selected="true"
-              data-service="websites"
-            >
-              <span>osam/websites</span>
-              <span class="service-tab__thumbs" aria-hidden="true">
-                <img src="assets/images/projects/namu-mid.png" alt="" />
-                <img src="assets/images/projects/lim-mid.png" alt="" />
-                <img src="assets/images/projects/foremost-mid.png" alt="" />
-              </span>
-            </button>
-            <button
-              class="service-tab"
-              type="button"
-              role="tab"
-              aria-selected="false"
-              data-service="app-design"
-            >
-              <span>osam/app design</span>
-              <span class="service-tab__thumbs" aria-hidden="true">
-                <img src="assets/images/projects/lim-right.png" alt="" />
-                <img src="assets/images/projects/ps-mid.png" alt="" />
-                <img src="assets/images/projects/langy-right.png" alt="" />
-              </span>
-            </button>
-            <button
-              class="service-tab"
-              type="button"
-              role="tab"
-              aria-selected="false"
-              data-service="aso"
-            >
-              <span>osam/ASO &amp; App Store Design</span>
-              <span class="service-tab__thumbs" aria-hidden="true">
-                <img src="assets/images/projects/lim-mid.png" alt="" />
-                <img src="assets/images/projects/quinky-mid.png" alt="" />
-                <img src="assets/images/projects/foremost-right.png" alt="" />
-              </span>
-            </button>
-            <button
-              class="service-tab"
-              type="button"
-              role="tab"
-              aria-selected="false"
-              data-service="ux-audit"
-            >
-              <span>osam/ux audit</span>
-              <span class="service-tab__thumbs" aria-hidden="true">
-                <img src="assets/images/projects/foremost-mid.png" alt="" />
-                <img src="assets/images/projects/namu-gallery-2.png" alt="" />
-                <img src="assets/images/projects/lim-gallery-1.png" alt="" />
-              </span>
-            </button>
-            <button
-              class="service-tab"
-              type="button"
-              role="tab"
-              aria-selected="false"
-              data-service="business-app"
-            >
-              <span>osam/app for business</span>
-              <span class="service-tab__thumbs" aria-hidden="true">
-                <img src="assets/images/projects/langy-mid.png" alt="" />
-                <img src="assets/images/projects/ps-right.png" alt="" />
-                <img src="assets/images/projects/quinky-right.png" alt="" />
-              </span>
-            </button>
-          </div>
-          <p class="services-copy" aria-live="polite" data-service-copy>
-            <span>We design </span><strong>landing pages, websites,</strong
-            ><span> and </span><strong>online shops</strong
-            ><span> that people love, helping businesses thrive.</span>
+    <div class="layout">
+      <aside class="side-card" aria-label="OSAM">
+        <div class="side-card__blobs" aria-hidden="true"></div>
+        <div class="side-card__top">
+          <a class="side-card__logo" href="/" aria-label="OSAM home">
+            <img src="assets/icons/osam-mark.svg" width="28" height="24" alt="" />
+          </a>
+          <h2 class="side-card__title">Apps and websites for future unicorns <span aria-hidden="true">🦄</span></h2>
+          <p class="side-card__text">
+            We design and build products that look sharp, work fast and launch on time.
           </p>
+          <div class="side-card__actions">
+            <a class="pill pill--blue" href="#pricing">Pricing</a>
+            <a class="pill pill--black" href="#contact">Book a call</a>
+          </div>
         </div>
+        <div class="side-card__bottom">
+          <nav class="side-card__nav" aria-label="Sections">
+            <a href="#projects">All Projects</a>
+            <a href="/insights/">Blog</a>
+            <button type="button" class="side-card__link" aria-haspopup="dialog" aria-controls="career-popup" data-career-open>Career</button>
+          </nav>
+          <div class="side-card__legal" aria-label="Legal information">
+            <a href="/terms/" target="_blank" rel="noopener noreferrer">Terms and Conditions</a>
+            <a href="/privacy/" target="_blank" rel="noopener noreferrer">Privacy</a>
+            <span>©2026 osamdesign</span>
+          </div>
+        </div>
+      </aside>
+
+    <main class="page">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero__decor" aria-hidden="true"></div>
+        <span class="badge badge--lime hero__badge">Loved By 30+ Startups</span>
+        <h1 class="hero__title" id="hero-title">Apps and websites for future unicorns <span aria-hidden="true">🦄</span></h1>
+        <p class="hero__lead">We design and build products that look sharp, work fast and launch on time.</p>
+        <a class="pill pill--black" href="#pricing">See Price</a>
       </section>
 
       <section class="projects-showcase" id="projects">
         <div class="container">
-          <div class="projects-showcase__head">
-            <h2 class="projects-showcase__title">Projects</h2>
-            <div class="projects-showcase__filters" aria-label="Filter projects">
-              <button class="projects-showcase__filter is-active" type="button" data-project-filter="all">
-                All
-              </button>
-              <button class="projects-showcase__filter" type="button" data-project-filter="app">
-                App
-              </button>
-              <button class="projects-showcase__filter" type="button" data-project-filter="website">
-                Website
-              </button>
-            </div>
-          </div>
           <div class="projects-showcase__list">
+          <article class="project-showcase project-showcase--dark" data-project data-project-type="app">
+            <div class="project-showcase__card">
+              <div class="project-showcase__info">
+                <h3 class="project-showcase__title"><a class="project-showcase__link" href="/projects/tcg-card-scanner/">TCG Card Scanner</a></h3>
+                <p class="project-showcase__lead">
+                  A mobile app for scanning, valuing and organising trading cards
+                </p>
+              </div>
+              <div class="project-showcase__media project-showcase__media--wide">
+                <div class="project-showcase__tags">
+                  <span>App</span>
+                  <span>UX/UI redesign</span>
+                </div>
+                <img
+                  src="assets/images/projects/tcg-card-poster.jpg"
+                  alt="TCG Card Scanner mobile app redesign"
+                  width="752"
+                  height="900"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <video
+                  class="project-showcase__video"
+                  poster="assets/images/projects/tcg-card-poster.jpg"
+                  autoplay
+                  muted
+                  playsinline
+                  loop
+                  preload="metadata"
+                  aria-hidden="true"
+                >
+                  <source src="assets/images/projects/tcg-card-video.mp4" type="video/mp4" />
+                </video>
+              </div>
+            </div>
+          </article>
           <article class="project-showcase project-showcase--dark" data-project data-project-type="website">
             <div class="project-showcase__card">
               <div class="project-showcase__info">
-                <h3 class="project-showcase__title">Namu Buro</h3>
+                <h3 class="project-showcase__title"><a class="project-showcase__link" href="/projects/namu-buro/">Namu Buro</a></h3>
                 <p class="project-showcase__lead">
-                  Namu Buro is an architectural buro creating incredibly
-                  beautiful interior designs and also having its own production
-                  of designer furniture
+                  Architectural buro with interior design and its own designer furniture
                 </p>
-                <button
-                  type="button"
-                  class="btn btn--learn project-showcase__toggle"
-                  aria-expanded="false"
-                  aria-controls="project-detail-namu"
-                >
-                  <span>Learn more</span>
-                  <img src="assets/icons/figma/btn-learn-arrow.svg" alt="" />
-                </button>
-              </div>
-              <div class="project-showcase__media">
-                <div class="project-showcase__tags">
-                  <span>Website</span>
-                  <span>UX/UI design</span>
-                </div>
-                <img
-                  src="assets/images/projects/namu-mid.png"
-                  alt="Namu Buro website and UX/UI design by OSAM"
-                  loading="lazy"
-                />
               </div>
               <div class="project-showcase__media project-showcase__media--wide">
                 <div class="project-showcase__tags">
@@ -481,113 +370,14 @@
                 />
               </div>
             </div>
-            <div
-              class="project-showcase__detail"
-              id="project-detail-namu"
-              hidden
-            >
-              <button
-                type="button"
-                class="project-showcase__close"
-                aria-label="Close"
-              >
-                ×
-              </button>
-              <div class="project-showcase__detail-head">
-                <h2 class="project-showcase__detail-title">Namu Buro</h2>
-                <div class="project-showcase__detail-text">
-                  <p class="project-showcase__detail-body">
-                    Namu Buro is an architectural buro creating incredibly
-                    beautiful interior designs and also having its own production
-                    of designer furniture
-                  </p>
-                  <div class="project-showcase__detail-done">
-                    <p class="project-showcase__detail-label">services:</p>
-                    <ul class="project-showcase__detail-list">
-                      <li>website</li>
-                      <li>Logo</li>
-                      <li>Printed products</li>
-                      <li>Design for social media</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <div class="project-showcase__detail-gallery">
-                <figure class="project-showcase__detail-gallery-item">
-                  <img
-                    src="assets/images/projects/namu-gallery-1.png"
-                    alt="Namu Buro branding"
-                    loading="eager"
-                    decoding="async"
-                  />
-                </figure>
-                <figure
-                  class="project-showcase__detail-gallery-item project-showcase__detail-gallery-item--video"
-                >
-                  <video autoplay muted playsinline loop preload="auto">
-                    <source
-                      src="assets/images/projects/namu-video.mp4"
-                      type="video/mp4"
-                    />
-                  </video>
-                </figure>
-                <figure class="project-showcase__detail-gallery-item">
-                  <img
-                    src="assets/images/projects/namu-gallery-2.png"
-                    alt=""
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </figure>
-                <figure class="project-showcase__detail-gallery-item">
-                  <img
-                    src="assets/images/projects/namu-gallery-3.png"
-                    alt=""
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </figure>
-                <figure class="project-showcase__detail-gallery-item">
-                  <img
-                    src="assets/images/projects/namu-gallery-4.png"
-                    alt=""
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </figure>
-              </div>
-            </div>
           </article>
-
           <article class="project-showcase" data-project data-project-type="website">
             <div class="project-showcase__card">
               <div class="project-showcase__info">
-                <h3 class="project-showcase__title">Lim CC</h3>
+                <h3 class="project-showcase__title"><a class="project-showcase__link" href="/projects/lim-cc/">Lim CC</a></h3>
                 <p class="project-showcase__lead">
-                  Lim CC isn't a cycling club, though it might become one soon.
-                  It's a cycling café that gathers a community of cycling
-                  enthusiasts
+                  A cycling café that gathers a community of cycling enthusiasts
                 </p>
-                <button
-                  type="button"
-                  class="btn btn--learn project-showcase__toggle"
-                  aria-expanded="false"
-                  aria-controls="project-detail-lim"
-                >
-                  <span>Learn more</span>
-                  <img src="assets/icons/figma/btn-learn-arrow.svg" alt="" />
-                </button>
-              </div>
-              <div class="project-showcase__media">
-                <div class="project-showcase__tags">
-                  <span>Website</span>
-                  <span>Online shop</span>
-                </div>
-                <img
-                  src="assets/images/projects/lim-mid.png"
-                  alt="Lim CC cycling coffee website and online shop by OSAM"
-                  loading="lazy"
-                />
               </div>
               <div class="project-showcase__media project-showcase__media--wide">
                 <div class="project-showcase__tags">
@@ -601,151 +391,14 @@
                 />
               </div>
             </div>
-            <div
-              class="project-showcase__detail"
-              id="project-detail-lim"
-              hidden
-            >
-              <button
-                type="button"
-                class="project-showcase__close"
-                aria-label="Close"
-              >
-                ×
-              </button>
-              <div class="project-showcase__detail-head">
-                <h2 class="project-showcase__detail-title">Lim CC</h2>
-                <div class="project-showcase__detail-text">
-                  <p class="project-showcase__detail-body">
-                    Lim CC isn't a cycling club, though it might become one soon.
-                    It's a cycling café that gathers a community of cycling
-                    enthusiasts
-                  </p>
-                  <div class="project-showcase__detail-done">
-                    <p class="project-showcase__detail-label">services:</p>
-                    <ul class="project-showcase__detail-list">
-                      <li>website</li>
-                      <li>Logo</li>
-                      <li>Printed products</li>
-                      <li>Design for social media</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <div class="project-showcase__detail-gallery">
-                <figure class="project-showcase__detail-gallery-item">
-                  <img
-                    src="assets/images/projects/lim-gallery-1.png"
-                    alt="Lim CC branding"
-                    loading="eager"
-                    decoding="async"
-                  />
-                </figure>
-                <figure
-                  class="project-showcase__detail-gallery-item project-showcase__detail-gallery-item--video"
-                >
-                  <video autoplay muted playsinline loop preload="auto">
-                    <source
-                      src="assets/images/projects/lim-video.mp4"
-                      type="video/mp4"
-                    />
-                  </video>
-                </figure>
-                <figure class="project-showcase__detail-gallery-item">
-                  <img
-                    src="assets/images/projects/lim-gallery-2.png"
-                    alt=""
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </figure>
-                <figure class="project-showcase__detail-gallery-item">
-                  <img
-                    src="assets/images/projects/lim-gallery-3.png"
-                    alt=""
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </figure>
-                <div class="project-showcase__detail-gallery-grid">
-                  <figure
-                    class="project-showcase__detail-gallery-item project-showcase__detail-gallery-item--portrait"
-                  >
-                    <img
-                      src="assets/images/projects/lim-sign-installation.jpg"
-                      alt="Световая вывеска Lim CC в интерьере"
-                      width="1064"
-                      height="1574"
-                      loading="lazy"
-                      decoding="async"
-                    />
-                  </figure>
-                  <figure
-                    class="project-showcase__detail-gallery-item project-showcase__detail-gallery-item--portrait"
-                  >
-                    <img
-                      src="assets/images/projects/lim-cyclist.jpg"
-                      alt="Фирменная велоформа Lim CC"
-                      width="853"
-                      height="1280"
-                      loading="lazy"
-                      decoding="async"
-                    />
-                  </figure>
-                  <figure
-                    class="project-showcase__detail-gallery-item project-showcase__detail-gallery-item--portrait"
-                  >
-                    <img
-                      src="assets/images/projects/lim-coffee.jpg"
-                      alt="Стакан кофе с айдентикой Lim CC"
-                      width="1429"
-                      height="2000"
-                      loading="lazy"
-                      decoding="async"
-                    />
-                  </figure>
-                </div>
-                <figure class="project-showcase__detail-gallery-item">
-                  <img
-                    src="assets/images/projects/lim-storefront.jpg"
-                    alt="Вывеска Lim CC на входе в велокафе"
-                    width="2000"
-                    height="1333"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </figure>
-              </div>
-            </div>
           </article>
           <article class="project-showcase project-showcase--dark" data-project data-project-type="app">
             <div class="project-showcase__card">
               <div class="project-showcase__info">
-                <h3 class="project-showcase__title">Langy App</h3>
+                <h3 class="project-showcase__title"><a class="project-showcase__link" href="/projects/langy/">Langy App</a></h3>
                 <p class="project-showcase__lead">
-                  We designed and built a macOS app that automatically switches
-                  your keyboard language.
+                  A macOS app that automatically switches your keyboard language
                 </p>
-                <button
-                  type="button"
-                  class="btn btn--learn project-showcase__toggle"
-                  aria-expanded="false"
-                  aria-controls="project-detail-langy"
-                >
-                  <span>Learn more</span>
-                  <img src="assets/icons/figma/btn-learn-arrow.svg" alt="" />
-                </button>
-              </div>
-              <div class="project-showcase__media">
-                <div class="project-showcase__tags">
-                  <span>App</span>
-                  <span>UX/UI design</span>
-                </div>
-                <img
-                  src="assets/images/projects/langy-mid.png"
-                  alt="Langy macOS app UX/UI design by OSAM"
-                  loading="lazy"
-                />
               </div>
               <div class="project-showcase__media project-showcase__media--wide">
                 <div class="project-showcase__tags">
@@ -762,104 +415,14 @@
                 />
               </div>
             </div>
-            <div
-              class="project-showcase__detail"
-              id="project-detail-langy"
-              hidden
-            >
-              <button
-                type="button"
-                class="project-showcase__close"
-                aria-label="Close"
-              >
-                ×
-              </button>
-              <div class="project-showcase__detail-head">
-                <h2 class="project-showcase__detail-title">Langy App</h2>
-                <div class="project-showcase__detail-text">
-                  <p class="project-showcase__detail-body">
-                    A smart automatic keyboard switcher for macOS. Learn while you
-                    work — no need to break your flow or open settings to configure
-                    exceptions and rules.
-                  </p>
-                  <div class="project-showcase__detail-done">
-                    <p class="project-showcase__detail-label">services:</p>
-                    <ul class="project-showcase__detail-list">
-                      <li>visual identity</li>
-                      <li>website</li>
-                      <li>product design</li>
-                      <li>Swift code</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <div class="project-showcase__detail-gallery">
-                <figure class="project-showcase__detail-gallery-item">
-                  <img
-                    src="assets/images/projects/langy-gallery-1.png"
-                    alt="Langy App branding"
-                    loading="eager"
-                    decoding="async"
-                  />
-                </figure>
-                <figure
-                  class="project-showcase__detail-gallery-item project-showcase__detail-gallery-item--video"
-                >
-                  <video autoplay muted playsinline loop preload="auto">
-                    <source
-                      src="assets/images/projects/langy-video.mp4"
-                      type="video/mp4"
-                    />
-                  </video>
-                </figure>
-                <figure class="project-showcase__detail-gallery-item">
-                  <img
-                    src="assets/images/projects/langy-gallery-2.png"
-                    alt=""
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </figure>
-                <figure class="project-showcase__detail-gallery-item">
-                  <img
-                    src="assets/images/projects/langy-gallery-3.png"
-                    alt=""
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </figure>
-              </div>
-            </div>
           </article>
-
           <article class="project-showcase" data-project data-project-type="website">
             <div class="project-showcase__card">
               <div class="project-showcase__info">
-                <h3 class="project-showcase__title">Foremost</h3>
+                <h3 class="project-showcase__title"><a class="project-showcase__link" href="/projects/foremost/">Foremost</a></h3>
                 <p class="project-showcase__lead">
-                  Foremost is a company that produces skincare products for women
-                  based on active ingredients
+                  Skincare products for women based on active ingredients
                 </p>
-                <button
-                  type="button"
-                  class="btn btn--learn project-showcase__toggle"
-                  aria-expanded="false"
-                  aria-controls="project-detail-foremost"
-                >
-                  <span>Learn more</span>
-                  <img src="assets/icons/figma/btn-learn-arrow.svg" alt="" />
-                </button>
-              </div>
-              <div class="project-showcase__media">
-                <div class="project-showcase__tags">
-                  <span>Website</span>
-                  <span>UX/UI design</span>
-                </div>
-                <img
-                  src="assets/images/projects/foremost-mid.png"
-                  alt="Foremost website and UX/UI design by OSAM"
-                  loading="lazy"
-                />
               </div>
               <div class="project-showcase__media project-showcase__media--wide">
                 <div class="project-showcase__tags">
@@ -876,107 +439,14 @@
                 />
               </div>
             </div>
-            <div
-              class="project-showcase__detail"
-              id="project-detail-foremost"
-              hidden
-            >
-              <button
-                type="button"
-                class="project-showcase__close"
-                aria-label="Close"
-              >
-                ×
-              </button>
-              <div class="project-showcase__detail-head">
-                <h2 class="project-showcase__detail-title">Foremost</h2>
-                <div class="project-showcase__detail-text">
-                  <p class="project-showcase__detail-body">
-                    Foremost is a company that produces skincare products for women
-                    based on active ingredients
-                  </p>
-                  <div class="project-showcase__detail-done">
-                    <p class="project-showcase__detail-label">services:</p>
-                    <ul class="project-showcase__detail-list">
-                      <li>website</li>
-                      <li>Design for social media</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <div class="project-showcase__detail-gallery">
-                <figure class="project-showcase__detail-gallery-item">
-                  <img
-                    src="assets/images/projects/foremost-gallery-1.png"
-                    alt="Foremost branding"
-                    loading="eager"
-                    decoding="async"
-                  />
-                </figure>
-                <figure
-                  class="project-showcase__detail-gallery-item project-showcase__detail-gallery-item--video"
-                >
-                  <video
-                    autoplay
-                    muted
-                    playsinline
-                    loop
-                    preload="auto"
-                  >
-                    <source
-                      src="assets/images/projects/foremost-video.mp4"
-                      type="video/mp4"
-                    />
-                  </video>
-                </figure>
-                <figure class="project-showcase__detail-gallery-item">
-                  <img
-                    src="assets/images/projects/foremost-gallery-2.png"
-                    alt=""
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </figure>
-                <figure class="project-showcase__detail-gallery-item">
-                  <img
-                    src="assets/images/projects/foremost-gallery-3.png"
-                    alt=""
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </figure>
-              </div>
-            </div>
           </article>
-
           <article class="project-showcase project-showcase--dark" data-project data-project-type="app">
             <div class="project-showcase__card">
               <div class="project-showcase__info">
-                <h3 class="project-showcase__title">Architectural bureau</h3>
+                <h3 class="project-showcase__title"><a class="project-showcase__link" href="/projects/architectural-bureau/">Architectural bureau</a></h3>
                 <p class="project-showcase__lead">
-                  Architectural bureau of Petr Safioulline. Chief architect and
-                  founder of Yaratam bureau. Creator of his own furniture line.
+                  Architectural bureau by Petr Safioulline with its own furniture line
                 </p>
-                <button
-                  type="button"
-                  class="btn btn--learn project-showcase__toggle"
-                  aria-expanded="false"
-                  aria-controls="project-detail-ps"
-                >
-                  <span>Learn more</span>
-                  <img src="assets/icons/figma/btn-learn-arrow.svg" alt="" />
-                </button>
-              </div>
-              <div class="project-showcase__media">
-                <div class="project-showcase__tags">
-                  <span>App</span>
-                  <span>UX/UI design</span>
-                </div>
-                <img
-                  src="assets/images/projects/ps-mid.png"
-                  alt="Architectural bureau app UX/UI design by OSAM"
-                  loading="lazy"
-                />
               </div>
               <div class="project-showcase__media project-showcase__media--wide">
                 <div class="project-showcase__tags">
@@ -984,98 +454,35 @@
                   <span>UX/UI design</span>
                 </div>
                 <img
-                  src="assets/images/projects/ps-card-buro.jpg"
+                  src="assets/images/projects/ps-card-poster.jpg"
                   alt="Architectural bureau website shown on a floating smartphone"
-                  width="1600"
-                  height="1600"
+                  width="960"
+                  height="720"
                   loading="lazy"
                   decoding="async"
                 />
-              </div>
-            </div>
-            <div
-              class="project-showcase__detail"
-              id="project-detail-ps"
-              hidden
-            >
-              <button
-                type="button"
-                class="project-showcase__close"
-                aria-label="Close"
-              >
-                ×
-              </button>
-              <div class="project-showcase__detail-head">
-                <h2 class="project-showcase__detail-title">Architectural bureau</h2>
-                <div class="project-showcase__detail-text">
-                  <p class="project-showcase__detail-body">
-                    Architectural bureau of Petr Safioulline. Chief architect and
-                    founder of Yaratam bureau. Creator of his own furniture line.
-                  </p>
-                  <div class="project-showcase__detail-done">
-                    <p class="project-showcase__detail-label">services:</p>
-                    <ul class="project-showcase__detail-list">
-                      <li>website</li>
-                      <li>Logo</li>
-                      <li>Design for social media</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <div class="project-showcase__detail-gallery">
-                <figure class="project-showcase__detail-gallery-item">
-                  <img
-                    src="assets/images/projects/ps-gallery-1.png"
-                    alt="Architectural bureau branding"
-                    loading="eager"
-                    decoding="async"
-                  />
-                </figure>
-                <figure
-                  class="project-showcase__detail-gallery-item project-showcase__detail-gallery-item--video"
+                <video
+                  class="project-showcase__video"
+                  poster="assets/images/projects/ps-card-poster.jpg"
+                  autoplay
+                  muted
+                  playsinline
+                  loop
+                  preload="metadata"
+                  aria-hidden="true"
                 >
-                  <video autoplay muted playsinline loop preload="auto">
-                    <source
-                      src="assets/images/projects/ps-video.mp4"
-                      type="video/mp4"
-                    />
-                  </video>
-                </figure>
-                <figure class="project-showcase__detail-gallery-item">
-                  <img
-                    src="assets/images/projects/ps-gallery-2.png"
-                    alt=""
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </figure>
-                <figure class="project-showcase__detail-gallery-item">
-                  <img
-                    src="assets/images/projects/ps-gallery-3.png"
-                    alt=""
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </figure>
+                  <source src="assets/images/projects/ps-card-video.mp4" type="video/mp4" />
+                </video>
               </div>
             </div>
           </article>
           <article class="project-showcase" data-project data-project-type="app">
             <div class="project-showcase__card">
               <div class="project-showcase__info">
-                <h3 class="project-showcase__title">Quinky</h3>
+                <h3 class="project-showcase__title"><a class="project-showcase__link" href="/projects/quinky/">Quinky</a></h3>
                 <p class="project-showcase__lead">
-                  Mobile app design for a bright, playful digital product.
+                  Mobile app design for a bright, playful digital product
                 </p>
-                <button
-                  type="button"
-                  class="btn btn--learn project-showcase__toggle"
-                  aria-expanded="false"
-                  aria-controls="project-detail-quinky"
-                >
-                  <span>Learn more</span>
-                  <img src="assets/icons/figma/btn-learn-arrow.svg" alt="" />
-                </button>
               </div>
               <div class="project-showcase__media project-showcase__media--wide">
                 <div class="project-showcase__tags">
@@ -1092,143 +499,14 @@
                 />
               </div>
             </div>
-            <div
-              class="project-showcase__detail"
-              id="project-detail-quinky"
-              hidden
-            >
-              <button
-                type="button"
-                class="project-showcase__close"
-                aria-label="Close"
-              >
-                ×
-              </button>
-              <div class="project-showcase__detail-head">
-                <h2 class="project-showcase__detail-title">Quinky</h2>
-                <div class="project-showcase__detail-text">
-                  <p class="project-showcase__detail-body">
-                    Quinky is an inclusive audio-guided app with practical,
-                    playful content about intimacy and relationships.
-                  </p>
-                  <div class="project-showcase__detail-done">
-                    <p class="project-showcase__detail-label">services:</p>
-                    <ul class="project-showcase__detail-list">
-                      <li>product design</li>
-                      <li>visual identity</li>
-                      <li>motion design</li>
-                      <li>Design for social media</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <div class="project-showcase__detail-gallery">
-                <figure class="project-showcase__detail-gallery-item">
-                  <img
-                    src="assets/images/projects/quinky-gallery-1.png"
-                    alt="Quinky visual identity"
-                    loading="eager"
-                    decoding="async"
-                  />
-                </figure>
-                <figure
-                  class="project-showcase__detail-gallery-item project-showcase__detail-gallery-item--video"
-                >
-                  <video autoplay muted playsinline loop preload="metadata">
-                    <source
-                      src="assets/images/projects/quinky-video-mosaic.mp4"
-                      type="video/mp4"
-                    />
-                  </video>
-                </figure>
-                <div
-                  class="project-showcase__detail-gallery-grid project-showcase__detail-gallery-grid--video"
-                >
-                  <figure
-                    class="project-showcase__detail-gallery-item project-showcase__detail-gallery-item--video"
-                  >
-                    <video autoplay muted playsinline loop preload="metadata">
-                      <source
-                        src="assets/images/projects/quinky-video-tips.mp4"
-                        type="video/mp4"
-                      />
-                    </video>
-                  </figure>
-                  <figure
-                    class="project-showcase__detail-gallery-item project-showcase__detail-gallery-item--video"
-                  >
-                    <video autoplay muted playsinline loop preload="metadata">
-                      <source
-                        src="assets/images/projects/quinky-video-pink.mp4"
-                        type="video/mp4"
-                      />
-                    </video>
-                  </figure>
-                </div>
-                <figure class="project-showcase__detail-gallery-item">
-                  <img
-                    src="assets/images/projects/quinky-project-site.png"
-                    alt="Quinky website and social media design"
-                    width="2264"
-                    height="1514"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </figure>
-                <div
-                  class="project-showcase__detail-gallery-grid project-showcase__detail-gallery-grid--video"
-                >
-                  <figure
-                    class="project-showcase__detail-gallery-item project-showcase__detail-gallery-item--video"
-                  >
-                    <video autoplay muted playsinline loop preload="metadata">
-                      <source
-                        src="assets/images/projects/quinky-video-age.mp4"
-                        type="video/mp4"
-                      />
-                    </video>
-                  </figure>
-                  <figure
-                    class="project-showcase__detail-gallery-item project-showcase__detail-gallery-item--video"
-                  >
-                    <video autoplay muted playsinline loop preload="metadata">
-                      <source
-                        src="assets/images/projects/quinky-video-badge.mp4"
-                        type="video/mp4"
-                      />
-                    </video>
-                  </figure>
-                </div>
-                <figure class="project-showcase__detail-gallery-item">
-                  <img
-                    src="assets/images/projects/quinky-project-app.png"
-                    alt="Quinky mobile app screens"
-                    width="2200"
-                    height="1471"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </figure>
-              </div>
-            </div>
           </article>
           <article class="project-showcase" data-project data-project-type="website">
             <div class="project-showcase__card">
               <div class="project-showcase__info">
-                <h3 class="project-showcase__title">Winrun</h3>
+                <h3 class="project-showcase__title"><a class="project-showcase__link" href="/projects/winrun/">Winrun</a></h3>
                 <p class="project-showcase__lead">
-                  Ecommerce and visual identity for a sneaker brand built around
-                  movement, individuality and a subscription experience.
+                  Ecommerce and identity for a sneaker brand built around movement
                 </p>
-                <button
-                  type="button"
-                  class="btn btn--learn project-showcase__toggle"
-                  aria-expanded="false"
-                  aria-controls="project-detail-winrun"
-                >
-                  <span>Learn more</span>
-                  <img src="assets/icons/figma/btn-learn-arrow.svg" alt="" />
-                </button>
               </div>
               <div class="project-showcase__media project-showcase__media--wide">
                 <div class="project-showcase__tags">
@@ -1245,88 +523,14 @@
                 />
               </div>
             </div>
-            <div
-              class="project-showcase__detail"
-              id="project-detail-winrun"
-              hidden
-            >
-              <button
-                type="button"
-                class="project-showcase__close"
-                aria-label="Close"
-              >
-                ×
-              </button>
-              <div class="project-showcase__detail-head">
-                <h2 class="project-showcase__detail-title">Winrun</h2>
-                <div class="project-showcase__detail-text">
-                  <p class="project-showcase__detail-body">
-                    Winrun is a sneaker brand with an ecommerce and subscription
-                    concept designed around comfort, personal style and regular
-                    product renewal.
-                  </p>
-                  <div class="project-showcase__detail-done">
-                    <p class="project-showcase__detail-label">services:</p>
-                    <ul class="project-showcase__detail-list">
-                      <li>online shop</li>
-                      <li>UX/UI design</li>
-                      <li>visual identity</li>
-                      <li>campaign design</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <div class="project-showcase__detail-gallery">
-                <figure class="project-showcase__detail-gallery-item">
-                  <img
-                    src="assets/images/projects/winrun-gallery-1.png"
-                    alt="Winrun sneaker campaign and visual identity"
-                    width="2240"
-                    height="1414"
-                    loading="eager"
-                    decoding="async"
-                  />
-                </figure>
-                <figure class="project-showcase__detail-gallery-item">
-                  <img
-                    src="assets/images/projects/winrun-gallery-2.png"
-                    alt="Winrun online shop desktop layouts"
-                    width="2240"
-                    height="1414"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </figure>
-                <figure class="project-showcase__detail-gallery-item">
-                  <img
-                    src="assets/images/projects/winrun-gallery-3-v2.png"
-                    alt="Winrun ecommerce website and subscription experience"
-                    width="2240"
-                    height="3874"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </figure>
-              </div>
-            </div>
           </article>
           <article class="project-showcase project-showcase--dark" data-project data-project-type="website">
             <div class="project-showcase__card">
               <div class="project-showcase__info">
-                <h3 class="project-showcase__title">Corpsoft24</h3>
+                <h3 class="project-showcase__title"><a class="project-showcase__link" href="/projects/corpsoft24/">Corpsoft24</a></h3>
                 <p class="project-showcase__lead">
-                  A corporate services platform that brings a complex digital
-                  ecosystem into one clear, responsive website.
+                  A corporate services platform in one clear, responsive website
                 </p>
-                <button
-                  type="button"
-                  class="btn btn--learn project-showcase__toggle"
-                  aria-expanded="false"
-                  aria-controls="project-detail-corpsoft24"
-                >
-                  <span>Learn more</span>
-                  <img src="assets/icons/figma/btn-learn-arrow.svg" alt="" />
-                </button>
               </div>
               <div class="project-showcase__media project-showcase__media--wide">
                 <div class="project-showcase__tags">
@@ -1343,339 +547,78 @@
                 />
               </div>
             </div>
-            <div
-              class="project-showcase__detail"
-              id="project-detail-corpsoft24"
-              hidden
-            >
-              <button
-                type="button"
-                class="project-showcase__close"
-                aria-label="Close"
-              >
-                ×
-              </button>
-              <div class="project-showcase__detail-head">
-                <h2 class="project-showcase__detail-title">Corpsoft24</h2>
-                <div class="project-showcase__detail-text">
-                  <p class="project-showcase__detail-body">
-                    Corpsoft24 is a digital ecosystem that gives businesses
-                    access to corporate IT services through a single-window
-                    experience.
-                  </p>
-                  <div class="project-showcase__detail-done">
-                    <p class="project-showcase__detail-label">services:</p>
-                    <ul class="project-showcase__detail-list">
-                      <li>website</li>
-                      <li>UX/UI design</li>
-                      <li>responsive design</li>
-                      <li>design system</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <div class="project-showcase__detail-gallery">
-                <figure class="project-showcase__detail-gallery-item">
-                  <img
-                    src="assets/images/projects/corpsoft24-gallery-1.jpg"
-                    alt="Corpsoft24 website shown on a laptop"
-                    width="2264"
-                    height="1514"
-                    loading="eager"
-                    decoding="async"
-                  />
-                </figure>
-                <figure class="project-showcase__detail-gallery-item">
-                  <img
-                    src="assets/images/projects/corpsoft24-gallery-2.png"
-                    alt="Corpsoft24 responsive mobile website screens"
-                    width="2400"
-                    height="1514"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </figure>
-                <figure class="project-showcase__detail-gallery-item">
-                  <img
-                    src="assets/images/projects/corpsoft24-gallery-3.png"
-                    alt="Corpsoft24 community section design"
-                    width="2264"
-                    height="1514"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </figure>
-                <figure class="project-showcase__detail-gallery-item">
-                  <img
-                    src="assets/images/projects/corpsoft24-gallery-4.png"
-                    alt="Corpsoft24 corporate services page design"
-                    width="2264"
-                    height="1514"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </figure>
-                <figure class="project-showcase__detail-gallery-item">
-                  <img
-                    src="assets/images/projects/corpsoft24-gallery-5.png"
-                    alt="Corpsoft24 website design system and content layouts"
-                    width="2264"
-                    height="1514"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </figure>
-              </div>
-            </div>
           </article>
-          <article class="project-showcase project-showcase--dark" data-project data-project-type="app" data-project-featured>
-            <div class="project-showcase__card">
-              <div class="project-showcase__info">
-                <h3 class="project-showcase__title">TCG Card Scanner</h3>
-                <p class="project-showcase__lead">
-                  A focused mobile experience for scanning, identifying,
-                  valuing and organising trading card collections.
-                </p>
-                <button
-                  type="button"
-                  class="btn btn--learn project-showcase__toggle"
-                  aria-expanded="false"
-                  aria-controls="project-detail-tcg"
-                >
-                  <span>Learn more</span>
-                  <img src="assets/icons/figma/btn-learn-arrow.svg" alt="" />
-                </button>
-              </div>
-              <div class="project-showcase__media project-showcase__media--wide">
-                <div class="project-showcase__tags">
-                  <span>App</span>
-                  <span>UX/UI redesign</span>
-                </div>
-                <img
-                  src="assets/images/projects/tcg-card-main.png"
-                  alt="TCG Card Scanner mobile app redesign"
-                  width="752"
-                  height="900"
-                  loading="lazy"
-                  decoding="async"
-                />
-              </div>
-            </div>
-            <div
-              class="project-showcase__detail"
-              id="project-detail-tcg"
-              hidden
-            >
-              <button
-                type="button"
-                class="project-showcase__close"
-                aria-label="Close"
-              >
-                ×
-              </button>
-              <div class="project-showcase__detail-head">
-                <h2 class="project-showcase__detail-title">TCG Card Scanner</h2>
-                <div class="project-showcase__detail-text">
-                  <p class="project-showcase__detail-body">
-                    TCG Card Scanner started as a working app built with
-                    AI-assisted development tools. The product was performing
-                    well, but users often described its interface as difficult
-                    to navigate and visually outdated. The client came to us to
-                    redesign the app and support further growth with stronger
-                    ASO screenshots.<br /><br />During competitor research, we
-                    found that the interface shared many patterns common to
-                    rapidly built, vibe-coded products. The functionality was
-                    already there, but the product needed a clearer hierarchy,
-                    more consistent interaction patterns and a distinctive
-                    visual identity.<br /><br />We redesigned the entire app,
-                    simplified its core user journeys and reworked the card
-                    scanner to make identifying, valuing and saving cards
-                    easier. We also created new ASO screenshots and several
-                    promotional videos for the App Store and marketing
-                    campaigns.
-                  </p>
-                  <div class="project-showcase__detail-done">
-                    <p class="project-showcase__detail-label">services:</p>
-                    <ul class="project-showcase__detail-list">
-                      <li>UX audit</li>
-                      <li>competitor research</li>
-                      <li>product strategy</li>
-                      <li>product redesign</li>
-                      <li>UX/UI design</li>
-                      <li>card scanner UX</li>
-                      <li>design system</li>
-                      <li>ASO screenshots</li>
-                      <li>promotional videos</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <div class="project-showcase__detail-gallery">
-                <figure class="project-showcase__detail-gallery-item">
-                  <img
-                    src="assets/images/projects/tcg-gallery-v2-1.png"
-                    alt="TCG Card Scanner home screen before and after redesign"
-                    width="2240"
-                    height="1536"
-                    loading="eager"
-                    decoding="async"
-                  />
-                </figure>
-                <figure
-                  class="project-showcase__detail-gallery-item project-showcase__detail-gallery-item--video project-showcase__detail-gallery-item--native-video"
-                >
-                  <video autoplay muted playsinline loop preload="auto">
-                    <source
-                      src="assets/images/projects/tcg-gallery-v2-video.mp4"
-                      type="video/mp4"
-                    />
-                  </video>
-                </figure>
-                <figure class="project-showcase__detail-gallery-item">
-                  <img
-                    src="assets/images/projects/tcg-gallery-v2-2.png"
-                    alt="Trading card details and market data before and after redesign"
-                    width="2240"
-                    height="1536"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </figure>
-                <figure class="project-showcase__detail-gallery-item">
-                  <img
-                    src="assets/images/projects/tcg-gallery-v2-3.png"
-                    alt="Trading card collections interface before and after redesign"
-                    width="2240"
-                    height="1536"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </figure>
-                <figure class="project-showcase__detail-gallery-item">
-                  <img
-                    src="assets/images/projects/tcg-gallery-v2-4.png"
-                    alt="Trading card scan history and collection value interfaces before and after redesign"
-                    width="2240"
-                    height="1536"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </figure>
-              </div>
-            </div>
-          </article>
+        </div>
+      </section>
+
+      <section class="about" id="about" aria-labelledby="about-heading">
+        <span class="badge badge--lime">About Team</span>
+        <div class="about__grid">
+          <img class="about__photo" src="assets/images/about-viktor.png" width="706" height="638" alt="Viktor, founder of OSAM design studio" loading="lazy" decoding="async" />
+          <div class="about__copy">
+            <h2 class="about__title" id="about-heading">I'm Viktor, <span>founder of OSAM design studio</span></h2>
+            <p>I founded OSAM and I'm the designer behind every product we make.</p>
+            <p>For 6 years I've worked as a senior designer on mobile apps and web platforms. I've <strong>helped teams grow real product</strong> design expertise, build processes that don't collapse at the first deadline, and turn into strong teams that ship things that actually work.</p>
+            <p>And over and over I watched <strong>great designs die in development.</strong> Gorgeous screens in Figma, and at launch something nobody recognized. Like a dream house that turns out to be a tent</p>
+            <p>So I started OSAM, where <strong>design and development live under one roof.</strong> No lost handoffs, no "close enough", no tents. What you approve is what your users get ✨</p>
           </div>
         </div>
       </section>
 
-      <div class="process-bridge">
-      <section class="container pricing" id="process" aria-labelledby="process-heading">
-        <h2 id="process-heading">
-          Most engagements run about 4 weeks, broken into clear gates. You see
-          work weekly, not monthly.
-        </h2>
-      </section>
-
-      <section class="container process" aria-label="4-week design process">
-        <div class="process-grid">
-          <article class="process-card">
-            <div class="process-card__head">
-              <span class="badge badge--lime">1 week</span>
-              <span class="badge badge--white">Research</span>
-            </div>
-            <h3 class="visually-hidden">Research</h3>
-            <p>
-              We'll discuss your goals, audience, business needs, and project
-              scope. Then we'll define the direction, priorities, and next steps.
-            </p>
-          </article>
-          <article class="process-card">
-            <div class="process-card__head">
-              <span class="badge badge--lime">2 week</span>
-              <span class="badge badge--white">Concept</span>
-            </div>
-            <h3 class="visually-hidden">Concept</h3>
-            <p>
-              We'll explore visual or product directions: mood, structure, style,
-              references, and key ideas. You'll choose the direction that fits
-              your goals best.
-            </p>
-          </article>
-          <article class="process-card">
-            <div class="process-card__head">
-              <span class="badge badge--lime">3 week</span>
-              <span class="badge badge--white">Design</span>
-            </div>
-            <h3 class="visually-hidden">Design</h3>
-            <p>
-              We'll create the main design deliverables — whether it's a logo,
-              website, landing page, app screens, or brand materials — and prepare
-              them for review.
-            </p>
-          </article>
-          <article class="process-card">
-            <div class="process-card__head">
-              <span class="badge badge--lime">4 week</span>
-              <span class="badge badge--white">Handoff</span>
-            </div>
-            <h3 class="visually-hidden">Handoff</h3>
-            <p>
-              We hand off files, guidelines, and support so the work lands
-              cleanly.
-            </p>
-          </article>
+      <footer class="cta">
+        <div class="cta__bg" aria-hidden="true">
+          <span>to the moon</span><span>to the moon</span><span>to the moon</span><span>to the moon</span><span>to the moon</span><span>to the moon</span>
         </div>
-      </section>
+        <h2 class="cta__title">Apps and websites for future unicorns <span aria-hidden="true">🦄</span></h2>
+        <div class="cta__cols">
+          <div>
+            <h3>Navigation</h3>
+            <ul>
+              <li><a href="#projects">Portfolio</a></li>
+              <li><a href="/insights/">Blog</a></li>
+              <li><button type="button" aria-haspopup="dialog" aria-controls="career-popup" data-career-open>Careers</button></li>
+            </ul>
+          </div>
+          <div>
+            <h3>About</h3>
+            <p>We design and build products that look sharp, work fast and launch on time.</p>
+          </div>
+          <div>
+            <h3>Contacts</h3>
+            <ul>
+              <li><a href="https://www.instagram.com/osam.design/" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+              <li>Founder</li>
+              <li><a href="mailto:viktor@osamdesign.com">viktor@osamdesign.com</a></li>
+            </ul>
+          </div>
+        </div>
+      </footer>
+    </main>
+    </div>
 
-      <section class="dark-panel">
-        <div class="dark-panel__shell">
-          <div class="container dark-panel__body">
-          <div class="contact" id="contact" aria-labelledby="contact-heading">
-            <h2 id="contact-heading" class="visually-hidden">Contact OSAM</h2>
-            <div class="help-panel" data-help-panel>
-              <div class="help-panel__title-wrap">
-                <h2 class="help-panel__title">How can we help you?</h2>
-              </div>
-              <div class="help-panel__viewport" data-help-viewport>
-              <div class="help-panel__screen help-panel__screen--list" data-help-list>
-                <p class="help-panel__subtitle">Choose what fits your needs</p>
-                <ul class="help-panel__questions" role="list">
-                  <li class="help-panel__question-item">
-                    <button type="button" class="help-panel__question" data-help-index="0">
-                      Our product needs a new UX/UI design
-                    </button>
-                  </li>
-                  <li class="help-panel__question-item">
-                    <button type="button" class="help-panel__question" data-help-index="1">
-                      We need a consistent look and feel across our product
-                    </button>
-                  </li>
-                  <li class="help-panel__question-item">
-                    <button type="button" class="help-panel__question" data-help-index="2">
-                      We need a new website
-                    </button>
-                  </li>
-                  <li class="help-panel__question-item">
-                    <button type="button" class="help-panel__question" data-help-index="3">
-                      We need an icon for our App
-                    </button>
-                  </li>
-                  <li class="help-panel__question-item">
-                    <button type="button" class="help-panel__question" data-help-index="4">
-                      Our app needs new ASO
-                    </button>
-                  </li>
-                </ul>
-              </div>
-              <div class="help-panel__screen help-panel__screen--answer" data-help-answer hidden>
-                <div class="help-panel__chat" data-help-chat></div>
-                <button type="button" class="help-panel__back" data-help-back>
-                  <span aria-hidden="true">←</span> Go back
-                </button>
-              </div>
-              </div>
-            </div>
-            <form class="contact-form" action="#" method="post" novalidate>
+    <div
+      class="career-popup contact-popup"
+      id="contact"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="contact-title"
+      data-contact-popup
+      hidden
+    >
+      <div class="career-popup__inner">
+        <button
+          type="button"
+          class="project-showcase__close career-popup__close"
+          aria-label="Close"
+          data-contact-close
+        >
+          ×
+        </button>
+        <div class="career-popup__head">
+          <h2 class="career-popup__title" id="contact-title">book a call</h2>
+          <p class="career-popup__subtitle">tell us about your project, we will get back to you.</p>
+        </div>
+        <form class="contact-form" action="#" method="post" novalidate>
               <p class="contact-form__status" role="status" aria-live="polite" hidden></p>
               <div class="field field--hp" aria-hidden="true">
                 <input
@@ -1790,16 +733,11 @@
                 </button>
               </div>
               <button class="btn btn--send" type="submit">
-                <span>SEND</span>
-                <img src="assets/icons/figma/btn-send-arrow.svg" alt="" />
+                <span>send</span>
               </button>
             </form>
-          </div>
-          </div>
-        </div>
-      </section>
       </div>
-    </main>
+    </div>
 
     <div
       class="career-popup"
@@ -1883,36 +821,9 @@
       </div>
     </div>
 
-    <footer class="site-footer">
-      <div class="container footer-inner">
-        <div class="footer-social">
-          <a href="https://www.instagram.com/osam.design/" target="_blank" rel="noopener noreferrer">In</a>
-        </div>
-        <div class="footer-offices">
-          <div class="footer-office">
-            <strong>Paris</strong>
-            <span data-clock="Europe/Paris">11:46</span>
-            <a href="tel:+33658118161">+33 658 11 81 61</a>
-          </div>
-          <div class="footer-office">
-            <strong>Belgrade</strong>
-            <span data-clock="Europe/Belgrade">10:46</span>
-            <a href="tel:+33658118161">+33 658 11 81 61</a>
-          </div>
-        </div>
-        <div class="footer-legal" aria-label="Legal information">
-          <a href="/terms/" target="_blank" rel="noopener noreferrer">Terms and Conditions</a>
-          <a href="/privacy/" target="_blank" rel="noopener noreferrer">Privacy</a>
-          <span>©2026 osamdesign</span>
-        </div>
-      </div>
-    </footer>
 
-    <div class="edge-blur edge-blur--top" data-edge-blur-page-top aria-hidden="true"></div>
-    <div class="edge-blur edge-blur--bottom" data-edge-blur-page-bottom aria-hidden="true"></div>
 
     <script src="js/site-config.js"></script>
-    <script src="js/hero-sine-carousel.js?v=hero-intro-17"></script>
-    <script src="js/main.js?v=career-5"></script>
+    <script src="js/main.js?v=case-2"></script>
   </body>
 </html>
