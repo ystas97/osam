@@ -508,9 +508,9 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  gap: 48px;
+  gap: 42px;
   margin-top: 16px;
-  min-height: 385px;
+  min-height: 0;
   padding: 64px 24px 28px;
   overflow: hidden;
   border-radius: 20px;
@@ -525,14 +525,33 @@ body {
   inset: 0;
   z-index: -1;
   display: flex;
-  flex-wrap: wrap;
-  align-content: center;
-  gap: 0 40px;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0;
+  overflow: hidden;
   color: #121212;
   font-size: 64px;
-  line-height: 1.15;
+  line-height: 1;
   white-space: nowrap;
-  overflow: hidden;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Four staggered rows of the same phrase, each wider than the block and
+   shifted so the words break at different places, like in the layout. */
+.cta__row {
+  display: flex;
+  gap: 40px;
+  width: max-content;
+}
+
+.cta__row:nth-child(2) {
+  transform: translateX(-230px);
+}
+
+.cta__row:nth-child(3) {
+  transform: translateX(-100px);
 }
 
 .cta__title {
@@ -545,9 +564,10 @@ body {
 
 .cta__cols {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 190px));
+  grid-template-columns: auto minmax(0, 190px) auto;
   gap: 32px;
-  align-self: center;
+  align-self: flex-end;
+  margin-right: 8%;
   text-align: left;
   font-size: 12px;
   line-height: 1.3;
@@ -565,11 +585,6 @@ body {
   margin: 0;
   padding: 0;
   list-style: none;
-}
-
-.cta__cols li:not(:last-child)::before,
-.cta__cols li:first-child::before {
-  content: none;
 }
 
 .cta__cols p {
@@ -904,4 +919,25 @@ textarea {
 /* Avoid a lone emoji / word on the last line of popup titles */
 .career-popup__title {
   text-wrap: balance;
+}
+
+/* "– " bullets on links; plain text rows (Founder, e-mail) stay bare */
+.cta__cols li::before {
+  content: "– ";
+}
+
+.cta__cols li:not(:has(a, button))::before,
+.cta__cols li:has(a[href^="mailto"])::before {
+  content: none;
+}
+
+@media (max-width: 640px) {
+  .cta__cols {
+    align-self: stretch;
+    margin-right: 0;
+  }
+
+  .cta__bg {
+    font-size: 44px;
+  }
 }
