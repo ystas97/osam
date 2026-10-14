@@ -43,7 +43,7 @@ function isValidEmail(email) {
 
 function buildCareerMessage(payload) {
   return [
-    "<b>Career — новый отклик с osamdesign.com</b>",
+    "👤 <b>ВАКАНСИЯ — новый отклик с osamdesign.com</b>",
     "",
     `<b>Имя:</b> ${escapeHtml(payload.name)}`,
     `<b>Email:</b> ${escapeHtml(payload.contact)}`,
@@ -63,7 +63,7 @@ function buildMessage(payload) {
       payload.contactMethod
     ] || "Контакт";
   const lines = [
-    "<b>Новая заявка с osamdesign.com</b>",
+    "💼 <b>ЗАКАЗ — новая заявка с osamdesign.com</b>",
     "",
     `<b>Имя:</b> ${escapeHtml(payload.name)}`,
     `<b>${contactLabel}:</b> ${escapeHtml(payload.contact)}`,
@@ -152,7 +152,13 @@ export default {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          chat_id: env.TELEGRAM_CHAT_ID,
+          // Vacancies can go to their own chat (or a topic of a group) so they
+          // never bury the orders; falls back to the main chat if not set.
+          chat_id:
+            (isCareer && env.TELEGRAM_CAREER_CHAT_ID) || env.TELEGRAM_CHAT_ID,
+          ...(isCareer && env.TELEGRAM_CAREER_THREAD_ID
+            ? { message_thread_id: Number(env.TELEGRAM_CAREER_THREAD_ID) }
+            : {}),
           text: isCareer
             ? buildCareerMessage({ name, contact, role, format, salary, portfolio, message })
             : buildMessage({ name, contactMethod, contact, budget, interest, message }),

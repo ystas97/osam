@@ -9,3 +9,7 @@ ALLOWED_ORIGINS = "https://osamdesign.com,https://ystas97.github.io,http://127.0
 # Секреты (не коммитить):
 # npx wrangler secret put TELEGRAM_BOT_TOKEN
 # npx wrangler secret put TELEGRAM_CHAT_ID
+# Необязательно: отклики Career в отдельный чат (иначе уйдут в TELEGRAM_CHAT_ID)
+# npx wrangler secret put TELEGRAM_CAREER_CHAT_ID
+# Если это группа с темами (topics) — id темы:
+# npx wrangler secret put TELEGRAM_CAREER_THREAD_ID
