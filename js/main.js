@@ -520,7 +520,9 @@
       // Endless loop: put a copy of the slides before and after the real set
       // and, once scrolling settles in a copy, jump back by exactly one set.
       // The copies are identical, so the jump is invisible.
-      const loop = root.hasAttribute("data-carousel-loop");
+      const single = track.children.length < 2;
+      if (single) root.querySelector(".case-carousel__nav")?.setAttribute("hidden", "");
+      const loop = root.hasAttribute("data-carousel-loop") && !single;
       let setWidth = 0;
       let base = 0;
       if (loop) {

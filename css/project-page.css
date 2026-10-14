@@ -434,3 +434,39 @@
   aspect-ratio: 1002 / 1236;
 }
 
+
+/* A lone portrait video: centred on a quiet plate instead of full width */
+.case-plate--solo {
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: #050505; /* the video has a black backdrop, so blend into it */
+}
+
+.case-plate--solo video {
+  width: min(100%, 420px);
+  height: auto;
+  border-radius: 20px;
+}
+
+.case-plate--solo img {
+  display: block;
+  width: min(100%, 600px);
+  height: auto;
+}
+
+.case-carousel__nav[hidden] {
+  display: none;
+}
+
+/* Photo rows: every cell gets the same 4:5 frame, extra height is cropped */
+.case-plates-grid--photos .case-plate img {
+  height: auto;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+}
+
+/* Keep the top of the frame for images that carry a headline there */
+.case-plates-grid--photos .case-plate--top img {
+  object-position: 50% 0;
+}

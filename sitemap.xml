@@ -103,6 +103,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://osamdesign.com/projects/master-swiper/</loc>
+    <lastmod>2026-10-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://osamdesign.com/terms/</loc>
     <lastmod>2026-07-21</lastmod>
     <changefreq>yearly</changefreq>
