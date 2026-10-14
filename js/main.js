@@ -4,6 +4,7 @@
   initContactPopup();
   initCareerPopup();
   initCasePage();
+  initCarousels();
 
   if (form) {
     initContactForm(form);
@@ -486,6 +487,130 @@
       } finally {
         submitBtn.disabled = false;
       }
+    });
+  }
+
+  // Scroll-snap carousel: arrow buttons step one slide, videos play while
+  // they are on screen and pause otherwise.
+  function initCarousels() {
+    document.querySelectorAll("[data-carousel]").forEach((root) => {
+      const track = root.querySelector("[data-carousel-track]");
+      const prev = root.querySelector("[data-carousel-prev]");
+      const next = root.querySelector("[data-carousel-next]");
+      if (!track) return;
+
+      // Endless loop: put a copy of the slides before and after the real set
+      // and, once scrolling settles in a copy, jump back by exactly one set.
+      // The copies are identical, so the jump is invisible.
+      const loop = root.hasAttribute("data-carousel-loop");
+      let setWidth = 0;
+      let base = 0;
+      if (loop) {
+        const originals = [...track.children];
+        const copy = (node) => {
+          const c = node.cloneNode(true);
+          c.setAttribute("aria-hidden", "true");
+          c.querySelectorAll("video").forEach((v) => {
+            v.setAttribute("preload", "none");
+            v.removeAttribute("aria-label");
+          });
+          return c;
+        };
+        track.prepend(...originals.map(copy));
+        track.append(...originals.map(copy));
+        // offsetLeft / scrollLeft share the same (layout) units even when the
+        // page is scaled with CSS zoom; getBoundingClientRect does not.
+        const measure = () => {
+          const first = originals[0].offsetLeft;
+          setWidth = track.children[originals.length * 2].offsetLeft - first;
+          base = first;
+        };
+        const jump = () => {
+          if (!setWidth) return;
+          const pos = track.scrollLeft - base;
+          let delta = 0;
+          if (pos < 0) delta = setWidth;
+          else if (pos >= setWidth) delta = -setWidth;
+          if (!delta) return;
+          const snap = track.style.scrollSnapType;
+          track.style.scrollBehavior = "auto";
+          track.style.scrollSnapType = "none";
+          track.scrollLeft += delta;
+          window.requestAnimationFrame(() => {
+            track.style.scrollSnapType = snap;
+            track.style.scrollBehavior = "";
+          });
+        };
+        let settle = 0;
+        track.addEventListener(
+          "scroll",
+          () => {
+            window.clearTimeout(settle);
+            settle = window.setTimeout(jump, 120);
+          },
+          { passive: true }
+        );
+        const start = () => {
+          measure();
+          track.style.scrollBehavior = "auto";
+          track.scrollLeft = base;
+          window.requestAnimationFrame(() => {
+            track.style.scrollBehavior = "";
+          });
+        };
+        start();
+        window.addEventListener(
+          "resize",
+          () => {
+            const pos = track.scrollLeft - base;
+            measure();
+            track.scrollLeft = base + pos;
+          },
+          { passive: true }
+        );
+      }
+
+      // Step to the next / previous slide whose left edge is off the current
+      // position. scrollIntoView keeps this correct under CSS zoom.
+      const go = (dir) => {
+        const tl = track.getBoundingClientRect().left;
+        const slides = [...track.children];
+        const target =
+          dir > 0
+            ? slides.find((c) => c.getBoundingClientRect().left > tl + 4)
+            : [...slides].reverse().find((c) => c.getBoundingClientRect().left < tl - 4);
+        target?.scrollIntoView({ behavior: "smooth", inline: "start", block: "nearest" });
+      };
+      const sync = () => {
+        if (loop) return;
+        const max = track.scrollWidth - track.clientWidth - 2;
+        if (prev) prev.disabled = track.scrollLeft <= 2;
+        if (next) next.disabled = track.scrollLeft >= max;
+      };
+
+      prev?.addEventListener("click", () => go(-1));
+      next?.addEventListener("click", () => go(1));
+      track.addEventListener("scroll", sync, { passive: true });
+      track.addEventListener("keydown", (event) => {
+        if (event.key === "ArrowRight") go(1);
+        if (event.key === "ArrowLeft") go(-1);
+      });
+      window.addEventListener("resize", sync, { passive: true });
+      sync();
+
+      const videos = [...track.querySelectorAll("video")];
+      if (!videos.length || typeof IntersectionObserver === "undefined") return;
+      const io = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            const video = entry.target;
+            if (entry.isIntersecting) video.play().catch(() => undefined);
+            else video.pause();
+          });
+        },
+        { root: track, threshold: 0.5 }
+      );
+      videos.forEach((video) => io.observe(video));
     });
   }
 

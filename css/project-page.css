@@ -334,3 +334,88 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* Carousel of 3:4 slides (promo videos) */
+.case-carousel {
+  position: relative;
+  display: grid;
+  gap: 16px;
+}
+
+.case-carousel__track {
+  position: relative;
+  display: flex;
+  gap: 16px;
+  padding-bottom: 2px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  overscroll-behavior-x: contain;
+}
+
+.case-carousel__track::-webkit-scrollbar {
+  display: none;
+}
+
+.case-carousel__track:focus-visible {
+  outline: 2px solid #000;
+  outline-offset: 4px;
+  border-radius: 24px;
+}
+
+.case-carousel__slide {
+  flex: 0 0 calc((100% - 32px) / 2.25);
+  aspect-ratio: 3 / 4;
+  margin: 0;
+  overflow: hidden;
+  border-radius: 24px;
+  background: #f0f0ef;
+  scroll-snap-align: start;
+}
+
+.case-carousel__slide video,
+.case-carousel__slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.case-carousel__nav {
+  display: flex;
+  gap: 8px;
+}
+
+.case-carousel__btn {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: #f0f0ef;
+  color: #000;
+  font: inherit;
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.2s ease, opacity 0.2s ease;
+}
+
+.case-carousel__btn:hover:not(:disabled) {
+  background: #e4e4e2;
+}
+
+.case-carousel__btn:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+@media (max-width: 640px) {
+  .case-carousel__slide {
+    flex-basis: 78%;
+    border-radius: 16px;
+  }
+}
