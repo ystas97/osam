@@ -247,7 +247,7 @@
     />
     <link rel="preload" href="assets/fonts/Gelica-Regular.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="stylesheet" href="css/style.css?v=form-1" />
-    <link rel="stylesheet" href="css/redesign.css?v=form-5" />
+    <link rel="stylesheet" href="css/redesign.css?v=form-6" />
   </head>
   <body>
     <!-- Google Tag Manager (noscript) -->
@@ -795,7 +795,7 @@
             </div>
             <input class="career-input" type="url" name="portfolio" placeholder="portfolio link (optional)" autocomplete="url" />
             <div class="career-field">
-              <input class="career-input" type="text" name="salary" placeholder="salary expectation, net" autocomplete="off" required />
+              <input class="career-input" type="text" name="salary" placeholder="monthly rate, net (€)" autocomplete="off" required />
               <p class="career-error" id="career-error-salary" hidden></p>
             </div>
             <textarea class="career-input career-input--area" name="message" placeholder="about you (optional)" rows="4"></textarea>
@@ -817,7 +817,44 @@
 
 
 
+    <div
+      class="career-popup success-popup"
+      id="career-success"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="success-title"
+      data-success-popup
+      hidden
+    >
+      <div class="career-popup__inner success-popup__inner">
+        <button
+          type="button"
+          class="project-showcase__close career-popup__close"
+          aria-label="Close"
+          data-success-close
+        >
+          ×
+        </button>
+        <div class="success-popup__body">
+          <h2 class="career-popup__title" id="success-title">Got it! Your application is in 🎉</h2>
+          <p class="success-popup__text">
+            Every resume is reviewed personally by a real human, not a bot. If
+            your work catches our eye, we’ll reach out to you.
+          </p>
+          <p class="success-popup__text">
+            Meanwhile, follow us on Instagram to see new openings first 👀
+          </p>
+          <a
+            class="pill pill--black success-popup__link"
+            href="https://www.instagram.com/osam.design/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >Follow on Instagram</a>
+        </div>
+      </div>
+    </div>
+
     <script src="js/site-config.js"></script>
-    <script src="js/main.js?v=form-1"></script>
+    <script src="js/main.js?v=form-3"></script>
   </body>
 </html>

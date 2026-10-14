@@ -348,6 +348,14 @@
         );
     });
 
+    const successPopup = document.querySelector("[data-success-popup]");
+    const successOverlay = successPopup
+      ? createOverlay(successPopup, {
+          closeSelector: "[data-success-close]",
+          focusSelector: "[data-success-close]",
+        })
+      : null;
+
     const overlay = createOverlay(popup, {
       closeSelector: "[data-career-close]",
       focusSelector: 'input[name="name"]',
@@ -423,7 +431,7 @@
       } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(payload.contact)) {
         errors.contact = "Please enter a valid email address.";
       }
-      if (!payload.salary) errors.salary = "Please enter your salary expectation.";
+      if (!payload.salary) errors.salary = "Please enter your monthly rate.";
       if (!formEl.querySelector('input[name="privacy"]')?.checked) {
         errors.privacy = "Please accept the Privacy Policy.";
       }
@@ -444,7 +452,7 @@
             `Email: ${payload.contact}`,
             `Role: ${payload.role}`,
             `Format: ${payload.format}`,
-            `Salary (net): ${payload.salary}`,
+            `Monthly rate (net, €): ${payload.salary}`,
             `Portfolio: ${payload.portfolio}`,
             "",
             payload.message,
@@ -467,11 +475,12 @@
         if (!response.ok || !result.ok) {
           throw new Error(result.error || "request_failed");
         }
-        setStatus("Thank you! We will be in touch.", "success");
         formEl.reset();
         formEl
           .querySelectorAll("[data-career-chip]")
           .forEach((c) => c.setAttribute("aria-pressed", "false"));
+        overlay.close();
+        successOverlay?.open(null);
       } catch {
         setStatus("We couldn't send your message. Please try again.", "error");
       } finally {

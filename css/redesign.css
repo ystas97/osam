@@ -850,3 +850,43 @@ body {
 textarea {
   overflow-x: hidden;
 }
+
+/* Success popup (after a Career application) */
+.success-popup {
+  z-index: 330;
+}
+
+.success-popup__inner {
+  display: grid;
+  align-content: center;
+  min-height: 100%;
+}
+
+.success-popup__body {
+  display: grid;
+  justify-items: start;
+  gap: 20px;
+  width: min(760px, 100%);
+  margin-inline: auto;
+}
+
+.success-popup__body .career-popup__title {
+  margin: 0;
+}
+
+.success-popup__text {
+  margin: 0;
+  max-width: 560px;
+  color: #232323;
+  font-size: 20px;
+  line-height: 1.4;
+}
+
+.success-popup__link {
+  margin-top: 12px;
+  min-height: 56px;
+  padding: 0 28px;
+  font-family: inherit;
+  font-size: 18px;
+  font-weight: 600;
+}

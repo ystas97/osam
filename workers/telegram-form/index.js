@@ -49,7 +49,7 @@ function buildCareerMessage(payload) {
     `<b>Email:</b> ${escapeHtml(payload.contact)}`,
     `<b>Роль:</b> ${escapeHtml(payload.role || "—")}`,
     `<b>Формат:</b> ${escapeHtml(payload.format || "—")}`,
-    `<b>Ожидания по зарплате (net):</b> ${escapeHtml(payload.salary || "—")}`,
+    `<b>Ставка в месяц (net, €):</b> ${escapeHtml(payload.salary || "—")}`,
     `<b>Портфолио:</b> ${escapeHtml(payload.portfolio || "—")}`,
     "",
     "<b>О себе:</b>",
