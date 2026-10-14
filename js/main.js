@@ -199,6 +199,12 @@
           form_name: "contact_form",
           interest: payload.interest,
         });
+        if (typeof window.gtag === "function") {
+          window.gtag("event", "generate_lead", {
+            form_name: "contact_form",
+            interest: payload.interest,
+          });
+        }
         if (typeof window.fbq === "function") {
           window.fbq("track", "Lead", {
             content_name: "contact_form",
@@ -475,6 +481,18 @@
         const result = await response.json().catch(() => ({}));
         if (!response.ok || !result.ok) {
           throw new Error(result.error || "request_failed");
+        }
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: "career_application",
+          form_name: "career_form",
+          role: payload.role,
+        });
+        if (typeof window.gtag === "function") {
+          window.gtag("event", "career_application", {
+            form_name: "career_form",
+            role: payload.role,
+          });
         }
         formEl.reset();
         formEl
