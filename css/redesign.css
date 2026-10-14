@@ -715,11 +715,22 @@ body {
 
 /* Contact (book a call) popup: the original form on the glass overlay.
    Narrower than the full overlay so the side margins match the site. */
+/* The inner column itself is 760px, so the close button sits on the content's
+   right edge instead of the far edge of the screen. */
+.career-popup__inner {
+  width: min(760px, calc(100% - 32px));
+}
+
 .career-popup .career-popup__head,
 .career-popup .career-form,
 .contact-popup .contact-form {
-  width: min(760px, 100%);
-  margin-inline: auto;
+  width: 100%;
+  margin-inline: 0;
+}
+
+.career-popup__title,
+.career-popup__subtitle {
+  padding-right: 64px; /* keeps text clear of the close button */
 }
 
 .contact-popup .contact-form {
@@ -866,8 +877,7 @@ textarea {
   display: grid;
   justify-items: start;
   gap: 20px;
-  width: min(760px, 100%);
-  margin-inline: auto;
+  width: 100%;
 }
 
 .success-popup__body .career-popup__title {
@@ -889,4 +899,9 @@ textarea {
   font-family: inherit;
   font-size: 18px;
   font-weight: 600;
+}
+
+/* Avoid a lone emoji / word on the last line of popup titles */
+.career-popup__title {
+  text-wrap: balance;
 }
