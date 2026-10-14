@@ -1,23 +1,9 @@
 (function () {
-  const budgetChips = document.querySelectorAll(".budget-chip");
   const form = document.querySelector(".contact-form");
 
   initContactPopup();
   initCareerPopup();
   initCasePage();
-
-  const budgetInput = form?.querySelector('input[name="budget"]');
-
-  budgetChips.forEach((chip) => {
-    chip.addEventListener("click", () => {
-      budgetChips.forEach((c) => c.classList.remove("is-active"));
-      chip.classList.add("is-active");
-      if (budgetInput) {
-        budgetInput.value =
-          chip.getAttribute("data-budget") || chip.textContent.trim();
-      }
-    });
-  });
 
   if (form) {
     initContactForm(form);
@@ -110,8 +96,21 @@
       if (submitBtn) submitBtn.disabled = loading;
     };
 
+    // "You're interested in" chips: multi-select, sent as a comma list
+    const interestChips = [...formEl.querySelectorAll("[data-interest-chip]")];
+    interestChips.forEach((chip) => {
+      chip.addEventListener("click", () => {
+        const on = chip.getAttribute("aria-pressed") !== "true";
+        chip.setAttribute("aria-pressed", String(on));
+      });
+    });
+    const selectedInterest = () =>
+      interestChips
+        .filter((c) => c.getAttribute("aria-pressed") === "true")
+        .map((c) => c.dataset.value)
+        .join(", ");
+
     const submitViaMailto = (data) => {
-      const budget = String(data.get("budget") || "").trim();
       const method = String(data.get("contact_method") || "").trim();
       const rawContact = String(data.get("contact") || "").trim();
       const contact =
@@ -125,7 +124,7 @@
         [
           `Name: ${data.get("name") || ""}`,
           `${contactLabel}: ${contact}`,
-          `Budget: ${budget}`,
+          `Interested in: ${selectedInterest()}`,
           "",
           String(data.get("message") || ""),
         ].join("\n")
@@ -155,7 +154,7 @@
         email: legacyEmail,
         contactMethod,
         contact,
-        budget: String(data.get("budget") || "").trim(),
+        interest: selectedInterest(),
         message: String(data.get("message") || "").trim(),
         osamNote: String(data.get("osam_note") || "").trim(),
       };
@@ -197,7 +196,7 @@
         window.dataLayer.push({
           event: "generate_lead",
           form_name: "contact_form",
-          budget: payload.budget,
+          interest: payload.interest,
         });
         if (typeof window.fbq === "function") {
           window.fbq("track", "Lead", {
@@ -208,9 +207,7 @@
         setStatus("Thank you! Your message has been sent.", "success");
         formEl.reset();
         resetContactMethods();
-        budgetChips.forEach((c) => c.classList.remove("is-active"));
-        budgetChips[budgetChips.length - 1]?.classList.add("is-active");
-        if (budgetInput) budgetInput.value = "$5-10k";
+        interestChips.forEach((c) => c.setAttribute("aria-pressed", "false"));
       } catch {
         setStatus(
           "We couldn't send your message. Please try again.",

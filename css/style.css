@@ -542,31 +542,8 @@ body.has-detail-open {
   font-weight: 500;
 }
 
-.budget-row {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
-  width: 100%;
-}
 
-.budget-chip {
-  width: 100%;
-  min-width: 0;
-  min-height: 64px;
-  padding: 0 12px;
-  border: 1px solid var(--white);
-  border-radius: 38px;
-  background: transparent;
-  color: var(--white);
-  font-size: clamp(16px, 2.5vw, 26px);
-  font-weight: 500;
-  cursor: pointer;
-}
 
-.budget-chip.is-active {
-  background: var(--white);
-  color: var(--black);
-}
 
 /* Desktop */
 @media (min-width: 900px) {

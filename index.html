@@ -246,8 +246,8 @@
       rel="stylesheet"
     />
     <link rel="preload" href="assets/fonts/Gelica-Regular.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="stylesheet" href="css/style.css?v=case-2" />
-    <link rel="stylesheet" href="css/redesign.css?v=case-2" />
+    <link rel="stylesheet" href="css/style.css?v=form-1" />
+    <link rel="stylesheet" href="css/redesign.css?v=form-5" />
   </head>
   <body>
     <!-- Google Tag Manager (noscript) -->
@@ -628,6 +628,16 @@
                   autocomplete="off"
                 />
               </div>
+              <fieldset class="career-group contact-interest">
+                <legend class="career-group__title">you're interested in</legend>
+                <div class="career-chips" data-interest-group>
+                  <button type="button" class="career-chip" aria-pressed="false" data-interest-chip data-value="ui/ux">ui/ux</button>
+                  <button type="button" class="career-chip" aria-pressed="false" data-interest-chip data-value="web design">web design</button>
+                  <button type="button" class="career-chip" aria-pressed="false" data-interest-chip data-value="ios app">ios app</button>
+                  <button type="button" class="career-chip" aria-pressed="false" data-interest-chip data-value="landing page">landing page</button>
+                  <button type="button" class="career-chip" aria-pressed="false" data-interest-chip data-value="other">other</button>
+                </div>
+              </fieldset>
               <div class="field">
                 <input type="text" name="name" placeholder="My name" required />
               </div>
@@ -715,22 +725,6 @@
                   placeholder="Message"
                   rows="3"
                 ></textarea>
-              </div>
-              <input type="hidden" name="budget" value="$5-10k" />
-              <div class="budget-row" role="group" aria-label="Budget">
-                <button type="button" class="budget-chip" data-budget="$2-3k">
-                  $2-3k
-                </button>
-                <button type="button" class="budget-chip" data-budget="$3-5k">
-                  $3-5k
-                </button>
-                <button
-                  type="button"
-                  class="budget-chip is-active"
-                  data-budget="$5-10k"
-                >
-                  $5-10k
-                </button>
               </div>
               <button class="btn btn--send" type="submit">
                 <span>send</span>
@@ -824,6 +818,6 @@
 
 
     <script src="js/site-config.js"></script>
-    <script src="js/main.js?v=case-2"></script>
+    <script src="js/main.js?v=form-1"></script>
   </body>
 </html>

@@ -67,7 +67,7 @@ function buildMessage(payload) {
     "",
     `<b>Имя:</b> ${escapeHtml(payload.name)}`,
     `<b>${contactLabel}:</b> ${escapeHtml(payload.contact)}`,
-    `<b>Бюджет:</b> ${escapeHtml(payload.budget || "—")}`,
+    `<b>Интересует:</b> ${escapeHtml(payload.interest || payload.budget || "—")}`,
     "",
     "<b>Сообщение:</b>",
     escapeHtml(payload.message || "—"),
@@ -135,6 +135,7 @@ export default {
     const salary = String(payload.salary || "").trim().slice(0, 200);
     const portfolio = String(payload.portfolio || "").trim().slice(0, 500);
     const budget = String(payload.budget || "").trim().slice(0, 100);
+    const interest = String(payload.interest || "").trim().slice(0, 200);
     const message = String(payload.message || "").trim().slice(0, MAX_FIELD_LENGTH);
 
     if (
@@ -154,7 +155,7 @@ export default {
           chat_id: env.TELEGRAM_CHAT_ID,
           text: isCareer
             ? buildCareerMessage({ name, contact, role, format, salary, portfolio, message })
-            : buildMessage({ name, contactMethod, contact, budget, message }),
+            : buildMessage({ name, contactMethod, contact, budget, interest, message }),
           parse_mode: "HTML",
           disable_web_page_preview: true,
         }),

@@ -713,18 +713,32 @@ body {
   }
 }
 
-/* Contact (book a call) popup: the original form on the glass overlay */
+/* Contact (book a call) popup: the original form on the glass overlay.
+   Narrower than the full overlay so the side margins match the site. */
+.career-popup .career-popup__head,
+.career-popup .career-form,
 .contact-popup .contact-form {
-  width: 100%;
+  width: min(760px, 100%);
+  margin-inline: auto;
+}
+
+.contact-popup .contact-form {
   margin-top: 72px;
   gap: 16px;
+}
+
+.contact-popup .contact-interest {
+  margin-bottom: 24px;
+}
+
+.contact-popup .contact-interest .career-group__title {
+  margin-bottom: 20px;
 }
 
 .contact-popup .field input,
 .contact-popup .field textarea,
 .contact-popup .contact-method__button,
-.contact-popup .contact-method__input,
-.contact-popup .budget-chip {
+.contact-popup .contact-method__input {
   border: 1px solid rgba(255, 255, 255, 0.85);
   background: rgba(255, 255, 255, 0.35);
   box-shadow: 0 1px 0 rgba(255, 255, 255, 0.6) inset;
@@ -749,12 +763,6 @@ body {
 
 .contact-popup .contact-method__button:focus-visible {
   outline-color: #232323;
-}
-
-.contact-popup .budget-chip.is-active {
-  border-color: #232323;
-  background: #232323;
-  color: #fff;
 }
 
 .contact-popup .btn--send {
@@ -826,4 +834,19 @@ body {
   outline: 2px solid #000;
   outline-offset: 4px;
   border-radius: 20px;
+}
+
+/* Compact chips in both popups so the groups sit on as few lines as possible */
+.career-popup .career-chips {
+  gap: 12px 14px;
+}
+
+.career-popup .career-chip {
+  padding: 14px 24px;
+}
+
+/* Textareas wrap their text, so a horizontal scrollbar is never needed; it
+   only showed up from sub-pixel rounding when the page is scaled up. */
+textarea {
+  overflow-x: hidden;
 }
