@@ -1000,3 +1000,19 @@ textarea {
     font-size: 14px;
   }
 }
+
+/* Mobile: project cards are full width, so their tags can be bigger */
+@media (max-width: 640px) {
+  .project-showcase__tags {
+    top: 12px;
+    left: 12px;
+    gap: 8px;
+    max-width: calc(100% - 24px);
+  }
+
+  .project-showcase__tags span {
+    min-height: 36px;
+    padding: 0 16px;
+    font-size: 16px;
+  }
+}
