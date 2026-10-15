@@ -35,6 +35,13 @@
   margin-right: 4px;
 }
 
+/* The [NN/NN] counter is generated, so it never becomes part of the h1 text */
+.case-title[data-index]::before,
+.post-title[data-index]::before {
+  content: attr(data-index);
+  margin-right: 8px;
+}
+
 .case-top__actions {
   display: flex;
   flex-wrap: wrap;

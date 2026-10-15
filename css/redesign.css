@@ -12,8 +12,8 @@
 
 @font-face {
   font-family: "Gelica";
-  src: url("../assets/fonts/Gelica-Medium.woff2") format("woff2");
-  font-weight: 500;
+  src: url("../assets/fonts/Gelica-Bold.woff2") format("woff2");
+  font-weight: 700;
   font-style: normal;
   font-display: swap;
 }

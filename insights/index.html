@@ -33,7 +33,7 @@
     <meta property="og:image" content="https://osamdesign.com/assets/images/og-osam.png" />
     <meta name="twitter:card" content="summary_large_image" />
     <link rel="icon" href="/assets/favicon.png" type="image/png" />
-    <link rel="stylesheet" href="/css/insights.css?v=1" />
+    
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -53,69 +53,124 @@
       ym(110799028,"init",{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",referrer:document.referrer,url:location.href,accurateTrackBounce:true,trackLinks:true});
     </script>
     <!-- /Yandex.Metrika counter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&amp;display=swap" rel="stylesheet" />
+    <link rel="preload" href="/assets/fonts/Gelica-Regular.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="/css/style.css?v=seo-1" />
+    <link rel="stylesheet" href="/css/redesign.css?v=seo-1" />
+    <link rel="stylesheet" href="/css/project-page.css?v=seo-1" />
+    <link rel="stylesheet" href="/css/blog-page.css?v=seo-1" />
+    <script>
+      (function () {
+        var update = function () {
+          var z = Math.min(2.5, Math.max(1, window.innerWidth / 1240));
+          document.documentElement.style.setProperty("--page-zoom", z.toFixed(3));
+        };
+        update();
+        window.addEventListener("resize", update);
+      })();
+    </script>
   </head>
   <body>
     <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5CRC6TS4" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
     <noscript><div><img src="https://mc.yandex.ru/watch/110799028" style="position:absolute;left:-9999px" alt="" /></div></noscript>
-    <a class="skip-link" href="#content">Skip to content</a>
-    <header class="site-head">
-      <a class="brand" href="/" aria-label="OSAM home">
-        <img src="/assets/icons/osam.svg" width="120" height="28" alt="OSAM" />
-      </a>
-      <a class="head-link" href="/#contact">Discuss a project</a>
-    </header>
+    <div class="layout layout--case layout--blog">
+      <aside class="side-card" aria-label="OSAM">
+        <div class="side-card__blobs" aria-hidden="true"></div>
+        <div class="side-card__top">
+          <a class="side-card__logo" href="/" aria-label="OSAM home">
+            <img src="/assets/icons/osam-mark.svg" width="28" height="24" alt="" />
+          </a>
+          <h2 class="side-card__title">Apps and websites for future unicorns <span aria-hidden="true">🦄</span></h2>
+          <p class="side-card__text">
+            We design and build products that look sharp, work fast and launch on time.
+          </p>
+          <div class="side-card__actions">
+            <a class="pill pill--blue" href="/#pricing">Pricing</a>
+            <a class="pill pill--black" href="/#contact">Book a call</a>
+          </div>
+        </div>
+        <div class="side-card__bottom">
+          <nav class="side-card__nav" aria-label="Sections">
+            <a href="/#projects">All Projects</a>
+            <a href="/insights/">Blog</a>
+            <a href="/#career">Career</a>
+          </nav>
+        </div>
+      </aside>
 
-    <main id="content" class="hub">
-      <p class="eyebrow">OSAM Insights</p>
-      <h1>Practical design guides for startup teams</h1>
-      <p class="hub-intro">
-        Clear frameworks for planning a website, evaluating a product experience,
-        designing a mobile app, and presenting an app in the stores. Written for
-        founders and product teams who need to make design decisions without adding
-        unnecessary process.
-      </p>
+      <main class="page" id="main">
+        <h1 class="badge badge--lime blog-badge">Blog</h1>
+        <div class="blog-grid">
+          <a class="blog-card" href="/insights/flexible-schedule-real-deadlines/">
+            <h2 class="blog-card__title">Flexible Schedule, Real Deadlines</h2>
+            <p class="blog-card__meta"><span>4 mins</span><time datetime="2026-10-15">15 Oct</time></p>
+          </a>
+          <a class="blog-card" href="/insights/freelance-ux-ui-from-first-client-to-pro/">
+            <h2 class="blog-card__title">Freelance UX/UI: From First Client to Pro</h2>
+            <p class="blog-card__meta"><span>4 mins</span><time datetime="2026-10-15">15 Oct</time></p>
+          </a>
+          <a class="blog-card" href="/insights/remote-product-designer-ai-era/">
+            <h2 class="blog-card__title">Remote Product Designer in the AI Era</h2>
+            <p class="blog-card__meta"><span>4 mins</span><time datetime="2026-10-15">15 Oct</time></p>
+          </a>
+          <a class="blog-card" href="/insights/startup-website-design-guide/">
+            <h2 class="blog-card__title">Startup website design: process, timeline, and budget</h2>
+            <p class="blog-card__meta"><span>9 mins</span><time datetime="2026-07-16">16 Jul</time></p>
+          </a>
+          <a class="blog-card" href="/insights/ux-audit-checklist/">
+            <h2 class="blog-card__title">A practical UX audit checklist for startups</h2>
+            <p class="blog-card__meta"><span>10 mins</span><time datetime="2026-07-16">16 Jul</time></p>
+          </a>
+          <a class="blog-card" href="/insights/mobile-app-design-process/">
+            <h2 class="blog-card__title">Mobile app design process from idea to handoff</h2>
+            <p class="blog-card__meta"><span>9 mins</span><time datetime="2026-07-16">16 Jul</time></p>
+          </a>
+          <a class="blog-card" href="/insights/app-store-screenshot-design/">
+            <h2 class="blog-card__title">App Store screenshot design that communicates value</h2>
+            <p class="blog-card__meta"><span>8 mins</span><time datetime="2026-07-16">16 Jul</time></p>
+          </a>
+          <a class="blog-card" href="/insights/landing-page-design-guide/">
+            <h2 class="blog-card__title">Landing page design for early-stage products</h2>
+            <p class="blog-card__meta"><span>8 mins</span><time datetime="2026-07-16">16 Jul</time></p>
+          </a>
+        </div>
 
-      <div class="card-grid">
-        <a class="card" href="/insights/startup-website-design-guide/">
-          <span class="kicker">Website strategy</span>
-          <h2>Startup website design: process, timeline, and budget</h2>
-          <p>What to prepare, what each phase should produce, and where projects usually lose time.</p>
-        </a>
-        <a class="card" href="/insights/ux-audit-checklist/">
-          <span class="kicker">Product UX</span>
-          <h2>A practical UX audit checklist for startups</h2>
-          <p>Review navigation, onboarding, key flows, interface consistency, and accessibility.</p>
-        </a>
-        <a class="card" href="/insights/mobile-app-design-process/">
-          <span class="kicker">App design</span>
-          <h2>Mobile app design process from idea to handoff</h2>
-          <p>A focused sequence for turning product requirements into testable, build-ready screens.</p>
-        </a>
-        <a class="card" href="/insights/app-store-screenshot-design/">
-          <span class="kicker">ASO design</span>
-          <h2>App Store screenshot design that communicates value</h2>
-          <p>Build a screenshot story that is legible, specific, credible, and easy to localize.</p>
-        </a>
-        <a class="card" href="/insights/landing-page-design-guide/">
-          <span class="kicker">Landing pages</span>
-          <h2>Landing page design for early-stage products</h2>
-          <p>Plan message hierarchy, proof, calls to action, and measurement before visual polish.</p>
-        </a>
-      </div>
-    </main>
-
-    <section class="cta" aria-labelledby="cta-title">
-      <p class="eyebrow">Need a design partner?</p>
-      <h2 id="cta-title">Bring the product challenge. We will shape the path forward.</h2>
-      <p>OSAM designs websites, apps, product experiences, and App Store assets for startup teams.</p>
-      <a class="button" href="/#contact">Start a conversation</a>
-    </section>
-
-    <footer class="site-foot">
-      <span>© 2026 OSAM</span>
-      <a href="/">Creative agency for startups</a>
-    </footer>
+        <footer class="cta">
+        <div class="cta__bg" aria-hidden="true"><div class="cta__row"><span>unicorns only</span><span>unicorns only</span><span>unicorns only</span><span>unicorns only</span></div><div class="cta__row"><span>unicorns only</span><span>unicorns only</span><span>unicorns only</span><span>unicorns only</span></div><div class="cta__row"><span>unicorns only</span><span>unicorns only</span><span>unicorns only</span><span>unicorns only</span></div><div class="cta__row"><span>unicorns only</span><span>unicorns only</span><span>unicorns only</span><span>unicorns only</span></div><div class="cta__row"><span>unicorns only</span><span>unicorns only</span><span>unicorns only</span><span>unicorns only</span></div><div class="cta__row"><span>unicorns only</span><span>unicorns only</span><span>unicorns only</span><span>unicorns only</span></div><div class="cta__row"><span>unicorns only</span><span>unicorns only</span><span>unicorns only</span><span>unicorns only</span></div><div class="cta__row"><span>unicorns only</span><span>unicorns only</span><span>unicorns only</span><span>unicorns only</span></div></div>
+        <h2 class="cta__title">Unicorns aren’t born. They’re designed <span aria-hidden="true">🦄</span></h2>
+        <div class="cta__cols">
+          <div>
+            <h3>Navigation</h3>
+            <ul>
+              <li><a href="/#projects">Portfolio</a></li>
+              <li><a href="/insights/">Blog</a></li>
+              <li><a href="/#career">Careers</a></li>
+            </ul>
+          </div>
+          <div>
+            <h3>Contacts</h3>
+            <ul>
+              <li><a href="https://www.instagram.com/osam.design/" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+              <li>Founder</li>
+              <li><a href="mailto:viktor@osamdesign.com">viktor@osamdesign.com</a></li>
+            </ul>
+          </div>
+        <div class="cta__legal">
+            <h3 aria-hidden="true">&nbsp;</h3>
+            <ul>
+              <li><a href="/terms/">Terms and Conditions</a></li>
+              <li><a href="/privacy/">Privacy</a></li>
+              <li>©2026 osamdesign</li>
+            </ul>
+          </div>
+        </div>
+      </footer>
+      </main>
+    </div>
+    <script src="/js/main.js?v=seo-1"></script>
   </body>
 </html>
