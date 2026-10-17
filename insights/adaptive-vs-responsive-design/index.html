@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({"gtm.start":new Date().getTime(),event:"gtm.js"});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!="dataLayer"?"&l="+l:"";j.async=true;j.src="https://www.googletagmanager.com/gtm.js?id="+i+dl;f.parentNode.insertBefore(j,f);})(window,document,"script","dataLayer","GTM-5CRC6TS4");</script>
+    <!-- End Google Tag Manager -->
+    <!-- Google Analytics (GA4) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-P9JDHNEEM0"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag("js", new Date());
+      gtag("config", "G-P9JDHNEEM0");
+    </script>
+    <!-- End Google Analytics -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Adaptive vs Responsive Design: How to Choose | OSAM</title>
+    <meta name="description" content="Adaptive vs responsive design explained: the difference, how it works in native iOS and Android apps, how to choose and practical tips for designing it in Figma." />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <link rel="canonical" href="https://osamdesign.com/insights/adaptive-vs-responsive-design/" />
+    <meta property="og:type" content="article" /><meta property="og:site_name" content="OSAM" />
+    <meta property="og:title" content="Adaptive vs Responsive Design" />
+    <meta property="og:description" content="Responsive is one fluid layout, adaptive is several fixed ones. Here is the difference and how to choose for your product." />
+    <meta property="og:url" content="https://osamdesign.com/insights/adaptive-vs-responsive-design/" />
+    <meta property="og:image" content="https://osamdesign.com/assets/images/og-osam.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" href="/assets/favicon.png" type="image/png" />
+    <script type="application/ld+json">
+      {"@context": "https://schema.org", "@graph": [{"@type": "Article", "@id": "https://osamdesign.com/insights/adaptive-vs-responsive-design/#article", "headline": "Adaptive vs Responsive Design", "description": "Adaptive vs responsive design explained: the difference, how it works in native iOS and Android apps, how to choose and practical tips for designing it in Figma.", "datePublished": "2026-10-17", "dateModified": "2026-10-17", "author": {"@type": "Organization", "name": "OSAM design team", "url": "https://osamdesign.com/"}, "publisher": {"@id": "https://osamdesign.com/#organization"}, "mainEntityOfPage": {"@id": "https://osamdesign.com/insights/adaptive-vs-responsive-design/#page"}, "image": "https://osamdesign.com/assets/images/og-osam.png", "wordCount": 962, "inLanguage": "en"}, {"@type": "WebPage", "@id": "https://osamdesign.com/insights/adaptive-vs-responsive-design/#page", "url": "https://osamdesign.com/insights/adaptive-vs-responsive-design/", "name": "Adaptive vs Responsive Design: How to Choose | OSAM", "isPartOf": {"@id": "https://osamdesign.com/#website"}, "breadcrumb": {"@id": "https://osamdesign.com/insights/adaptive-vs-responsive-design/#breadcrumb"}}, {"@type": "BreadcrumbList", "@id": "https://osamdesign.com/insights/adaptive-vs-responsive-design/#breadcrumb", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://osamdesign.com/"}, {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://osamdesign.com/insights/"}, {"@type": "ListItem", "position": 3, "name": "Adaptive vs Responsive Design"}]}]}
+    </script>
+    <!-- Yandex.Metrika counter --><script>(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();for(var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r){return}}k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})(window,document,"script","https://mc.yandex.ru/metrika/tag.js?id=110799028","ym");ym(110799028,"init",{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",referrer:document.referrer,url:location.href,accurateTrackBounce:true,trackLinks:true});</script><!-- /Yandex.Metrika counter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&amp;display=swap" rel="stylesheet" />
+    <link rel="preload" href="/assets/fonts/Gelica-Regular.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="/css/style.css?v=seo-7" />
+    <link rel="stylesheet" href="/css/redesign.css?v=seo-7" />
+    <link rel="stylesheet" href="/css/project-page.css?v=seo-7" />
+    <link rel="stylesheet" href="/css/blog-page.css?v=seo-7" />
+    <script>
+      (function () {
+        var update = function () {
+          var z = Math.min(2.5, Math.max(1, window.innerWidth / 1240));
+          document.documentElement.style.setProperty("--page-zoom", z.toFixed(3));
+        };
+        update();
+        window.addEventListener("resize", update);
+      })();
+    </script>
+  </head>
+  <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5CRC6TS4" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    <noscript><div><img src="https://mc.yandex.ru/watch/110799028" style="position:absolute;left:-9999px" alt="" /></div></noscript>
+    <div class="layout layout--case layout--blog">
+      <aside class="side-card" aria-label="OSAM">
+        <div class="side-card__blobs" aria-hidden="true"></div>
+        <div class="side-card__top">
+          <a class="side-card__logo" href="/" aria-label="OSAM home">
+            <img src="/assets/icons/osam-mark.svg" width="28" height="24" alt="" />
+          </a>
+          <h2 class="side-card__title">Apps and websites for future unicorns <span aria-hidden="true">🦄</span></h2>
+          <p class="side-card__text">
+            We design and build products that look sharp, work fast and launch on time.
+          </p>
+          <div class="side-card__actions">
+            <a class="pill pill--blue" href="/#pricing">Pricing</a>
+            <a class="pill pill--black" href="/#contact">Book a call</a>
+          </div>
+        </div>
+        <div class="side-card__bottom">
+          <nav class="side-card__nav" aria-label="Sections">
+            <a href="/#projects">All Projects</a>
+            <a href="/insights/">Blog</a>
+            <a href="/#career">Career</a>
+          </nav>
+        </div>
+      </aside>
+
+      <main class="page" id="main">
+        <article class="case post" data-post>
+          <a class="pill pill--black case-close" href="/insights/">close</a>
+          <header class="post-head">
+            <h1 class="post-title" data-index="[02/21]">Adaptive vs Responsive Design</h1>
+            <p class="post-dek">"Make it adaptive." "You mean responsive?" "Isn’t that the same thing?" These two terms get mixed up constantly, in briefs, job descriptions and even design reviews.</p>
+            <p class="post-byline">By OSAM design team</p>
+            <p class="post-meta"><time class="post-pill" datetime="2026-10-17">October 17, 2026</time><span class="post-pill">5 min read</span></p>
+          </header>
+
+          <nav class="post-contents" aria-label="Article contents">
+            <p class="post-contents__title">Contents</p>
+            <ol><li><a href="#difference">The difference in one sentence each</a></li><li><a href="#native">What it means for native mobile apps</a></li><li><a href="#choose">How to choose</a></li><li><a href="#figma">Practical tips for designing it in Figma</a></li></ol>
+          </nav>
+
+          <div class="post-body" id="article">
+<p>They’re related, but they describe two different ways of handling different screen sizes. And the choice affects how much you design, how developers build it and how your product feels on a phone, a tablet or a foldable.</p>
+<p>We design websites and iOS apps at OSAM, so we deal with this question on almost every project. Here’s a clear explanation of the difference, what it means for native mobile apps specifically, and how to choose.</p>
+<h2 id="difference">The difference in one sentence each</h2>
+<ul><li><strong>Responsive design</strong> uses one flexible layout that stretches and reflows smoothly to fit any screen width. Think of water taking the shape of any glass.</li><li><strong>Adaptive design</strong> uses several fixed layouts, each made for a specific screen size or range, and shows the one that fits best. Think of a wardrobe with a different outfit for each occasion.</li></ul>
+<p>In practice, the line is blurry. Most modern products are hybrids: a fluid layout inside each range, with bigger structural changes at a few key breakpoints. A website might reflow cards smoothly, then switch from a top menu to a bottom bar below a certain width. That’s both responsive and adaptive at once.</p>
+<div class="table-wrap"><table><thead><tr><th scope="col"></th><th scope="col">Responsive</th><th scope="col">Adaptive</th></tr></thead><tbody><tr><th scope="row">Layout</th><td>One fluid layout</td><td>Several fixed layouts</td></tr><tr><th scope="row">How it adjusts</th><td>Continuously, at any width</td><td>Jumps between set sizes</td></tr><tr><th scope="row">Design effort</th><td>Fewer layouts, more thinking about rules</td><td>More layouts to design and maintain</td></tr><tr><th scope="row">Control per device</th><td>Less precise</td><td>Very precise for each target size</td></tr><tr><th scope="row">Handles new screen sizes</th><td>Well, by default</td><td>Only if a layout covers that range</td></tr><tr><th scope="row">Typical use</th><td>Websites, content-heavy products</td><td>Products where each device needs a tailored experience</td></tr></tbody></table></div>
+<h2 id="native">What it means for native mobile apps</h2>
+<p>On the web, people often talk about responsive vs adaptive as a pure choice. In native apps, the platforms have already made it for you: both iOS and Android are built around a hybrid approach.</p>
+<ul><li><strong>iOS: size classes.</strong> Apple describes available space with size classes, compact or regular, for width and height. An iPhone in portrait is compact width. An iPad in full screen is regular width. Layouts flex fluidly within a size class (responsive), and the structure changes between them (adaptive): a list on iPhone can become a sidebar with a detail view on iPad.</li><li><strong>Android: window size classes.</strong> Google uses a similar idea with width breakpoints: compact for most phones in portrait (under 600 dp), medium for large phones, small tablets and unfolded foldables (600 to 840 dp), and expanded for tablets and desktop-like windows (840 dp and up). Navigation typically moves from a bottom bar on compact screens to a navigation rail or drawer on bigger ones.</li><li><strong>The screens keep multiplying.</strong> Foldables change size while the app is open. iPads and Android tablets run apps in resizable windows and split screens. Phones rotate. A layout designed for one fixed iPhone frame breaks fast.</li><li><strong>Don’t forget text size.</strong> Users can increase system text size with Dynamic Type on iOS and font scaling on Android. A truly responsive app handles bigger text without cutting off labels or breaking layouts. It’s also a core accessibility requirement.</li></ul>
+<h2 id="choose">How to choose</h2>
+<p>Instead of picking a side, ask a few practical questions. Lean responsive when:</p>
+<ul><li>the app is phone-first and the main difference between devices is just width</li><li>the content is mostly lists, feeds, articles or forms that reflow naturally</li><li>the budget and timeline are tight and you need one solid layout fast</li><li>you want new devices to work well without extra design work</li></ul>
+<p>Add adaptive layouts when:</p>
+<ul><li>tablets or foldables are an important part of your audience</li><li>bigger screens allow a genuinely better experience, like a sidebar with details, a multi-column dashboard or an editing workspace</li><li>the task itself changes by device, such as quick checks on a phone and deep work on a tablet</li><li>you’re building for a platform where users expect it, like a productivity app on iPad</li></ul>
+<p>A sensible default for most mobile products: design phone-first with a fluid layout, then add one adaptive layout for larger screens where it really improves the experience. That covers the vast majority of users without designing a dozen screen variants nobody will see.</p>
+<p>Tip: check your analytics, or your client’s, before deciding. If almost nobody uses the app on a tablet, a beautiful tablet layout is a nice-to-have, not a priority.</p>
+<h2 id="figma">Practical tips for designing it in Figma</h2>
+<ul><li><strong>Build with auto layout from the start.</strong> Frames that resize properly are the closest you’ll get to how a real responsive layout behaves. Drag the frame wider and narrower to stress-test it.</li><li><strong>Set constraints and min/max widths.</strong> Decide what stretches, what stays fixed and where content should stop growing. A text line spanning a whole tablet screen is hard to read.</li><li><strong>Design the extremes.</strong> The smallest phone you support, a large phone, and a tablet or unfolded foldable. If those three work, the in-between sizes usually do too.</li><li><strong>Define breakpoints explicitly.</strong> Write down where the layout changes and what changes: navigation, number of columns, sidebar on or off. Developers need rules, not just pictures.</li><li><strong>Test with large text.</strong> Duplicate key screens with bigger type and check that nothing breaks or gets cut off.</li><li><strong>Use components with variants.</strong> One card component with compact and expanded variants keeps phone and tablet layouts consistent.</li><li><strong>Annotate behavior.</strong> A short note like "cards reflow from 1 to 2 columns above 600 dp" saves a dozen questions in development.</li></ul>
+<p>The goal isn’t to draw every possible screen. It’s to give developers a clear system so the app looks right on screens you never drew.</p>
+          </div>
+        </article>
+
+        <section class="post-cta" aria-labelledby="cta-title"><p class="eyebrow">Work with OSAM</p><h2 id="cta-title">Need it to look right on every screen?</h2><p>OSAM is an international studio designing and building websites and iOS apps, with responsive development included in every website project. If your product needs to work beautifully from the smallest phone to the biggest screen, let’s talk. And if you’re a designer or developer who stress-tests every frame, we’re hiring: <a href="/#career">apply through the careers form</a>.</p><a class="button" href="/#contact">Start a project</a></section>
+
+        <section class="post-related" aria-labelledby="related-title"><h2 id="related-title">Related guides</h2><div class="card-grid"><a class="card" href="/insights/ios-vs-android-what-designers-must-know/"><span class="kicker">Mobile</span><h3>iOS vs Android: What Designers Must Know</h3><p>iOS got calmer and more transparent, Android got bolder. Here is what designers must know to respect both platforms.</p></a><a class="card" href="/insights/ux-ui-trends-worth-following/"><span class="kicker">Trends</span><h3>UX/UI Trends Worth Following</h3><p>AI inside products, personalization, Liquid Glass, craft, accessibility and trust: the shifts worth paying attention to.</p></a></div></section>
+
+        <footer class="cta">
+        <div class="cta__bg" aria-hidden="true"><div class="cta__row"><span>unicorns only</span><span>unicorns only</span><span>unicorns only</span><span>unicorns only</span></div><div class="cta__row"><span>unicorns only</span><span>unicorns only</span><span>unicorns only</span><span>unicorns only</span></div><div class="cta__row"><span>unicorns only</span><span>unicorns only</span><span>unicorns only</span><span>unicorns only</span></div><div class="cta__row"><span>unicorns only</span><span>unicorns only</span><span>unicorns only</span><span>unicorns only</span></div><div class="cta__row"><span>unicorns only</span><span>unicorns only</span><span>unicorns only</span><span>unicorns only</span></div><div class="cta__row"><span>unicorns only</span><span>unicorns only</span><span>unicorns only</span><span>unicorns only</span></div><div class="cta__row"><span>unicorns only</span><span>unicorns only</span><span>unicorns only</span><span>unicorns only</span></div><div class="cta__row"><span>unicorns only</span><span>unicorns only</span><span>unicorns only</span><span>unicorns only</span></div></div>
+        <h2 class="cta__title">Unicorns aren’t born. They’re designed <span aria-hidden="true">🦄</span></h2>
+        <div class="cta__cols">
+          <div>
+            <h3>Navigation</h3>
+            <ul>
+              <li><a href="/#projects">Portfolio</a></li>
+              <li><a href="/insights/">Blog</a></li>
+              <li><a href="/#career">Careers</a></li>
+            </ul>
+          </div>
+          <div>
+            <h3>Contacts</h3>
+            <ul>
+              <li><a href="https://www.instagram.com/osam.design/" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+              <li>Founder</li>
+              <li><a href="mailto:viktor@osamdesign.com">viktor@osamdesign.com</a></li>
+            </ul>
+          </div>
+        <div class="cta__legal">
+            <h3 aria-hidden="true">&nbsp;</h3>
+            <ul>
+              <li><a href="/terms/">Terms and Conditions</a></li>
+              <li><a href="/privacy/">Privacy</a></li>
+              <li>©2026 osamdesign</li>
+            </ul>
+          </div>
+        </div>
+      </footer>
+      </main>
+    </div>
+    <script src="/js/main.js?v=seo-7"></script>
+  </body>
+</html>
