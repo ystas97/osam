@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({"gtm.start":new Date().getTime(),event:"gtm.js"});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!="dataLayer"?"&l="+l:"";j.async=true;j.src="https://www.googletagmanager.com/gtm.js?id="+i+dl;f.parentNode.insertBefore(j,f);})(window,document,"script","dataLayer","GTM-5CRC6TS4");</script>
+    <!-- End Google Tag Manager -->
+    <!-- Google Analytics (GA4) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-P9JDHNEEM0"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag("js", new Date());
+      gtag("config", "G-P9JDHNEEM0");
+    </script>
+    <!-- End Google Analytics -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Design Tokens and Variables, Explained | OSAM</title>
+    <meta name="description" content="What design tokens are, how to structure primitive, semantic and component layers, name them, set them up with Figma variables and hand them to developers." />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <link rel="canonical" href="https://osamdesign.com/insights/design-tokens-and-variables-explained/" />
+    <meta property="og:type" content="article" /><meta property="og:site_name" content="OSAM" />
+    <meta property="og:title" content="Design Tokens and Variables, Explained" />
+    <meta property="og:description" content="Tokens turn style decisions into a shared, named system. Here is how to structure them, build them in Figma and ship them to code." />
+    <meta property="og:url" content="https://osamdesign.com/insights/design-tokens-and-variables-explained/" />
+    <meta property="og:image" content="https://osamdesign.com/assets/images/og-osam.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" href="/assets/favicon.png" type="image/png" />
+    <script type="application/ld+json">
+      {"@context": "https://schema.org", "@graph": [{"@type": "Article", "@id": "https://osamdesign.com/insights/design-tokens-and-variables-explained/#article", "headline": "Design Tokens and Variables, Explained", "description": "What design tokens are, how to structure primitive, semantic and component layers, name them, set them up with Figma variables and hand them to developers.", "datePublished": "2026-10-17", "dateModified": "2026-10-17", "author": {"@type": "Organization", "name": "OSAM design team", "url": "https://osamdesign.com/"}, "publisher": {"@id": "https://osamdesign.com/#organization"}, "mainEntityOfPage": {"@id": "https://osamdesign.com/insights/design-tokens-and-variables-explained/#page"}, "image": "https://osamdesign.com/assets/images/og-osam.png", "wordCount": 1210, "inLanguage": "en"}, {"@type": "WebPage", "@id": "https://osamdesign.com/insights/design-tokens-and-variables-explained/#page", "url": "https://osamdesign.com/insights/design-tokens-and-variables-explained/", "name": "Design Tokens and Variables, Explained | OSAM", "isPartOf": {"@id": "https://osamdesign.com/#website"}, "breadcrumb": {"@id": "https://osamdesign.com/insights/design-tokens-and-variables-explained/#breadcrumb"}}, {"@type": "BreadcrumbList", "@id": "https://osamdesign.com/insights/design-tokens-and-variables-explained/#breadcrumb", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://osamdesign.com/"}, {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://osamdesign.com/insights/"}, {"@type": "ListItem", "position": 3, "name": "Design Tokens and Variables, Explained"}]}]}
+    </script>
+    <!-- Yandex.Metrika counter --><script>(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();for(var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r){return}}k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})(window,document,"script","https://mc.yandex.ru/metrika/tag.js?id=110799028","ym");ym(110799028,"init",{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",referrer:document.referrer,url:location.href,accurateTrackBounce:true,trackLinks:true});</script><!-- /Yandex.Metrika counter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&amp;display=swap" rel="stylesheet" />
+    <link rel="preload" href="/assets/fonts/Gelica-Regular.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="/css/style.css?v=seo-9" />
+    <link rel="stylesheet" href="/css/redesign.css?v=seo-9" />
+    <link rel="stylesheet" href="/css/project-page.css?v=seo-9" />
+    <link rel="stylesheet" href="/css/blog-page.css?v=seo-9" />
+    <script>
+      (function () {
+        var update = function () {
+          var z = Math.min(2.5, Math.max(1, window.innerWidth / 1240));
+          document.documentElement.style.setProperty("--page-zoom", z.toFixed(3));
+        };
+        update();
+        window.addEventListener("resize", update);
+      })();
+    </script>
+  </head>
+  <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5CRC6TS4" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    <noscript><div><img src="https://mc.yandex.ru/watch/110799028" style="position:absolute;left:-9999px" alt="" /></div></noscript>
+    <div class="layout layout--case layout--blog">
+      <aside class="side-card" aria-label="OSAM">
+        <div class="side-card__blobs" aria-hidden="true"></div>
+        <div class="side-card__top">
+          <a class="side-card__logo" href="/" aria-label="OSAM home">
+            <img src="/assets/icons/osam-mark.svg" width="28" height="24" alt="" />
+          </a>
+          <h2 class="side-card__title">Apps and websites for future unicorns <span aria-hidden="true">🦄</span></h2>
+          <p class="side-card__text">
+            We design and build products that look sharp, work fast and launch on time.
+          </p>
+          <div class="side-card__actions">
+            <a class="pill pill--blue" href="/#pricing">Pricing</a>
+            <a class="pill pill--black" href="/#contact">Book a call</a>
+          </div>
+        </div>
+        <div class="side-card__bottom">
+          <nav class="side-card__nav" aria-label="Sections">
+            <a href="/#projects">All Projects</a>
+            <a href="/insights/">Blog</a>
+            <a href="/#career">Career</a>
+          </nav>
+        </div>
+      </aside>
+
+      <main class="page" id="main">
+        <article class="case post" data-post>
+          <a class="pill pill--black case-close" href="/insights/">close</a>
+          <header class="post-head">
+            <h1 class="post-title" data-index="[04/25]">Design Tokens and Variables, Explained</h1>
+            <p class="post-dek">Open any product that’s been growing for a couple of years and count the shades of blue. Then the greys. Then the slightly different corner radiuses on buttons that are supposed to be identical. It’s rarely one big mistake. It’s a hundred small decisions made by different people at different times.</p>
+            <p class="post-byline">By OSAM design team</p>
+            <p class="post-meta"><time class="post-pill" datetime="2026-10-17">October 17, 2026</time><span class="post-pill">7 min read</span></p>
+          </header>
+
+          <nav class="post-contents" aria-label="Article contents">
+            <p class="post-contents__title">Contents</p>
+            <ol><li><a href="#what-they-are">What design tokens actually are</a></li><li><a href="#layers">Three layers that make tokens scale</a></li><li><a href="#naming">Naming: the part everyone underestimates</a></li><li><a href="#figma">Setting it up with Figma variables</a></li><li><a href="#to-code">From Figma to code</a></li><li><a href="#mistakes">Mistakes to avoid</a></li></ol>
+          </nav>
+
+          <div class="post-body" id="article">
+<p>Design tokens and design variables are the cure. They turn colors, spacing, type and other style decisions into a shared, named system that designers and developers use in the same way. Change a value once, and it updates everywhere: in Figma, in the website and in the app.</p>
+<p>Here’s what tokens are, how to structure them so they scale, how to set them up with Figma variables, and how to get them into code without losing anything along the way.</p>
+<h2 id="what-they-are">What design tokens actually are</h2>
+<p>A design token is a named value for a design decision. Instead of "#2563EB" scattered across fifty files, you have one token called something like color-accent that holds that value. That small change does three big things:</p>
+<ul><li><strong>One source of truth.</strong> The value lives in one place. Designers and developers both refer to it by name.</li><li><strong>Easy changes.</strong> Rebranding, a new accent color or tighter spacing becomes one edit instead of a hunt through every screen.</li><li><strong>Shared language.</strong> "Use text-secondary here" means exactly the same thing in Figma, in CSS and in Swift.</li></ul>
+<p>Tokens can cover almost any repeatable style decision:</p>
+<ul><li>colors (backgrounds, text, borders, brand, status)</li><li>typography (font families, sizes, weights, line heights)</li><li>spacing (padding, margins, gaps)</li><li>corner radius and border widths</li><li>shadows and elevation</li><li>motion (durations and easing curves)</li><li>breakpoints and grid values</li></ul>
+<p>Design variables are how tools like Figma store and apply tokens inside design files. Tokens are the concept; variables are one of the ways to implement it.</p>
+<h2 id="layers">Three layers that make tokens scale</h2>
+<p>The most common mistake with tokens is having only one layer: a long list of colors named after what they look like. It works for a month, then breaks. Scalable systems use layers, each pointing to the one below.</p>
+<ul><li><strong>Primitive tokens</strong> are your raw palette: every color, size and spacing step you allow. They have no meaning yet. blue-600 is just a blue.</li><li><strong>Semantic tokens</strong> give those values a job: color-accent, text-primary, surface, border-subtle. This is the layer designers use most, and the one that makes theming possible. In dark mode, surface simply points to a different primitive, and every screen updates.</li><li><strong>Component tokens</strong> are optional and tie semantic tokens to specific components: button-bg, card-pad. They’re useful in large systems where one component needs to change without touching everything else, but small products can often skip them.</li></ul>
+<div class="table-wrap"><table><thead><tr><th scope="col">Layer</th><th scope="col">What it holds</th><th scope="col">Example</th></tr></thead><tbody><tr><th scope="row">Primitive</th><td>Raw values, no meaning</td><td>blue-600 = #2563EB, grey-50 = #F9FAFB, space-4 = 16</td></tr><tr><th scope="row">Semantic</th><td>What a value is for</td><td>color-accent → blue-600, surface → grey-50, space-inset-md → space-4</td></tr><tr><th scope="row">Component</th><td>Where it is used</td><td>button-bg → color-accent, card-bg → surface, card-pad → space-inset-md</td></tr></tbody></table></div>
+<p>The rule: components should never point straight to primitives. If a button uses blue-600 directly, it can’t follow a theme or a rebrand.</p>
+<h2 id="naming">Naming: the part everyone underestimates</h2>
+<p>A token system lives or dies by its names. Good names are predictable: once you know a few, you can guess the rest.</p>
+<ul><li><strong>Name by role, not by look.</strong> text-secondary survives a redesign. text-grey-light stops making sense the day it turns blue.</li><li><strong>Use a consistent structure.</strong> A common pattern goes from general to specific: category, role, variant, state. For example color-text-primary, color-bg-surface-raised, color-border-focus.</li><li><strong>Keep scales simple.</strong> Spacing like space-1, space-2, space-4 on a 4 or 8 point grid, or t-shirt sizes like sm, md, lg. Pick one approach and stick to it.</li><li><strong>Include states.</strong> button-bg-hover, button-bg-pressed, button-bg-disabled. States are where inconsistency sneaks in first.</li><li><strong>Avoid platform-specific words.</strong> "Hex", "pt" or "dp" don’t belong in names. The same token should make sense in Figma, on the web, on iOS and on Android.</li><li><strong>Write it down.</strong> A short naming guide with examples saves endless debates and keeps new team members from inventing their own system.</li></ul>
+<h2 id="figma">Setting it up with Figma variables</h2>
+<p>Figma variables are the most practical way to bring tokens into design files. They store values like colors, numbers, text and booleans, can point to each other, and can switch between modes. A setup that works for most products:</p>
+<ol><li><strong>A primitives collection.</strong> All raw colors and sizes. Hide it from publishing to the wider library if you can, so designers don’t pick primitives by accident.</li><li><strong>A semantic collection with modes.</strong> Every semantic variable is an alias pointing to a primitive. Add a Light and a Dark mode, and each mode points to different primitives. Switch a frame’s mode and the whole screen changes theme.</li><li><strong>Spacing and radius as number variables.</strong> Use them in auto layout padding, gaps and corner radius, so spacing follows the system too.</li><li><strong>Scoping.</strong> Limit where each variable can be used, so text colors only show up for text and spacing values only for spacing. It keeps the picker clean and mistakes rare.</li><li><strong>Components built on semantic variables.</strong> Buttons, cards and inputs reference semantic tokens, never raw values.</li></ol>
+<p>Modes aren’t only for light and dark. They can also handle multiple brands, compact and comfortable density, or different platforms, all from one set of components.</p>
+<p>Typography and effects are still often managed with styles alongside variables, and that’s fine. What matters is that every value in a component comes from the system, not from a manual tweak.</p>
+<h2 id="to-code">From Figma to code</h2>
+<p>Tokens only pay off when developers use the same ones. Otherwise you have a beautiful system in Figma and hard-coded hex values in the app.</p>
+<ul><li><strong>Export tokens as data.</strong> Tokens are usually stored as JSON. Plugins and Figma’s own tools can export variables, and the W3C Design Tokens Community Group has worked on a shared format so tokens can move between tools.</li><li><strong>Transform them for each platform.</strong> Tools like Style Dictionary turn one token file into CSS variables for the web, Swift for iOS and XML or Kotlin for Android, all from the same source.</li><li><strong>Keep names identical.</strong> color-text-primary in Figma should be recognizable in code. Developers should never have to translate.</li><li><strong>Decide who owns changes.</strong> A token change can affect hundreds of screens. Agree on who can edit tokens and how changes are reviewed.</li><li><strong>Version it.</strong> Treat the token file like code: changes go through review, with notes on what changed and why.</li></ul>
+<h2 id="mistakes">Mistakes to avoid</h2>
+<ul><li><strong>Too many tokens too early.</strong> A small product doesn’t need 400 tokens. Start with the essentials and grow when real needs appear.</li><li><strong>Skipping the semantic layer.</strong> Without it, dark mode and rebrands become manual work again.</li><li><strong>Detaching values.</strong> One designer overriding a color by hand quietly breaks the system. Make the right choice the easy choice.</li><li><strong>No documentation.</strong> If nobody knows when to use surface vs surface-raised, people will guess, and guess differently.</li><li><strong>Design and code drifting apart.</strong> Regularly compare Figma tokens with what’s in production. The gap grows silently.</li></ul>
+          </div>
+        </article>
+
+        <section class="post-cta" aria-labelledby="cta-title"><p class="eyebrow">Work with OSAM</p><h2 id="cta-title">Systems that grow with your product</h2><p>OSAM is an international studio designing and building websites and iOS apps. We create design systems that give products a consistent foundation, like the one behind our trading card scanner redesign, and we build from them too, so what’s in Figma is what’s in the code. <a href="/#contact">Let’s talk</a>. And if you’re a designer or developer who gets excited about well-named tokens, we’re hiring: <a href="/#career">apply through the careers form</a>.</p><a class="button" href="/#contact">Start a project</a></section>
+
+        <section class="post-related" aria-labelledby="related-title"><h2 id="related-title">Related guides</h2><div class="card-grid"><a class="card" href="/insights/designing-dark-mode-right/"><span class="kicker">Design systems</span><h3>Designing Dark Mode Right</h3><p>Dark mode is a second visual system with its own rules for color, depth and contrast. Here is how to design it properly.</p></a><a class="card" href="/insights/adaptive-vs-responsive-design/"><span class="kicker">Design</span><h3>Adaptive vs Responsive Design</h3><p>Responsive is one fluid layout, adaptive is several fixed ones. Here is the difference and how to choose for your product.</p></a></div></section>
+
+        <footer class="cta">
+        <div class="cta__bg" aria-hidden="true"><div class="cta__row"><span>unicorns only</span><span>unicorns only</span><span>unicorns only</span><span>unicorns only</span></div><div class="cta__row"><span>unicorns only</span><span>unicorns only</span><span>unicorns only</span><span>unicorns only</span></div><div class="cta__row"><span>unicorns only</span><span>unicorns only</span><span>unicorns only</span><span>unicorns only</span></div><div class="cta__row"><span>unicorns only</span><span>unicorns only</span><span>unicorns only</span><span>unicorns only</span></div><div class="cta__row"><span>unicorns only</span><span>unicorns only</span><span>unicorns only</span><span>unicorns only</span></div><div class="cta__row"><span>unicorns only</span><span>unicorns only</span><span>unicorns only</span><span>unicorns only</span></div><div class="cta__row"><span>unicorns only</span><span>unicorns only</span><span>unicorns only</span><span>unicorns only</span></div><div class="cta__row"><span>unicorns only</span><span>unicorns only</span><span>unicorns only</span><span>unicorns only</span></div></div>
+        <h2 class="cta__title">Unicorns aren’t born. They’re designed <span aria-hidden="true">🦄</span></h2>
+        <div class="cta__cols">
+          <div>
+            <h3>Navigation</h3>
+            <ul>
+              <li><a href="/#projects">Portfolio</a></li>
+              <li><a href="/insights/">Blog</a></li>
+              <li><a href="/#career">Careers</a></li>
+            </ul>
+          </div>
+          <div>
+            <h3>Contacts</h3>
+            <ul>
+              <li><a href="https://www.instagram.com/osam.design/" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+              <li>Founder</li>
+              <li><a href="mailto:viktor@osamdesign.com">viktor@osamdesign.com</a></li>
+            </ul>
+          </div>
+        <div class="cta__legal">
+            <h3 aria-hidden="true">&nbsp;</h3>
+            <ul>
+              <li><a href="/terms/">Terms and Conditions</a></li>
+              <li><a href="/privacy/">Privacy</a></li>
+              <li>©2026 osamdesign</li>
+            </ul>
+          </div>
+        </div>
+      </footer>
+      </main>
+    </div>
+    <script src="/js/main.js?v=seo-9"></script>
+  </body>
+</html>

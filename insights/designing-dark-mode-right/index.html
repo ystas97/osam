@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({"gtm.start":new Date().getTime(),event:"gtm.js"});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!="dataLayer"?"&l="+l:"";j.async=true;j.src="https://www.googletagmanager.com/gtm.js?id="+i+dl;f.parentNode.insertBefore(j,f);})(window,document,"script","dataLayer","GTM-5CRC6TS4");</script>
+    <!-- End Google Tag Manager -->
+    <!-- Google Analytics (GA4) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-P9JDHNEEM0"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag("js", new Date());
+      gtag("config", "G-P9JDHNEEM0");
+    </script>
+    <!-- End Google Analytics -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Designing Dark Mode Right | OSAM</title>
+    <meta name="description" content="Dark mode is not an inverted light theme. Core principles, typical mistakes, building it with semantic tokens and Figma variables, and how to test it properly." />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <link rel="canonical" href="https://osamdesign.com/insights/designing-dark-mode-right/" />
+    <meta property="og:type" content="article" /><meta property="og:site_name" content="OSAM" />
+    <meta property="og:title" content="Designing Dark Mode Right" />
+    <meta property="og:description" content="Dark mode is a second visual system with its own rules for color, depth and contrast. Here is how to design it properly." />
+    <meta property="og:url" content="https://osamdesign.com/insights/designing-dark-mode-right/" />
+    <meta property="og:image" content="https://osamdesign.com/assets/images/og-osam.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" href="/assets/favicon.png" type="image/png" />
+    <script type="application/ld+json">
+      {"@context": "https://schema.org", "@graph": [{"@type": "Article", "@id": "https://osamdesign.com/insights/designing-dark-mode-right/#article", "headline": "Designing Dark Mode Right", "description": "Dark mode is not an inverted light theme. Core principles, typical mistakes, building it with semantic tokens and Figma variables, and how to test it properly.", "datePublished": "2026-10-17", "dateModified": "2026-10-17", "author": {"@type": "Organization", "name": "OSAM design team", "url": "https://osamdesign.com/"}, "publisher": {"@id": "https://osamdesign.com/#organization"}, "mainEntityOfPage": {"@id": "https://osamdesign.com/insights/designing-dark-mode-right/#page"}, "image": "https://osamdesign.com/assets/images/og-osam.png", "wordCount": 973, "inLanguage": "en"}, {"@type": "WebPage", "@id": "https://osamdesign.com/insights/designing-dark-mode-right/#page", "url": "https://osamdesign.com/insights/designing-dark-mode-right/", "name": "Designing Dark Mode Right | OSAM", "isPartOf": {"@id": "https://osamdesign.com/#website"}, "breadcrumb": {"@id": "https://osamdesign.com/insights/designing-dark-mode-right/#breadcrumb"}}, {"@type": "BreadcrumbList", "@id": "https://osamdesign.com/insights/designing-dark-mode-right/#breadcrumb", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://osamdesign.com/"}, {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://osamdesign.com/insights/"}, {"@type": "ListItem", "position": 3, "name": "Designing Dark Mode Right"}]}]}
+    </script>
+    <!-- Yandex.Metrika counter --><script>(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();for(var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r){return}}k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})(window,document,"script","https://mc.yandex.ru/metrika/tag.js?id=110799028","ym");ym(110799028,"init",{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",referrer:document.referrer,url:location.href,accurateTrackBounce:true,trackLinks:true});</script><!-- /Yandex.Metrika counter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&amp;display=swap" rel="stylesheet" />
+    <link rel="preload" href="/assets/fonts/Gelica-Regular.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="/css/style.css?v=seo-9" />
+    <link rel="stylesheet" href="/css/redesign.css?v=seo-9" />
+    <link rel="stylesheet" href="/css/project-page.css?v=seo-9" />
+    <link rel="stylesheet" href="/css/blog-page.css?v=seo-9" />
+    <script>
+      (function () {
+        var update = function () {
+          var z = Math.min(2.5, Math.max(1, window.innerWidth / 1240));
+          document.documentElement.style.setProperty("--page-zoom", z.toFixed(3));
+        };
+        update();
+        window.addEventListener("resize", update);
+      })();
+    </script>
+  </head>
+  <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5CRC6TS4" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    <noscript><div><img src="https://mc.yandex.ru/watch/110799028" style="position:absolute;left:-9999px" alt="" /></div></noscript>
+    <div class="layout layout--case layout--blog">
+      <aside class="side-card" aria-label="OSAM">
+        <div class="side-card__blobs" aria-hidden="true"></div>
+        <div class="side-card__top">
+          <a class="side-card__logo" href="/" aria-label="OSAM home">
+            <img src="/assets/icons/osam-mark.svg" width="28" height="24" alt="" />
+          </a>
+          <h2 class="side-card__title">Apps and websites for future unicorns <span aria-hidden="true">🦄</span></h2>
+          <p class="side-card__text">
+            We design and build products that look sharp, work fast and launch on time.
+          </p>
+          <div class="side-card__actions">
+            <a class="pill pill--blue" href="/#pricing">Pricing</a>
+            <a class="pill pill--black" href="/#contact">Book a call</a>
+          </div>
+        </div>
+        <div class="side-card__bottom">
+          <nav class="side-card__nav" aria-label="Sections">
+            <a href="/#projects">All Projects</a>
+            <a href="/insights/">Blog</a>
+            <a href="/#career">Career</a>
+          </nav>
+        </div>
+      </aside>
+
+      <main class="page" id="main">
+        <article class="case post" data-post>
+          <a class="pill pill--black case-close" href="/insights/">close</a>
+          <header class="post-head">
+            <h1 class="post-title" data-index="[03/25]">Designing Dark Mode Right</h1>
+            <p class="post-dek">Dark mode looks easy. Swap white for black, black for white, done. Then you open the result and everything is wrong: text glows painfully, brand colors scream, shadows vanish and cards melt into the background.</p>
+            <p class="post-byline">By OSAM design team</p>
+            <p class="post-meta"><time class="post-pill" datetime="2026-10-17">October 17, 2026</time><span class="post-pill">5 min read</span></p>
+          </header>
+
+          <nav class="post-contents" aria-label="Article contents">
+            <p class="post-contents__title">Contents</p>
+            <ol><li><a href="#principles">The core principles</a></li><li><a href="#mistakes">Typical mistakes</a></li><li><a href="#as-a-system">Build it as a system, not a second design</a></li><li><a href="#testing">How to test it</a></li></ol>
+          </nav>
+
+          <div class="post-body" id="article">
+<p>Dark mode isn’t an inverted light theme. It’s a second visual system with its own rules for color, depth and contrast. Users expect it: both iOS and Android support it system-wide, and an app that ignores it is the bright rectangle that blinds someone in bed at midnight.</p>
+<p>We’ve designed dark, data-heavy interfaces at OSAM, including a trading card scanner where market prices, charts and card details all live on a dark background. Here’s what we’ve learned about designing dark mode properly and avoiding the classic mistakes.</p>
+<h2 id="principles">The core principles</h2>
+<ul><li><strong>Use dark grey, not pure black, as your base.</strong> A very dark grey background (Material Design’s guidance famously uses #121212) reduces the harsh contrast of bright text on pure black, shows depth better and avoids the "smearing" some OLED screens produce when scrolling pure black. Pure black still has its place, for example in media viewers or when saving battery is the point, but it’s rarely the best default.</li><li><strong>Show depth with lightness, not shadows.</strong> Shadows barely show on dark backgrounds. Instead, raised surfaces get slightly lighter: the background is darkest, cards a step lighter, sheets and dialogs lighter still. A clear set of three or four surface levels keeps the hierarchy readable.</li><li><strong>Soften the text.</strong> Pure white text on dark grey can feel like it’s vibrating. Use an off-white for primary text and dimmer greys for secondary text, while keeping enough contrast to stay readable.</li><li><strong>Keep contrast accessible.</strong> The same rules apply as in light mode: WCAG asks for at least 4.5:1 contrast for normal text and 3:1 for large text and key interface elements. Dark themes often fail with mid-grey secondary text, so check it.</li><li><strong>Desaturate your colors.</strong> Bright, saturated brand colors that look great on white can glow uncomfortably on dark backgrounds and fail contrast. Lighter, slightly less saturated versions of your palette usually work better, so plan a dark variant of each color rather than reusing the light ones.</li></ul>
+<h2 id="mistakes">Typical mistakes</h2>
+<ul><li><strong>Simply inverting colors.</strong> Automatic inversion flips photos, ruins brand colors and creates odd greys. Every color needs a deliberate dark counterpart.</li><li><strong>Pure white on pure black.</strong> Maximum contrast sounds good, but it causes glare and eye strain over long reading.</li><li><strong>Relying on shadows.</strong> Cards and modals that were defined by shadows in light mode lose their edges completely in dark mode.</li><li><strong>Forgetting images and illustrations.</strong> Logos with black text disappear. Illustrations with white backgrounds become glowing boxes. Provide dark variants or transparent versions.</li><li><strong>Neon brand colors.</strong> That electric blue button can look radioactive on a dark background and still fail contrast with white text on top of it.</li><li><strong>Low-contrast secondary text.</strong> Mid-grey on dark grey looks elegant in a mockup and becomes unreadable on a real phone outdoors.</li><li><strong>Too many surface levels.</strong> Eight slightly different greys make the interface muddy. Fewer, clearly distinct levels work better.</li><li><strong>Status colors that don’t adapt.</strong> Error red, success green and warning yellow need dark-mode versions so they stay readable and calm.</li><li><strong>Treating it as an afterthought.</strong> Dark mode designed in the last week before launch always shows. Plan it from the design system up.</li></ul>
+<h2 id="as-a-system">Build it as a system, not a second design</h2>
+<p>The teams that handle dark mode well don’t design every screen twice. They design one set of screens with a color system that switches underneath.</p>
+<ul><li><strong>Use semantic color tokens.</strong> Name colors by role, not by look: "background", "surface", "text-primary", "text-secondary", "accent", "error". Each token gets a light and a dark value.</li><li><strong>Set it up with Figma variables.</strong> Variables with light and dark modes let you switch a whole screen between themes in one click, and check both as you design.</li><li><strong>Lean on the platform.</strong> iOS provides semantic system colors that adapt automatically to light and dark appearance, and Android’s Material theming does the same with dynamic color. Using them keeps your app consistent with the rest of the phone, especially next to system elements like Liquid Glass controls on iOS.</li><li><strong>Respect the user’s choice.</strong> Follow the system setting by default. Offer an in-app override only if your audience really needs it, like reading or media apps.</li><li><strong>Hand off tokens, not hex codes.</strong> Developers should implement the same token names, so switching themes is automatic and future color changes happen in one place.</li></ul>
+<p>On our trading card scanner project, consistent components and strong contrast were what kept a dark interface full of prices and charts easy to read. The system did the heavy lifting, not screen-by-screen tweaking.</p>
+<h2 id="testing">How to test it</h2>
+<ul><li><strong>Check contrast with a tool.</strong> Run your text and key UI colors through a contrast checker or a Figma plugin. Don’t trust your eyes on a calibrated monitor.</li><li><strong>Look at it on real phones.</strong> Different screens render dark greys very differently. Test on at least one OLED phone and one LCD screen if you can.</li><li><strong>Test in real conditions.</strong> In a dark room at night, where dark mode is most used, and outside in sunlight, where low contrast fails first.</li><li><strong>Go through every state.</strong> Errors, empty screens, loading skeletons, disabled buttons, pop-ups, onboarding. These are the screens most often forgotten in dark mode.</li><li><strong>Check all the images.</strong> Logos, illustrations, charts, maps and user avatars. Look for glowing white boxes and invisible black lines.</li><li><strong>Switch themes live.</strong> Toggle the system setting while the app is open and make sure everything updates without glitches or leftover light elements.</li><li><strong>Ask real users.</strong> Especially people who use dark mode every day. They’ll spot what feels off within seconds.</li></ul>
+          </div>
+        </article>
+
+        <section class="post-cta" aria-labelledby="cta-title"><p class="eyebrow">Work with OSAM</p><h2 id="cta-title">Light, dark, and done right</h2><p>OSAM is an international studio designing and building websites and iOS apps, with design systems that work in both themes from day one. If your product needs a dark mode that looks deliberate, not inverted, <a href="/#contact">let’s talk</a>. And if you’re a designer who checks contrast before anyone asks, we’re hiring: <a href="/#career">apply through the careers form</a>.</p><a class="button" href="/#contact">Start a project</a></section>
+
+        <section class="post-related" aria-labelledby="related-title"><h2 id="related-title">Related guides</h2><div class="card-grid"><a class="card" href="/insights/design-tokens-and-variables-explained/"><span class="kicker">Design systems</span><h3>Design Tokens and Variables, Explained</h3><p>Tokens turn style decisions into a shared, named system. Here is how to structure them, build them in Figma and ship them to code.</p></a><a class="card" href="/insights/ios-vs-android-what-designers-must-know/"><span class="kicker">Mobile</span><h3>iOS vs Android: What Designers Must Know</h3><p>iOS got calmer and more transparent, Android got bolder. Here is what designers must know to respect both platforms.</p></a></div></section>
+
+        <footer class="cta">
+        <div class="cta__bg" aria-hidden="true"><div class="cta__row"><span>unicorns only</span><span>unicorns only</span><span>unicorns only</span><span>unicorns only</span></div><div class="cta__row"><span>unicorns only</span><span>unicorns only</span><span>unicorns only</span><span>unicorns only</span></div><div class="cta__row"><span>unicorns only</span><span>unicorns only</span><span>unicorns only</span><span>unicorns only</span></div><div class="cta__row"><span>unicorns only</span><span>unicorns only</span><span>unicorns only</span><span>unicorns only</span></div><div class="cta__row"><span>unicorns only</span><span>unicorns only</span><span>unicorns only</span><span>unicorns only</span></div><div class="cta__row"><span>unicorns only</span><span>unicorns only</span><span>unicorns only</span><span>unicorns only</span></div><div class="cta__row"><span>unicorns only</span><span>unicorns only</span><span>unicorns only</span><span>unicorns only</span></div><div class="cta__row"><span>unicorns only</span><span>unicorns only</span><span>unicorns only</span><span>unicorns only</span></div></div>
+        <h2 class="cta__title">Unicorns aren’t born. They’re designed <span aria-hidden="true">🦄</span></h2>
+        <div class="cta__cols">
+          <div>
+            <h3>Navigation</h3>
+            <ul>
+              <li><a href="/#projects">Portfolio</a></li>
+              <li><a href="/insights/">Blog</a></li>
+              <li><a href="/#career">Careers</a></li>
+            </ul>
+          </div>
+          <div>
+            <h3>Contacts</h3>
+            <ul>
+              <li><a href="https://www.instagram.com/osam.design/" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+              <li>Founder</li>
+              <li><a href="mailto:viktor@osamdesign.com">viktor@osamdesign.com</a></li>
+            </ul>
+          </div>
+        <div class="cta__legal">
+            <h3 aria-hidden="true">&nbsp;</h3>
+            <ul>
+              <li><a href="/terms/">Terms and Conditions</a></li>
+              <li><a href="/privacy/">Privacy</a></li>
+              <li>©2026 osamdesign</li>
+            </ul>
+          </div>
+        </div>
+      </footer>
+      </main>
+    </div>
+    <script src="/js/main.js?v=seo-9"></script>
+  </body>
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({"gtm.start":new Date().getTime(),event:"gtm.js"});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!="dataLayer"?"&l="+l:"";j.async=true;j.src="https://www.googletagmanager.com/gtm.js?id="+i+dl;f.parentNode.insertBefore(j,f);})(window,document,"script","dataLayer","GTM-5CRC6TS4");</script>
+    <!-- End Google Tag Manager -->
+    <!-- Google Analytics (GA4) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-P9JDHNEEM0"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag("js", new Date());
+      gtag("config", "G-P9JDHNEEM0");
+    </script>
+    <!-- End Google Analytics -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Microinteractions: Delight or Distraction? | OSAM</title>
+    <meta name="description" content="When microinteractions improve UX and when they get in the way: five jobs of good motion, common mistakes, timing and easing rules and developer handoff." />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <link rel="canonical" href="https://osamdesign.com/insights/microinteractions-delight-or-distraction/" />
+    <meta property="og:type" content="article" /><meta property="og:site_name" content="OSAM" />
+    <meta property="og:title" content="Microinteractions: Delight or Distraction?" />
+    <meta property="og:description" content="The best microinteractions have a job. Here is how to tell delight from distraction and design motion that lands." />
+    <meta property="og:url" content="https://osamdesign.com/insights/microinteractions-delight-or-distraction/" />
+    <meta property="og:image" content="https://osamdesign.com/assets/images/og-osam.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" href="/assets/favicon.png" type="image/png" />
+    <script type="application/ld+json">
+      {"@context": "https://schema.org", "@graph": [{"@type": "Article", "@id": "https://osamdesign.com/insights/microinteractions-delight-or-distraction/#article", "headline": "Microinteractions: Delight or Distraction?", "description": "When microinteractions improve UX and when they get in the way: five jobs of good motion, common mistakes, timing and easing rules and developer handoff.", "datePublished": "2026-10-17", "dateModified": "2026-10-17", "author": {"@type": "Organization", "name": "OSAM design team", "url": "https://osamdesign.com/"}, "publisher": {"@id": "https://osamdesign.com/#organization"}, "mainEntityOfPage": {"@id": "https://osamdesign.com/insights/microinteractions-delight-or-distraction/#page"}, "image": "https://osamdesign.com/assets/images/og-osam.png", "wordCount": 928, "inLanguage": "en"}, {"@type": "WebPage", "@id": "https://osamdesign.com/insights/microinteractions-delight-or-distraction/#page", "url": "https://osamdesign.com/insights/microinteractions-delight-or-distraction/", "name": "Microinteractions: Delight or Distraction? | OSAM", "isPartOf": {"@id": "https://osamdesign.com/#website"}, "breadcrumb": {"@id": "https://osamdesign.com/insights/microinteractions-delight-or-distraction/#breadcrumb"}}, {"@type": "BreadcrumbList", "@id": "https://osamdesign.com/insights/microinteractions-delight-or-distraction/#breadcrumb", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://osamdesign.com/"}, {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://osamdesign.com/insights/"}, {"@type": "ListItem", "position": 3, "name": "Microinteractions: Delight or Distraction?"}]}]}
+    </script>
+    <!-- Yandex.Metrika counter --><script>(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();for(var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r){return}}k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})(window,document,"script","https://mc.yandex.ru/metrika/tag.js?id=110799028","ym");ym(110799028,"init",{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",referrer:document.referrer,url:location.href,accurateTrackBounce:true,trackLinks:true});</script><!-- /Yandex.Metrika counter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&amp;display=swap" rel="stylesheet" />
+    <link rel="preload" href="/assets/fonts/Gelica-Regular.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="/css/style.css?v=seo-9" />
+    <link rel="stylesheet" href="/css/redesign.css?v=seo-9" />
+    <link rel="stylesheet" href="/css/project-page.css?v=seo-9" />
+    <link rel="stylesheet" href="/css/blog-page.css?v=seo-9" />
+    <script>
+      (function () {
+        var update = function () {
+          var z = Math.min(2.5, Math.max(1, window.innerWidth / 1240));
+          document.documentElement.style.setProperty("--page-zoom", z.toFixed(3));
+        };
+        update();
+        window.addEventListener("resize", update);
+      })();
+    </script>
+  </head>
+  <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5CRC6TS4" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    <noscript><div><img src="https://mc.yandex.ru/watch/110799028" style="position:absolute;left:-9999px" alt="" /></div></noscript>
+    <div class="layout layout--case layout--blog">
+      <aside class="side-card" aria-label="OSAM">
+        <div class="side-card__blobs" aria-hidden="true"></div>
+        <div class="side-card__top">
+          <a class="side-card__logo" href="/" aria-label="OSAM home">
+            <img src="/assets/icons/osam-mark.svg" width="28" height="24" alt="" />
+          </a>
+          <h2 class="side-card__title">Apps and websites for future unicorns <span aria-hidden="true">🦄</span></h2>
+          <p class="side-card__text">
+            We design and build products that look sharp, work fast and launch on time.
+          </p>
+          <div class="side-card__actions">
+            <a class="pill pill--blue" href="/#pricing">Pricing</a>
+            <a class="pill pill--black" href="/#contact">Book a call</a>
+          </div>
+        </div>
+        <div class="side-card__bottom">
+          <nav class="side-card__nav" aria-label="Sections">
+            <a href="/#projects">All Projects</a>
+            <a href="/insights/">Blog</a>
+            <a href="/#career">Career</a>
+          </nav>
+        </div>
+      </aside>
+
+      <main class="page" id="main">
+        <article class="case post" data-post>
+          <a class="pill pill--black case-close" href="/insights/">close</a>
+          <header class="post-head">
+            <h1 class="post-title" data-index="[02/25]">Microinteractions: Delight or Distraction?</h1>
+            <p class="post-dek">The like button that bursts into tiny hearts. The pull-to-refresh spinner. The toggle that slides and clicks into place. Microinteractions are the small animated moments that respond to what you do, and they’re everywhere.</p>
+            <p class="post-byline">By OSAM design team</p>
+            <p class="post-meta"><time class="post-pill" datetime="2026-10-17">October 17, 2026</time><span class="post-pill">5 min read</span></p>
+          </header>
+
+          <nav class="post-contents" aria-label="Article contents">
+            <p class="post-contents__title">Contents</p>
+            <ol><li><a href="#better-ux">When they make UX better</a></li><li><a href="#in-the-way">When they just get in the way</a></li><li><a href="#rules">Rules of thumb for motion that works</a></li><li><a href="#handoff">Designing it and getting it built</a></li></ol>
+          </nav>
+
+          <div class="post-body" id="article">
+<p>Done well, they make a product feel alive, responsive and trustworthy. You barely notice them, you just feel that everything works. Done badly, they’re the reason you sigh every time a menu takes a full second to slide in.</p>
+<p>The difference rarely comes down to how beautiful an animation is. It comes down to whether it has a job. Here’s how to tell when microinteractions improve UX, when they just get in the way, and how to design them so they land on the right side.</p>
+<h2 id="better-ux">When they make UX better</h2>
+<p>Good microinteractions do one of five jobs.</p>
+<ol><li><strong>Confirm an action.</strong> A button that presses down, a checkmark that draws itself after payment, a heart that fills when tapped. Users instantly know their tap worked, so they don’t tap again or wonder.</li><li><strong>Show status.</strong> Progress bars, upload rings, a skeleton screen while content loads. Waiting feels shorter and less uncertain when people can see something is happening.</li><li><strong>Explain where things went.</strong> An item that shrinks into the cart icon, a card that expands into a full screen, a deleted message that slides away. Motion shows the relationship between screens, so users stay oriented.</li><li><strong>Prevent errors.</strong> A password field that shakes on a wrong entry, a form field that highlights gently as you make a mistake, a swipe that resists before deleting something important.</li><li><strong>Add a moment of delight.</strong> A small celebration when you finish a goal, a playful empty state. This is the only job that’s purely emotional, and it works best when it’s rare.</li></ol>
+<p>We used the delight principle ourselves on a photo cleaner app built around swiping: swipe to keep, swipe to delete. The gesture and its motion turned a boring chore into something closer to a game.</p>
+<h2 id="in-the-way">When they just get in the way</h2>
+<p>The same animation that delights on day one can annoy on day thirty. Watch out for these:</p>
+<ul><li><strong>Too slow.</strong> A menu that takes a second to open feels broken. Users came to do something, not to watch a show.</li><li><strong>Blocking.</strong> If people have to wait for an animation to finish before they can tap, the motion is in charge, not the user.</li><li><strong>Repetitive.</strong> Confetti every time you save a note stops being cute by the third time. Big celebrations belong to rare, meaningful moments.</li><li><strong>Decorative only.</strong> Elements that bounce, float or wiggle for no reason pull attention away from what matters.</li><li><strong>Inconsistent.</strong> One screen slides from the right, another fades, a third zooms. Users lose the sense of where they are.</li><li><strong>Heavy.</strong> Complex animations that drop frames or drain battery on older phones make the whole app feel cheap.</li><li><strong>Ignoring accessibility.</strong> Big zooms, parallax and spinning effects can cause real discomfort for people sensitive to motion.</li></ul>
+<p>A quick test: imagine using the interaction fifty times a day. If it would get on your nerves, it’s too much.</p>
+<h2 id="rules">Rules of thumb for motion that works</h2>
+<ul><li><strong>Give every animation a job.</strong> Before adding motion, finish this sentence: "This animation helps the user understand that..." If you can’t, cut it.</li><li><strong>Keep it fast.</strong> Most small interface animations feel best somewhere around 100 to 300 milliseconds. Larger transitions between screens can take a little longer, but rarely more than half a second.</li><li><strong>Use natural easing.</strong> Things in the real world speed up and slow down. Linear motion feels mechanical. Ease-out for things entering, ease-in for things leaving, gentle springs for playful moments.</li><li><strong>Never block the user.</strong> Let people tap, scroll or go back while an animation is still running.</li><li><strong>Be consistent.</strong> Define a small set of motion patterns: how screens enter, how sheets open, how items appear. Reuse them everywhere.</li><li><strong>Match the platform.</strong> iOS and Android each have their own motion feel. Native transitions and gestures should behave the way users already expect on their phone.</li><li><strong>Scale delight to the moment.</strong> A subtle tick for a saved setting, a bigger celebration for completing onboarding or a first purchase.</li><li><strong>Respect reduced motion.</strong> Both iOS and Android let users reduce or remove animations in system settings, and websites can detect the same preference. When it’s on, replace big movements with simple fades or no animation at all.</li></ul>
+<h2 id="handoff">Designing it and getting it built</h2>
+<p>Motion is where design and development most often drift apart. A beautiful animation in a prototype becomes a jumpy cut in the real app because nobody wrote down how it should behave.</p>
+<ul><li><strong>Prototype the key moments.</strong> Figma’s smart animate is enough for most transitions. For more complex motion, tools like After Effects, Rive or Lottie-based workflows give developers something they can actually use.</li><li><strong>Specify, don’t just show.</strong> For each animation, note the trigger, duration, easing, what moves and what happens if the user interrupts it.</li><li><strong>Build a motion system.</strong> A short list of standard durations and easing curves, named like design tokens, keeps everything consistent and saves developers from guessing.</li><li><strong>Review on a real device.</strong> Motion that looks smooth on a big monitor can feel slow or jittery on a phone. Check the build in your hand before sign-off.</li><li><strong>Test with users.</strong> Watch whether people notice the feedback, understand the transition and stay oriented. If they don’t react to it at all, that’s often a good sign.</li></ul>
+<p>The best microinteractions are the ones users would only notice if they were gone.</p>
+          </div>
+        </article>
+
+        <section class="post-cta" aria-labelledby="cta-title"><p class="eyebrow">Work with OSAM</p><h2 id="cta-title">Want an app that feels alive, not busy?</h2><p>OSAM is an international studio designing and building websites and iOS apps, with design and development under one roof, so the motion you approve is the motion that ships. <a href="/#contact">Let’s talk</a>. And if you’re a UI/UX, graphic or motion-minded designer who knows when to animate and when not to, we’re hiring: <a href="/#career">apply through the careers form</a>.</p><a class="button" href="/#contact">Start a project</a></section>
+
+        <section class="post-related" aria-labelledby="related-title"><h2 id="related-title">Related guides</h2><div class="card-grid"><a class="card" href="/insights/ios-vs-android-what-designers-must-know/"><span class="kicker">Mobile</span><h3>iOS vs Android: What Designers Must Know</h3><p>iOS got calmer and more transparent, Android got bolder. Here is what designers must know to respect both platforms.</p></a><a class="card" href="/insights/ux-ui-trends-worth-following/"><span class="kicker">Trends</span><h3>UX/UI Trends Worth Following</h3><p>AI inside products, personalization, Liquid Glass, craft, accessibility and trust: the shifts worth paying attention to.</p></a></div></section>
+
+        <footer class="cta">
+        <div class="cta__bg" aria-hidden="true"><div class="cta__row"><span>unicorns only</span><span>unicorns only</span><span>unicorns only</span><span>unicorns only</span></div><div class="cta__row"><span>unicorns only</span><span>unicorns only</span><span>unicorns only</span><span>unicorns only</span></div><div class="cta__row"><span>unicorns only</span><span>unicorns only</span><span>unicorns only</span><span>unicorns only</span></div><div class="cta__row"><span>unicorns only</span><span>unicorns only</span><span>unicorns only</span><span>unicorns only</span></div><div class="cta__row"><span>unicorns only</span><span>unicorns only</span><span>unicorns only</span><span>unicorns only</span></div><div class="cta__row"><span>unicorns only</span><span>unicorns only</span><span>unicorns only</span><span>unicorns only</span></div><div class="cta__row"><span>unicorns only</span><span>unicorns only</span><span>unicorns only</span><span>unicorns only</span></div><div class="cta__row"><span>unicorns only</span><span>unicorns only</span><span>unicorns only</span><span>unicorns only</span></div></div>
+        <h2 class="cta__title">Unicorns aren’t born. They’re designed <span aria-hidden="true">🦄</span></h2>
+        <div class="cta__cols">
+          <div>
+            <h3>Navigation</h3>
+            <ul>
+              <li><a href="/#projects">Portfolio</a></li>
+              <li><a href="/insights/">Blog</a></li>
+              <li><a href="/#career">Careers</a></li>
+            </ul>
+          </div>
+          <div>
+            <h3>Contacts</h3>
+            <ul>
+              <li><a href="https://www.instagram.com/osam.design/" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+              <li>Founder</li>
+              <li><a href="mailto:viktor@osamdesign.com">viktor@osamdesign.com</a></li>
+            </ul>
+          </div>
+        <div class="cta__legal">
+            <h3 aria-hidden="true">&nbsp;</h3>
+            <ul>
+              <li><a href="/terms/">Terms and Conditions</a></li>
+              <li><a href="/privacy/">Privacy</a></li>
+              <li>©2026 osamdesign</li>
+            </ul>
+          </div>
+        </div>
+      </footer>
+      </main>
+    </div>
+    <script src="/js/main.js?v=seo-9"></script>
+  </body>
+</html>
