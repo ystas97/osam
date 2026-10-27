@@ -110,9 +110,20 @@
             </div>
           </header>
 
-          <section class="case-story" aria-label="About the project">
-            <h2 class="case-story__headline">Scan food. Explore its nutritional value.</h2>
-            <div class="case-story__copy"><p>Food Scanner is a mobile app for scanning food and exploring its nutritional value.</p></div>
+          <section class="case-brief" aria-label="Project brief">
+            <div class="case-brief__tabs" role="tablist">
+              <button type="button" role="tab" class="is-active" aria-selected="true" data-case-tab="brief">Brief</button>
+              <button type="button" role="tab" aria-selected="false" data-case-tab="services">Services</button>
+            </div>
+            <div class="case-brief__panels">
+              <div class="case-brief__panel" data-case-panel="brief">
+                <p class="case-brief__body" data-case-body>Food Scanner brings meal scanning, nutrition tracking, recipes and activity logging into one mobile app. The interface connects everyday food choices with a clear view of personal progress.<br /><br />We designed the core screens, from onboarding and meal details to exercise tracking and nutrition statistics. Calorie and nutrient breakdowns, serving controls and progress charts make the information easy to explore.<br /><br />The visual presentation pairs the app with colourful food characters, phone mockups and animated videos that show its key features in action.</p>
+                <button type="button" class="case-brief__more" data-case-more aria-expanded="false" hidden>read more</button>
+              </div>
+              <div class="case-brief__panel" data-case-panel="services" hidden>
+                <ul class="case-brief__list"><li>Mobile UX/UI design</li><li>Onboarding</li><li>Food scanning and nutrition screens</li><li>Recipe screens</li><li>Activity and progress tracking</li><li>App mockups</li><li>Promotional videos</li></ul>
+              </div>
+            </div>
           </section>
           <div class="case-gallery">
             <figure class="case-plate"><img src="/assets/images/projects/food-scanner-photo-overview.jpg" alt="Food Scanner activity and progress screens with colourful food characters" width="1806" height="1130" loading="lazy" decoding="async" /></figure>
